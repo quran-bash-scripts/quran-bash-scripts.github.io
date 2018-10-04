@@ -30,7 +30,7 @@ The app heavily relies on the playlist file having 6236 lines, each line corresp
 
 
 ** DESCRIPTION
-   This script, if given zekr/tanzil translation/tafsir files with the \"*trans.zekr\" extension, or the  \"*trans.zekr.7z\" extension will generate/or show the tafsir one or more ayat, one or more suwar passed through the command line as follows:
+   This script, if given zekr/tanzil translation/tafsir files with the "*trans.zekr" extension, or the  "*trans.zekr.7z" extension will generate/or show the tafsir one or more ayat, one or more suwar passed through the command line as follows:
 
    -a|--ayaat takes 3-digits designating the Sûrah number followed by 3 other digits for the given verse. For example: 005012  means:
    Sûrah 5, verse 12. Here one can provide verses in this format - one or more, quoted  for instance: '002102 005075 009105'.
@@ -215,7 +215,7 @@ One can also provide ayah numbers  in range. For instance:
 
 
 ** DESCRIPTION
-	This script, if given playlist files in zekr/tanzil format with the \"*plst.6236.lines.7z\" extension, or \"*plst.6236.lines\" extension will read the audio files of ayât, set of ayât, range of ayât; suwar, set of suwar, range of suwar; juz, set of juz, range of juz; ḥizb, set of ḥizb, range of ḥizb; rub-`ul-ḥizb, set of rub-`ul-ḥizb, range of rub-`ul-ḥizb; page, set of pages or range of pages passed to it through the command line in the the following format:
+	This script, if given playlist files in zekr/tanzil format with the "*plst.6236.lines.7z" extension, or "*plst.6236.lines" extension will read the audio files of ayât, set of ayât, range of ayât; suwar, set of suwar, range of suwar; juz, set of juz, range of juz; ḥizb, set of ḥizb, range of ḥizb; rub-`ul-ḥizb, set of rub-`ul-ḥizb, range of rub-`ul-ḥizb; page, set of pages or range of pages passed to it through the command line in the the following format:
  
 	FOR AYÂT: 3-digits designating the Sûrah number followed by 3 other digits for the given verse. For example: 005012.
 	Henceforth this is what we will name ayah_id. The example above means: Sûrah 5, verse 12.
@@ -628,34 +628,40 @@ h
    Download Link:
 [[file:programs/tafsir.sh.gz][tafsir.sh.gz]]
 
+[[file:programs/uncompressed/tafsir.sh][tafsir.sh]]
+
 ** qap-audio-player.sh
-   Download Link:
+   Download Links:
 [[file:programs/qap-audio-player.sh.gz][qap-audio-player.sh.gz]]
+
+[[file:programs/uncompressed/qap-audio-player.sh][qap-audio-player.sh]]
 
 ** rq-ayat-3x-each-then-1-5.0-ALPHA.sh
    Download Link:
 [[file:programs/rq-ayat-3x-each-then-1-5.0-ALPHA.sh.gz][rq-ayat-3x-each-then-1-5.0-ALPHA.sh.gz]]
 
+[[file:programs/uncompressed/rq-ayat-3x-each-then-1-5.0-ALPHA.sh][rq-ayat-3x-each-then-1-5.0-ALPHA.sh]]
+
 ** Tafsir Files
     Download Links:
 [[file:downloads/html-tafasir-files.7z][HTML Tafsir Files]]
 Contains the following files in HTML format:
-1) 00 - Arabic Text.trans.zekr.7z
-2) 01 - English - Taqi-ud-Deen al-Hilali and Muhsin Khan.trans.zekr.7z
-3) 02 - English - Tanweer al-Miqbas.trans.zekr.7z
-4) 03 - English Jallalayn.trans.zekr.7z
-5) 04 - English - Tafhimul-Quran - Maududi.trans.zekr.7z
-6) 05 - English Tafsir ibn Kathir.trans.zekr.7z
+- 00 - Arabic Text.trans.zekr.7z
+- 01 - English - Taqi-ud-Deen al-Hilali and Muhsin Khan.trans.zekr.7z
+- 02 - English - Tanweer al-Miqbas.trans.zekr.7z
+- 03 - English Jallalayn.trans.zekr.7z
+- 04 - English - Tafhimul-Quran - Maududi.trans.zekr.7z
+- 05 - English Tafsir ibn Kathir.trans.zekr.7z
 
 
 [[file:downloads/txt-tafasir-files.7z][TXT Tafsir Files]]
 Contains the following files in plain text format:
-1) 00 - Arabic Text.trans.zekr.7z
-2) 01 - English - Taqi-ud-Deen al-Hilali and Muhsin Khan.trans.zekr.7z
-3) 02 - English - Tanweer al-Miqbas.trans.zekr.7z
-4) 03 - English Jallalayn.trans.zekr.7z
-5) 04 - English - Tafhimul-Quran - Maududi.trans.zekr.7z
-6) 05 - English Tafsir ibn Kathir.trans.zekr.7z
++ 00 - Arabic Text.trans.zekr.7z
++ 01 - English - Taqi-ud-Deen al-Hilali and Muhsin Khan.trans.zekr.7z
++ 02 - English - Tanweer al-Miqbas.trans.zekr.7z
++ 03 - English Jallalayn.trans.zekr.7z
++ 04 - English - Tafhimul-Quran - Maududi.trans.zekr.7z
++ 05 - English Tafsir ibn Kathir.trans.zekr.7z
    
 ** Playlist Files + Audios
    Coming soon in Sha Allah.
@@ -663,17 +669,48 @@ Contains the following files in plain text format:
 ** Translation Files Divided into 6236 TXT Files
    Coming soon in Sha Allah.
 
-** Scripts that Divide the Quran into Various Units
+** Scripts that Divide the Quran 6236 Audio Files into Various Units
    Please download the following archive and extract it with =7zip= and you will get the whole set of scripts that divide your Quran 6236 audio files into folders representing various units of the Quran, i.e., Sûrah, Juz, Hizb etc.
     
-   Download Link:
-[[file:programs/divide-quran-per-PARTS.7z][divide-quran-per-PARTS.7z]]
+   Download Link - 7z archive containing all the scrips: 
+   [[file:programs/divide-quran-per-PARTS.7z][divide-quran-per-PARTS.7z]]
+
+   Download Links - Separate scripts - *.sh
+
+   [[file:programs/uncompressed/divide-quran-per-PARTS/divide-quran-per-hizb-1-safe.sh][divide-quran-per-hizb-1-safe.sh]]
+
+   [[file:programs/uncompressed/divide-quran-per-PARTS/divide-quran-per-hizb-2-unsafe.sh][divide-quran-per-hizb-2-unsafe.sh]]
+
+   [[file:programs/uncompressed/divide-quran-per-PARTS/divide-quran-per-hizb-roub-1-safe.sh][divide-quran-per-hizb-roub-1-safe.sh]]
+
+   [[file:programs/uncompressed/divide-quran-per-PARTS/divide-quran-per-hizb-roub-2-unsafe.sh][divide-quran-per-hizb-roub-2-unsafe.sh]]
+
+   [[file:programs/uncompressed/divide-quran-per-PARTS/divide-quran-per-juz.sh][divide-quran-per-juz.sh]]
+
+   [[file:programs/uncompressed/divide-quran-per-PARTS/divide-quran-per-page-1-safe.sh][divide-quran-per-page-1-safe.sh]]
+
+   [[file:programs/uncompressed/divide-quran-per-PARTS/divide-quran-per-page-2-unsafe.sh][divide-quran-per-page-2-unsafe.sh]]
+
+   [[file:programs/uncompressed/divide-quran-per-PARTS/divide-quran-per-suwar.sh][divide-quran-per-suwar.sh]]
 
 ** Scripts that Divide Translation Text-Files into 6236 TXT Files
-   Download link:
-[[file:programs/Divide-Trans-Text-Files-to-6236-Ayat-TXT-Files.7z][Divide-Trans-Text-Files-to-6236-Ayat-TXT-Files.7z]]
+
+   Download link - one 7z archive containing the script and its dependencies: 
+   [[file:programs/Divide-Trans-Text-Files-to-6236-Ayat-TXT-Files.7z][Divide-Trans-Text-Files-to-6236-Ayat-TXT-Files.7z]]
+
+   Download Links - *.sh script and *.txt dependencies: 
+   [[file:programs/uncompressed/Divide-Trans-Text-Files-to-6236-Ayat-TXT-Files/div-trans-textFile-to-6236-TXT-Files.sh][div-trans-textFile-to-6236-TXT-Files.sh]]
+
+   Its Dependencies:
+
+   [[file:programs/uncompressed/Divide-Trans-Text-Files-to-6236-Ayat-TXT-Files/01-Quran-Verses-Line-Numbers.txt][01-Quran-Verses-Line-Numbers.txt]]
+
+   [[file:programs/uncompressed/Divide-Trans-Text-Files-to-6236-Ayat-TXT-Files/02-VerseByVerse-Quran-Ayat-List.txt][02-VerseByVerse-Quran-Ayat-List.txt]]
+
 
    Download Some tranlation files especially prepared for use with the Quran Text or Translation division script above. Note that the files are in the format of the Tanzil/Zekr projects Quran text and translation/tafsir files. Note also the the Quran text division program can also divide the HTLM/TXT tafsir files that the =tafsir.sh= program uses to generate the tafsir of ayaat or suwar.
+
+   Please note that these have not been divided into 6236 files yet. Divide them with the script provided above. If you would like to download alread divides files, go to =Translation Files Divided into 6236 TXT Files=
 
 [[file:downloads/Translations-Without-HTML-Tags.7z][Translations-Without-HTML-Tags.7z]]
 
@@ -693,8 +730,86 @@ The file contains the following:
 ** Scripts that Show Various Sûrah or Âyah Metadata
    Below, you can download the whole set of functions that display all sorts of information related to Quranic Chapers (Suwar) and verses (âyât)
 
-   Download link:
-[[file:programs/Show_Surah_Metadata.7z][Show-Surah-Metadata.7z]]
+   Download Link - 7z archive containing all the scrips: 
+   [[file:programs/Show_Surah_Metadata.7z][Show-Surah-Metadata.7z]]
+
+   Download Links - Separate scripts - *.sh
+
+   Scripts that Show List of Verses of Surah/Juz/Ḥizb/Rub-ul-Ḥizb/PageNumber:
+
+   [[file:programs/uncompressed/Show_Surah_Metadata/List_of_Verses_of_Surah-Juz-Hizb-RubUlHizb-PageNumber/show-list-of-verses-that-belong-to-this-hizb.sh][show-list-of-verses-that-belong-to-this-hizb.sh]]
+
+   [[file:programs/uncompressed/Show_Surah_Metadata/List_of_Verses_of_Surah-Juz-Hizb-RubUlHizb-PageNumber/show-list-of-verses-that-belong-to-this-juz.sh][show-list-of-verses-that-belong-to-this-juz.sh]]
+
+   [[file:programs/uncompressed/Show_Surah_Metadata/List_of_Verses_of_Surah-Juz-Hizb-RubUlHizb-PageNumber/show-list-of-verses-that-belong-to-this-page-number.sh][show-list-of-verses-that-belong-to-this-page-number.sh]]
+
+   [[file:programs/uncompressed/Show_Surah_Metadata/List_of_Verses_of_Surah-Juz-Hizb-RubUlHizb-PageNumber/show-list-of-verses-that-belong-to-this-rub-al-hizb.sh][show-list-of-verses-that-belong-to-this-rub-al-hizb.sh]]
+
+   [[file:programs/uncompressed/Show_Surah_Metadata/List_of_Verses_of_Surah-Juz-Hizb-RubUlHizb-PageNumber/show-list-of-verses-that-belong-to-this-surah.sh][show-list-of-verses-that-belong-to-this-surah.sh]]
+
+
+   Scripts that Show Number of Verses of Surah/Juz/Ḥizb/Rub-ul-Ḥizb/PageNumber:
+
+   [[file:programs/uncompressed/Show_Surah_Metadata/Number_of_Verses_of_Surah-Juz-Hizb-RubUlHizb-PageNumber/give-the-number-of-verses-of-surah.sh][give-the-number-of-verses-of-surah.sh]]
+
+   [[file:programs/uncompressed/Show_Surah_Metadata/Number_of_Verses_of_Surah-Juz-Hizb-RubUlHizb-PageNumber/show-number-of-verses-that-belong-to-this-hizb.sh][show-number-of-verses-that-belong-to-this-hizb.sh]]
+
+   [[file:programs/uncompressed/Show_Surah_Metadata/Number_of_Verses_of_Surah-Juz-Hizb-RubUlHizb-PageNumber/show-number-of-verses-that-belong-to-this-juz.sh][show-number-of-verses-that-belong-to-this-juz.sh]]
+
+   [[file:programs/uncompressed/Show_Surah_Metadata/Number_of_Verses_of_Surah-Juz-Hizb-RubUlHizb-PageNumber/show-number-of-verses-that-belong-to-this-page-number.sh][show-number-of-verses-that-belong-to-this-page-number.sh]]
+
+   [[file:programs/uncompressed/Show_Surah_Metadata/Number_of_Verses_of_Surah-Juz-Hizb-RubUlHizb-PageNumber/show-number-of-verses-that-belong-to-this-rub-al-hizb.sh][show-number-of-verses-that-belong-to-this-rub-al-hizb.sh]]
+
+
+   Other Ayah Related Scripts:
+
+   [[file:programs/uncompressed/Show_Surah_Metadata/Other_Ayah_Related_BASH_Functions/ayah-necessitates-sadjdah-or-not.sh][ayah-necessitates-sadjdah-or-not.sh]]
+
+   [[file:programs/uncompressed/Show_Surah_Metadata/Other_Ayah_Related_BASH_Functions/play-basmala-for-the-113-suwar.sh][play-basmala-for-the-113-suwar.sh]]
+
+
+   Scripts that Show the Id of Surah/Juz/Ḥizb/Rub-ul-Ḥizb/PageNumber to which a Verse Belongs:
+
+   [[file:programs/uncompressed/Show_Surah_Metadata/Show_ID_of_the_Greater_Unit_to_Which_a_Verse_Belongs/show-hizb-to-which-this-ayah-belongs.sh][show-hizb-to-which-this-ayah-belongs.sh]]
+
+   [[file:programs/uncompressed/Show_Surah_Metadata/Show_ID_of_the_Greater_Unit_to_Which_a_Verse_Belongs/show-juz-to-which-this-ayah-belongs.sh][show-juz-to-which-this-ayah-belongs.sh]]
+
+   [[file:programs/uncompressed/Show_Surah_Metadata/Show_ID_of_the_Greater_Unit_to_Which_a_Verse_Belongs/show-page-number-to-which-this-ayah-belongs.sh][show-page-number-to-which-this-ayah-belongs.sh]]
+
+   [[file:programs/uncompressed/Show_Surah_Metadata/Show_ID_of_the_Greater_Unit_to_Which_a_Verse_Belongs/show-rub-al-hizb-to-which-this-ayah-belongs.sh][show-rub-al-hizb-to-which-this-ayah-belongs.sh]]
+
+
+   Scripts that Show the Number of Verses of the Surah/Juz/Ḥizb/Rub-ul-Ḥizb/PageNumber to a Verse Belongs:
+
+   [[file:programs/uncompressed/Show_Surah_Metadata/Show_Number_of_Elements_Contained_in_the_Unit_to_Which_a_Verse_Belongs/get-number-of-ayaat-of-the-HIZB-to-which-this-ayah-belongs.sh][get-number-of-ayaat-of-the-HIZB-to-which-this-ayah-belongs.sh]]
+
+   [[file:programs/uncompressed/Show_Surah_Metadata/Show_Number_of_Elements_Contained_in_the_Unit_to_Which_a_Verse_Belongs/get-number-of-ayaat-of-the-JUZ-to-which-this-ayah-belongs.sh][get-number-of-ayaat-of-the-JUZ-to-which-this-ayah-belongs.sh]]
+
+   [[file:programs/uncompressed/Show_Surah_Metadata/Show_Number_of_Elements_Contained_in_the_Unit_to_Which_a_Verse_Belongs/get-number-of-ayaat-of-the-PAGE-to-which-this-ayah-belongs.sh][get-number-of-ayaat-of-the-PAGE-to-which-this-ayah-belongs.sh]]
+
+   [[file:programs/uncompressed/Show_Surah_Metadata/Show_Number_of_Elements_Contained_in_the_Unit_to_Which_a_Verse_Belongs/get-number-of-ayaat-of-the-RUB-UL-HIZB-to-which-this-ayah-belongs.sh][get-number-of-ayaat-of-the-RUB-UL-HIZB-to-which-this-ayah-belongs.sh]]
+
+   [[file:programs/uncompressed/Show_Surah_Metadata/Show_Number_of_Elements_Contained_in_the_Unit_to_Which_a_Verse_Belongs/get-number-of-ayaat-of-the-surah-to-which-this-ayah-belongs.sh][get-number-of-ayaat-of-the-surah-to-which-this-ayah-belongs.sh]]
+
+
+   Scripts that Show Some Extras Information for a Surah:
+
+   [[file:programs/uncompressed/Show_Surah_Metadata/Show_Some_Info_for_a_Surah/show-surah-meccan-or-medinan.sh][show-surah-meccan-or-medinan.sh]]
+
+   [[file:programs/uncompressed/Show_Surah_Metadata/Show_Some_Info_for_a_Surah/show-surah-name-arabic.sh][show-surah-name-arabic.sh]]
+
+   [[file:programs/uncompressed/Show_Surah_Metadata/Show_Some_Info_for_a_Surah/show-surah-name-english.sh][show-surah-name-english.sh]]
+
+   [[file:programs/uncompressed/Show_Surah_Metadata/Show_Some_Info_for_a_Surah/show-surah-number.sh][show-surah-number.sh]]
+
+   [[file:programs/uncompressed/Show_Surah_Metadata/Show_Some_Info_for_a_Surah/show-surah-number-without-leading-zeros.sh][show-surah-number-without-leading-zeros.sh]]
+
+
+   A Single Script that Shows all the Informations of a Given Ayah - It is the combination of most of the other scripts:
+   [[file:programs/uncompressed/Show_Surah_Metadata/00-show-all-verse-metadata.sh][00-show-all-verse-metadata.sh]]
+
+   A Single Script that Shows all the Verses Belonging to A Surah/Juz/Ḥizb/Rub-ul-Ḥizb or PageNumber:
+   [[file:programs/uncompressed/Show_Surah_Metadata/show-list-of-verses-of-various-units.sh][show-list-of-verses-of-various-units.sh]]
 
 ** Custom Tanzil/Zekr Translation/Tafsir Files
    These are a set of Tanzil/Zekr translation or Tafsir files that I prepared for my personal use over the years. In the past years I did my best to get in touch with the Tanzil project in order to send them these files for the benefit of other people but they wouldn't answer my emails. In the end I got frustrated and stopped sending them emails. Here I am today, after many years, publishing them on the internet myself. All praise is due to Allah, The Lord of the Worlds.
@@ -703,3 +818,5 @@ The file contains the following:
 
 ** Other Scripts
    Coming soon in Sha Allah.
+
+
