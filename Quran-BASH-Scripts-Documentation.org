@@ -1,3 +1,11 @@
+#+TITLE: Quran BASH Scripts
+#+AUTHOR: Abu-Djuwairiyyah Karim ibn Muḥammad An-Nidjeri As-Salafî
+
+# Light version:
+#+INFOJS_OPT: view:t toc:t ltoc:t mouse:underline buttons:0 path:file:solarized-css/org-info.min.js
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="file:solarized-css/solarized-light.css" />
+
+
 
 * IMPORTANT INFORMATION:
   Please note that this site and the programs it provides are a work in progress. We are still in beta.
@@ -630,10 +638,6 @@ en.al-quran-info-transliteration.trans.zip
 
 
 *** play-basmala-for-the-113-suwar.sh
-
-
-    #+TITLE: Quran BASH Scripts
-    #+AUTHOR: Abu-Djuwairiyyah Karim ibn Muḥammad An-Nidjeri As-Salafî
 
 
 * Download Section
