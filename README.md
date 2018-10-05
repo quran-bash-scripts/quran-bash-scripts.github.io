@@ -1,102 +1,103 @@
 
 # Table of Contents
 
-1.  [IMPORTANT INFORMATION:](#org5c27a23)
-2.  [IMPORTANT NOTES:](#org90c8599)
-    1.  [Important Note N°1](#orga6f9a8f)
-    2.  [Important Note N°2](#org2e4239a)
-3.  [tafsir.sh](#orgaf39b2f)
-    1.  [SYNOPSIS](#orgbc7eb9d)
-    2.  [DESCRIPTION](#org93d4d6a)
-    3.  [EXAMPLES:](#org2a61281)
-    4.  [DEPENDENCIES](#org77b7941)
-        1.  [App dependencies](#org9f62309)
-        2.  [Supported Format of Tafsir Files](#orgb37f39e)
-        3.  [How to Prepare the Tafsir Files](#org6b98324)
-4.  [qap-audio-player.sh](#orgb92894f)
-    1.  [SYNOPSIS](#orgcb223a2)
-    2.  [DESCRIPTION](#org1b3098b)
-    3.  [EXAMPLES](#orgf9a4033)
-    4.  [AS FOR THE REST OF THE OPTIONS:](#org776f876)
-    5.  [DEPENDENCIES](#orgaa57ee9)
-    6.  [CREATING THE PLAYLIST FILES](#org27b63e9)
-5.  [rq-ayat-3x-each-then-1.sh](#orgd2cf76a)
-    1.  [SYNOPSYS](#org2b08d70)
-    2.  [DESCRIPTION](#org227ae14)
-    3.  [COMMAND LINE OPTIONS](#org36a8e09)
-    4.  [EXAMPLES](#org2b36939)
-    5.  [DEPENDENCIES](#orgad98b01)
-6.  [Divide Quran 6236 Audio Files to Various Units](#orgc20cf4f)
-    1.  [divide-quran-per-suwar.sh](#orgc039061)
-    2.  [divide-quran-per-juz.sh](#org5194e45)
-    3.  [divide-quran-per-hizb-1-safe.sh](#orgc076c41)
-    4.  [divide-quran-per-hizb-2-unsafe.sh](#org24c22b7)
-    5.  [divide-quran-per-hizb-roub-1-safe.sh](#org8bf49ba)
-    6.  [divide-quran-per-hizb-roub-2-unsafe.sh](#org84ab4a6)
-    7.  [divide-quran-per-page-1-safe.sh](#orgb968879)
-    8.  [divide-quran-per-page-2-unsafe.sh](#org492f247)
-    9.  [Bonus: move-21-ayat-in-subdirs.sh](#org62c692f)
-7.  [div-trans-textFile-to-6236-TXT-Files](#org42b4836)
-    1.  [Dependencies:](#orgdd7e842)
-        1.  [01-Quran-Verses-Line-Numbers.txt](#orgaf1e9b6)
-        2.  [02-VerseByVerse-Quran-Ayat-List.txt](#org4f1dbb6)
-        3.  [Zekr/Tanzil Translation files](#org2499cb6)
-8.  [Show Sûrah or Âyah Metadata](#org47b2fc6)
-    1.  [List of Verses of Surah-Juz-Hizb-RubUlHizb-PageNumber](#org98a7c21)
-        1.  [show-list-of-verses-that-belong-to-this-surah.sh](#orgc7022f1)
-        2.  [show-list-of-verses-that-belong-to-this-juz.sh](#orga0d7ad7)
-        3.  [show-list-of-verses-that-belong-to-this-hizb.sh](#org68823c4)
-        4.  [show-list-of-verses-that-belong-to-this-rub-al-hizb.sh](#orgeffb6ac)
-        5.  [show-list-of-verses-that-belong-to-this-page-number.sh](#org2e54679)
-    2.  [Number of Verses of Surah-Juz-Hizb-RubUlHizb-PageNumber](#org305037c)
-        1.  [give-the-number-of-verses-of-surah.sh](#orgdf50036)
-        2.  [show-number-of-verses-that-belong-to-this-juz.sh](#orgcbf9bdf)
-        3.  [show-number-of-verses-that-belong-to-this-hizb.sh](#orgb60f2af)
-        4.  [show-number-of-verses-that-belong-to-this-rub-al-hizb.sh](#orgb41ade9)
-        5.  [show-number-of-verses-that-belong-to-this-page-number.sh](#org2dcf52c)
-    3.  [Show ID of the Greater Unit to Which a Verse Belongs](#orgc32d105)
-        1.  [show-juz-to-which-this-ayah-belongs.sh](#org61ecdce)
-        2.  [show-hizb-to-which-this-ayah-belongs.sh](#org86dd10b)
-        3.  [show-rub-al-hizb-to-which-this-ayah-belongs.sh](#orgbdbb7cb)
-        4.  [show-page-number-to-which-this-ayah-belongs.sh](#org59980a3)
-    4.  [Show Some More Info for a Surah](#org261ac79)
-        1.  [show-surah-meccan-or-medinan.sh](#org38021a9)
-        2.  [show-surah-name-arabic.sh](#org4a10743)
-        3.  [show-surah-name-english.sh](#orgba3dc60)
-        4.  [show-surah-number.sh](#orga95de27)
-        5.  [show-surah-number-without-leading-zeros.sh](#org8f248d0)
-    5.  [Show Number of Elements Contained in the Unit to Which a Verse Belongs](#orgba5fce2)
-        1.  [get-number-of-ayaat-of-the-surah-to-which-this-ayah-belongs.sh](#org5e2380d)
-    6.  [Other Ayah Related BASH Functions](#org3862f94)
-        1.  [ayah-necessitates-sadjdah-or-not.sh](#org4027656)
-        2.  [play-basmala-for-the-113-suwar.sh](#org070fba2)
-9.  [Download Section](#orgd7998f3)
-    1.  [tafsir.sh](#org74a2a90)
-    2.  [qap-audio-player.sh](#org4ba8e9a)
-    3.  [rq-ayat-3x-each-then-1-5.0-ALPHA.sh](#org13468d8)
-    4.  [Tafsir Files](#org2a0f160)
-    5.  [Playlist Files + Audios](#org204c0f4)
-    6.  [Translation Files Divided into 6236 TXT Files](#orga49c02b)
-    7.  [Scripts that Divide the Quran 6236 Audio Files into Various Units](#org4cb09fb)
-    8.  [Scripts that Divide Translation Text-Files into 6236 TXT Files](#orgb4ad5bf)
-    9.  [Scripts that Show Various Sûrah or Âyah Metadata](#orgc4c7c51)
-    10. [Custom Tanzil/Zekr Translation/Tafsir Files](#orga3333b8)
-    11. [Other Scripts](#orgee8bf7d)
+1.  [IMPORTANT INFORMATION:](#org33f1435)
+2.  [IMPORTANT NOTES:](#orga0ff27f)
+    1.  [Important Note N°1](#orgb230621)
+    2.  [Important Note N°2](#org22534c0)
+3.  [tafsir.sh](#org79eba31)
+    1.  [SYNOPSIS](#org04991f3)
+    2.  [DESCRIPTION](#orgf64b2ac)
+    3.  [EXAMPLES:](#orgcab727d)
+    4.  [DEPENDENCIES](#org039e915)
+        1.  [App dependencies](#org9685f1a)
+        2.  [Supported Format of Tafsir Files](#org7493da5)
+        3.  [How to Prepare the Tafsir Files](#orge9aad04)
+4.  [qap-audio-player.sh](#orgb48df06)
+    1.  [SYNOPSIS](#org7976a2d)
+    2.  [DESCRIPTION](#org628afe3)
+    3.  [EXAMPLES](#org0476396)
+    4.  [AS FOR THE REST OF THE OPTIONS:](#org0dd7d2a)
+    5.  [DEPENDENCIES](#orge8ce9e7)
+    6.  [CREATING THE PLAYLIST FILES](#orgb8f85ca)
+5.  [rq-ayat-3x-each-then-1.sh](#orgcc7851e)
+    1.  [SYNOPSYS](#orgc48a227)
+    2.  [DESCRIPTION](#org35f60a2)
+    3.  [COMMAND LINE OPTIONS](#orgf5ab838)
+    4.  [EXAMPLES](#orgee0ddc3)
+    5.  [DEPENDENCIES](#org4aa0baf)
+6.  [Divide Quran 6236 Audio Files to Various Units](#org10a1c87)
+    1.  [divide-quran-per-suwar.sh](#org219fe7b)
+    2.  [divide-quran-per-juz.sh](#org895a394)
+    3.  [divide-quran-per-hizb-1-safe.sh](#orge091ac9)
+    4.  [divide-quran-per-hizb-2-unsafe.sh](#org0b50e1a)
+    5.  [divide-quran-per-hizb-roub-1-safe.sh](#org27270b3)
+    6.  [divide-quran-per-hizb-roub-2-unsafe.sh](#orgb91e6db)
+    7.  [divide-quran-per-page-1-safe.sh](#org038df72)
+    8.  [divide-quran-per-page-2-unsafe.sh](#orgf4674c3)
+    9.  [Bonus: move-21-ayat-in-subdirs.sh](#org3b8cbd4)
+7.  [div-trans-textFile-to-6236-TXT-Files](#org43204a0)
+    1.  [Dependencies:](#org5978aa4)
+        1.  [01-Quran-Verses-Line-Numbers.txt](#org98b1ac9)
+        2.  [02-VerseByVerse-Quran-Ayat-List.txt](#org84caa82)
+        3.  [Zekr/Tanzil Translation files](#orgf136315)
+8.  [Show Sûrah or Âyah Metadata](#org47b13cd)
+    1.  [List of Verses of Surah-Juz-Hizb-RubUlHizb-PageNumber](#orgd9e1f80)
+        1.  [show-list-of-verses-that-belong-to-this-surah.sh](#org6d2dece)
+        2.  [show-list-of-verses-that-belong-to-this-juz.sh](#orgc29d8ff)
+        3.  [show-list-of-verses-that-belong-to-this-hizb.sh](#orgc6ddee1)
+        4.  [show-list-of-verses-that-belong-to-this-rub-al-hizb.sh](#org91dde76)
+        5.  [show-list-of-verses-that-belong-to-this-page-number.sh](#org2620069)
+    2.  [Number of Verses of Surah-Juz-Hizb-RubUlHizb-PageNumber](#org60a10f1)
+        1.  [give-the-number-of-verses-of-surah.sh](#orgfc364a1)
+        2.  [show-number-of-verses-that-belong-to-this-juz.sh](#org5fd166e)
+        3.  [show-number-of-verses-that-belong-to-this-hizb.sh](#orgb3f1a29)
+        4.  [show-number-of-verses-that-belong-to-this-rub-al-hizb.sh](#org50745e7)
+        5.  [show-number-of-verses-that-belong-to-this-page-number.sh](#orgce423ea)
+    3.  [Show ID of the Greater Unit to Which a Verse Belongs](#orgab1458d)
+        1.  [show-juz-to-which-this-ayah-belongs.sh](#org32b858d)
+        2.  [show-hizb-to-which-this-ayah-belongs.sh](#org1333022)
+        3.  [show-rub-al-hizb-to-which-this-ayah-belongs.sh](#org8425d49)
+        4.  [show-page-number-to-which-this-ayah-belongs.sh](#orge421958)
+    4.  [Show Some More Info for a Surah](#org66a095f)
+        1.  [show-surah-meccan-or-medinan.sh](#orgbf26b7e)
+        2.  [show-surah-name-arabic.sh](#orgcaa43d2)
+        3.  [show-surah-name-english.sh](#org08b4ccf)
+        4.  [show-surah-number.sh](#orgdd2a257)
+        5.  [show-surah-number-without-leading-zeros.sh](#org64b7db5)
+    5.  [Show Number of Elements Contained in the Unit to Which a Verse Belongs](#orgfd810be)
+        1.  [get-number-of-ayaat-of-the-surah-to-which-this-ayah-belongs.sh](#orge0bf5d7)
+    6.  [Other Ayah Related BASH Functions](#orgb5db7b1)
+        1.  [ayah-necessitates-sadjdah-or-not.sh](#org70a1065)
+        2.  [play-basmala-for-the-113-suwar.sh](#org7b1a2d4)
+9.  [Download Section](#org46f4245)
+    1.  [tafsir.sh](#org8296504)
+    2.  [qap-audio-player.sh](#org1a573f3)
+    3.  [rq-ayat-3x-each-then-1-5.0-ALPHA.sh](#orgada0e62)
+    4.  [Tafsir Files](#org19ddbe6)
+    5.  [Playlist Files + Audios](#org03b5ff9)
+    6.  [Translation Files Divided into 6236 TXT Files](#org89489f6)
+    7.  [Scripts that Divide the Quran 6236 Audio Files into Various Units](#orgcfb48f3)
+    8.  [Scripts that Divide Translation Text-Files into 6236 TXT Files](#org4b3dad6)
+    9.  [Scripts that Show Various Sûrah or Âyah Metadata](#orgffe6a09)
+    10. [Custom Tanzil/Zekr Translation/Tafsir Files](#orgb6a8ddc)
+    11. [Other Scripts](#orgce0eb37)
 
 
-<a id="org5c27a23"></a>
+
+<a id="org33f1435"></a>
 
 # IMPORTANT INFORMATION:
 
 Please note that this site and the programs it provides are a work in progress. We are still in beta.
 
 
-<a id="org90c8599"></a>
+<a id="orga0ff27f"></a>
 
 # IMPORTANT NOTES:
 
 
-<a id="orga6f9a8f"></a>
+<a id="orgb230621"></a>
 
 ## Important Note N°1
 
@@ -111,7 +112,7 @@ The first lines of the scripts contain:
 Just after that, appear huge functions of thousands of lines which get for us various information related to verses, suwar, juz, hizb, rub-\`ul-hizb or page numbers. Since the Quran has 6236 verses, 114 suwar, 30 juz, 60 hizb, 240 rub-\`ul-hizb and 604 pages, it is only natural that these functions would need thousands of lines. It is important to make this known because anyone who looks to the code would get frustrated as he/she scrolls down endless lines. To edit the code go to the last line of the scripts and then scroll up to the last metadata-related functions: that's from were the real code of the scripts start. If you want to edit the scripts, that's where you want to do it.
 
 
-<a id="org2e4239a"></a>
+<a id="org22534c0"></a>
 
 ## Important Note N°2
 
@@ -122,19 +123,19 @@ If each Sûrah has its own Basmala the number of files would increase with 114 m
 The app heavily relies on the playlist file having 6236 lines, each line corresponding to a verse of the Quran as it appears in any valid Tanzil/Zekr Tafsir/Translation file. As pointed out, the Tanzil/Zekr Translation/Tafsir files could tolerate additional lines, however, they have to appear after the 6236 lines designating the verses of the Quran. This is also the case for the Playlist files. They would tolerate additional lines if they appear after the 6236 lines pointing to the 6236 Quran audio files. The additional lines could give some licence information or any other type of information. These additional lines will never be used by the program.
 
 
-<a id="orgaf39b2f"></a>
+<a id="org79eba31"></a>
 
 # tafsir.sh
 
 
-<a id="orgbc7eb9d"></a>
+<a id="org04991f3"></a>
 
 ## SYNOPSIS
 
 tafsir.sh -a|&#x2013;ayaat verse(s) -s|&#x2013;suwar sûrah(s) -f|&#x2013;tafsir-format format of the tafsir files to generate: txt || htm -h|&#x2013;help -J|&#x2013;juz -H|&#x2013;hizb -R|&#x2013;rub-ul-hizb -P|&#x2013;page-number -t|&#x2013;txt-tafasir -x|&#x2013;htm-tafasir -o|&#x2013;output-file-root
 
 
-<a id="org93d4d6a"></a>
+<a id="orgf64b2ac"></a>
 
 ## DESCRIPTION
 
@@ -160,7 +161,7 @@ One can also provide ayah numbers  in range. For instance:
 -h|&#x2013;help display this help message.
 
 
-<a id="org2a61281"></a>
+<a id="orgcab727d"></a>
 
 ## EXAMPLES:
 
@@ -188,12 +189,12 @@ E.g.2 (v2): tafsir.sh &#x2013;tafsir-format htm &#x2013;ayaat '002280<sub>003010
 in E.g.1 we generate a tafsir for the whole Sûrah 15 of the Quran, thus the option -s in E.g.2 we generate a tafsir for verse number 102 of Sûratul-Baqarah, thus the  -a option and the 002102 value entered.
 
 
-<a id="org77b7941"></a>
+<a id="org039e915"></a>
 
 ## DEPENDENCIES
 
 
-<a id="org9f62309"></a>
+<a id="org9685f1a"></a>
 
 ### App dependencies
 
@@ -220,14 +221,14 @@ or
 `apt-get install sed coreutils p7zip-full`
 
 
-<a id="orgb37f39e"></a>
+<a id="org7493da5"></a>
 
 ### Supported Format of Tafsir Files
 
 The tafsir files that the program uses are in the format of Tanzil/Zekr translation/tafsir files. You can grab some files from the above-mentioned projects web-sites or (if the tafsir/translation file you would like to work on has not already been setup for zekr/tanzil) create your own. The Tanzil/Zekr file format is a simple text file which has 6236 lines. Each line corresponds to a verse of the Quran. The lines are arranged in the order of the appearance of the verses in the Qur'an from Sûratul-Fatiha to Sûratun-Nâss. Note that after the 6236 lines, you can add some other lines of information or licence, provided that all the 6236 lines of verses appear properly.
 
 
-<a id="org6b98324"></a>
+<a id="orge9aad04"></a>
 
 ### How to Prepare the Tafsir Files
 
@@ -325,21 +326,21 @@ or provide your own directory with the CLI swith:
 `-t|--txt-tafasir FULL_PATH_TO_TAFSIR_FILES`
 
 
-<a id="orgb92894f"></a>
+<a id="orgb48df06"></a>
 
 # qap-audio-player.sh
 
 Please, if you have not already read the **Important Note N°2**, go up and do so. This is vital.
 
 
-<a id="orgcb223a2"></a>
+<a id="org7976a2d"></a>
 
 ## SYNOPSIS
 
 qap-audio-player.sh -a|&#x2013;ayaat verse(s) -s|&#x2013;suwar sûrah(s) -m|&#x2013;mpv-speed PlaybackSpeed -l|&#x2013;mpv-loop LoopNumber -f|&#x2013;file-loop LoopNumber -g|&#x2013;groupLoop LoopNumber -p|&#x2013;play-trans TranslationID &#x2013;r|&#x2013;reset-eta (takes no option) -J|&#x2013;juz JuzNumber -H|&#x2013;hizb HizbNumber -R|&#x2013;rub-ul-hizb RubUlHizbNumber-P|&#x2013;page-number PageNumber -o|&#x2013;output-quran-html-root WhereToCreateQuran.html -q|&#x2013;hifz-ul-quran ActivateHifzMode -L|&#x2013;playlist-file-root WhereToSearchForPlaylist -e|&#x2013;extension-of-audios QuranAudioFilesExtension -G|&#x2013;generate-playlist QuranFilesRoot &#x2013;ara-font-size size &#x2013;lat-font-size size &#x2013;metadata-font-size size &#x2013;table-font-size size &#x2013;system-font-name FontName &#x2013;user-font-file FullPathToFontFile -h|&#x2013;help (takes no option). All the following take no option also: -k|&#x2013;compact-table &#x2013;eng-audio &#x2013;fra-audio &#x2013;no-ara-txt &#x2013;translit &#x2013;eng-txt-sahih &#x2013;eng-txt-hilali-khan &#x2013;fra-txt-hamid
 
 
-<a id="org1b3098b"></a>
+<a id="org628afe3"></a>
 
 ## DESCRIPTION
 
@@ -379,7 +380,7 @@ Note also that -J, -H, -R, and -P will also take single, many or range of units 
 Also, do not input any leading zeros. And take into account the maximum  number any unit would accept. For instance there are a total of 30  Juz in the Quran, so you cannot request a playback for Juz number 31 which does not exist.
 
 
-<a id="orgf9a4033"></a>
+<a id="org0476396"></a>
 
 ## EXAMPLES
 
@@ -400,7 +401,7 @@ In the first example we play the audio for the whole Sûrah 15 of the Quran, thu
 in the second example we play the audio file for verse number 102 of Sûratul-Baqarah, thus the -a|&#x2013;ayaat option and the 002102 value entered.
 
 
-<a id="org776f876"></a>
+<a id="org0dd7d2a"></a>
 
 ## AS FOR THE REST OF THE OPTIONS:
 
@@ -453,7 +454,7 @@ If for instance we hand the file twice to MPV and its own loop number is set to 
 Most of the above options have default values.
 
 
-<a id="orgaa57ee9"></a>
+<a id="orge8ce9e7"></a>
 
 ## DEPENDENCIES
 
@@ -480,7 +481,7 @@ or
 Note that the `termux-apis` package is specific to Android and is not available for GNU/Linux. This package is used to display some information on the Android notification bar.
 
 
-<a id="org27b63e9"></a>
+<a id="orgb8f85ca"></a>
 
 ## CREATING THE PLAYLIST FILES
 
@@ -522,19 +523,19 @@ $SCRIPT-ROOT-DIR/Playlist/ &#x2013; This is the root directory from where the sc
 The extension of the Playlist files is: `plst.6236.lines.7z` &#x2013; It needs to be compressed so that it be well-preserved.
 
 
-<a id="orgd2cf76a"></a>
+<a id="orgcc7851e"></a>
 
 # rq-ayat-3x-each-then-1.sh
 
 
-<a id="org2b08d70"></a>
+<a id="orgc48a227"></a>
 
 ## SYNOPSYS
 
 \`basename $0\` -m|&#x2013;mpv-speed playback-speed -l&#x2013;mpv-loop mpv-loop-number -f|&#x2013;file-loop each-file-loop-number -e|&#x2013;extension-of-audios QuranAudioFilesExtension -G|&#x2013;generate-playlist QuranFilesRoot -C|&#x2013;create-fake-audios NumberOfFakeAudiosPerFolder &#x2013;ara-font-size size &#x2013;lat-font-size size &#x2013;metadata-font-size size &#x2013;table-font-size size &#x2013;system-font-name FontName &#x2013;user-font-file FullPathToFontFile. All the following take no option also: -k|&#x2013;compact-table &#x2013;eng-audio &#x2013;fra-audio &#x2013;no-ara-txt &#x2013;translit &#x2013;eng-txt-sahih &#x2013;eng-txt-hilali-khan &#x2013;fra-txt-hamid -h|&#x2013;help
 
 
-<a id="org227ae14"></a>
+<a id="org35f60a2"></a>
 
 ## DESCRIPTION
 
@@ -577,7 +578,7 @@ From the 9th step, since there are no remaining ayaat to be played:
 In total, we would play each verse 3x + 5x (which is the number of total files to play) thus adding up to 8 times.
 
 
-<a id="org36a8e09"></a>
+<a id="orgf5ab838"></a>
 
 ## COMMAND LINE OPTIONS
 
@@ -620,7 +621,7 @@ h
 &#x2013;fra-txt-hamid show Muhammad Hamidullah french verse interpretation on the command line and write it also to output html file
 
 
-<a id="org2b36939"></a>
+<a id="orgee0ddc3"></a>
 
 ## EXAMPLES
 
@@ -629,42 +630,42 @@ rq-ayat-3x-each-then-1.sh -m|&#x2013;mpv-speed 1.8 -l|&#x2013;mpv-loop 6 -f|&#x2
 Playback speed 180%. Make mpv play each file 6 time. Pass each file 2 times to mpv so that it plays it 6 times as indicated above thus playing it 12 times for all."
 
 
-<a id="orgad98b01"></a>
+<a id="org4aa0baf"></a>
 
 ## DEPENDENCIES
 
 See the "DEPENDENCIES" section of the qap-audio-player.sh script above.
 
 
-<a id="orgc20cf4f"></a>
+<a id="org10a1c87"></a>
 
 # Divide Quran 6236 Audio Files to Various Units
 
 Scripts that divide a set of Zekr Quran audio files into 114 Suwar, 30-Juz, 60-Ḥizb, 240-Rub-ul-Ḥizb or 604-Pages
 
 
-<a id="orgc039061"></a>
+<a id="org219fe7b"></a>
 
 ## divide-quran-per-suwar.sh
 
 This divides the 6236 Quran audio files into 114 folders, each corresponding to a Sûrah of the Quran.
 
 
-<a id="org5194e45"></a>
+<a id="org895a394"></a>
 
 ## divide-quran-per-juz.sh
 
 This divides the 6236 Quran files into 30 folders, each corresponding to a Juz of the Noble Quran.
 
 
-<a id="orgc076c41"></a>
+<a id="orge091ac9"></a>
 
 ## divide-quran-per-hizb-1-safe.sh
 
 This divides the 6236 Quran audio files into 60 folders, each corresponding to a Ḥizb of the Quran. It has the tag `safe` because it is fast and uses only Bash specific features. This holds true for all the remaining scripts of the list that have that tag.
 
 
-<a id="org24c22b7"></a>
+<a id="org0b50e1a"></a>
 
 ## divide-quran-per-hizb-2-unsafe.sh
 
@@ -677,40 +678,40 @@ The `safe` version of the above script.
 The `unsafe` version uses Bash to extrapolate the elements between a range. For instance this excerpt `mv -f {002253..003014} 05` tries to move the elements of the Ḥizb N°5 to a folder named `05`. If you look at the range you will realize that Bash will try to move in fact all the files from 002253 to 003014. We know that Sûratul-Baqarah has a total of 282 verses. Bash will try to move, namely, files 002287, 002288, 002289, 002290, and all the way through 0022999 which do not exit. In fact, here only, it will try to move 713 files that do not exist. This is why this version of the script is tagged `unsafe`. This explanation, holds true for all the remaining scripts tagged `unsafe`.
 
 
-<a id="org8bf49ba"></a>
+<a id="org27270b3"></a>
 
 ## divide-quran-per-hizb-roub-1-safe.sh
 
 Divides the Quran verses into 240 Rub-\`ul-Ḥizb. The `safe` version.
 
 
-<a id="org84ab4a6"></a>
+<a id="orgb91e6db"></a>
 
 ## divide-quran-per-hizb-roub-2-unsafe.sh
 
 The `unsafe` version of the above script.
 
 
-<a id="orgb968879"></a>
+<a id="org038df72"></a>
 
 ## divide-quran-per-page-1-safe.sh
 
 Will divide the Quran version into 604 folders, each corresponding to a page of the Quran in the \`Uthmanic Musḥaff.
 
 
-<a id="org492f247"></a>
+<a id="orgf4674c3"></a>
 
 ## divide-quran-per-page-2-unsafe.sh
 
 The `unsafe` version of the above script.
 
 
-<a id="org62c692f"></a>
+<a id="org3b8cbd4"></a>
 
 ## Bonus: move-21-ayat-in-subdirs.sh
 
 
-<a id="org42b4836"></a>
+<a id="org43204a0"></a>
 
 # div-trans-textFile-to-6236-TXT-Files
 
@@ -727,239 +728,239 @@ Please make sure your translation files are correctly named. This program only r
 For instance: `en-hilali.trans.zekr` or `en-sahih.trans.zekr` &#x2013; Note that the file is not zipped.
 
 
-<a id="orgdd7e842"></a>
+<a id="org5978aa4"></a>
 
 ## Dependencies:
 
 we need the following two files:
 
 
-<a id="orgaf1e9b6"></a>
+<a id="org98b1ac9"></a>
 
 ### 01-Quran-Verses-Line-Numbers.txt
 
 This is a simple list of line numbers from 0001 to 6236. This will be used in conjunction with `02-VerseByVerse-Quran-Ayat-List.txt` to rename the generated verses from their original line numbers to their ayah<sub>id</sub>.
 
 
-<a id="org4f1dbb6"></a>
+<a id="org84caa82"></a>
 
 ### 02-VerseByVerse-Quran-Ayat-List.txt
 
 This is also a simple list, but it consists of ayah<sub>ids</sub>, from 001001 (the first verse of Sûratu-Fatiḥa) to 114006 (the last verse of Sûratun-Nâss).
 
 
-<a id="org2499cb6"></a>
+<a id="orgf136315"></a>
 
 ### Zekr/Tanzil Translation files
 
 This may be any Tanzil/Zekr Translation/Tafsir file either downloaded from their respective web-sites or prepared by a third party, provided that the file is well-prepared and is valid. If you would not want to end up with HTML tags in the generated 6236 text files, you would have to remove all HTML tags using some text editor or some regex engine. Google is your best friend here ;-).
 
 
-<a id="org47b2fc6"></a>
+<a id="org47b13cd"></a>
 
 # Show Sûrah or Âyah Metadata
 
 These display various metadata related to either verses or Sûwar of the Quran.
 
 
-<a id="org98a7c21"></a>
+<a id="orgd9e1f80"></a>
 
 ## List of Verses of Surah-Juz-Hizb-RubUlHizb-PageNumber
 
 These will give the **list** of verses of various units.
 
 
-<a id="orgc7022f1"></a>
+<a id="org6d2dece"></a>
 
 ### show-list-of-verses-that-belong-to-this-surah.sh
 
 Shows the **list** of verses that belong to a particular Sûrah.
 
 
-<a id="orga0d7ad7"></a>
+<a id="orgc29d8ff"></a>
 
 ### show-list-of-verses-that-belong-to-this-juz.sh
 
 Shows the **list** of verses that belong to a particular Juz.
 
 
-<a id="org68823c4"></a>
+<a id="orgc6ddee1"></a>
 
 ### show-list-of-verses-that-belong-to-this-hizb.sh
 
 Shows the **list** of verses that belong to a particular Ḥizb.
 
 
-<a id="orgeffb6ac"></a>
+<a id="org91dde76"></a>
 
 ### show-list-of-verses-that-belong-to-this-rub-al-hizb.sh
 
 Shows the **list** of verses that belong to a particular Rub-\`ul-Ḥizb.
 
 
-<a id="org2e54679"></a>
+<a id="org2620069"></a>
 
 ### show-list-of-verses-that-belong-to-this-page-number.sh
 
 Shows the **list** of verses that belong to a particular page.
 
 
-<a id="org305037c"></a>
+<a id="org60a10f1"></a>
 
 ## Number of Verses of Surah-Juz-Hizb-RubUlHizb-PageNumber
 
 These will give, not the **list** of verses, but the **number** of verses of various units.
 
 
-<a id="orgdf50036"></a>
+<a id="orgfc364a1"></a>
 
 ### give-the-number-of-verses-of-surah.sh
 
 Shows the **number** of verses that belong to a particular Sûrah.
 
 
-<a id="orgcbf9bdf"></a>
+<a id="org5fd166e"></a>
 
 ### show-number-of-verses-that-belong-to-this-juz.sh
 
 Shows the **number** of verses that belong to a particular Juz.
 
 
-<a id="orgb60f2af"></a>
+<a id="orgb3f1a29"></a>
 
 ### show-number-of-verses-that-belong-to-this-hizb.sh
 
 Shows the **number** of verses that belong to a particular Ḥizb.
 
 
-<a id="orgb41ade9"></a>
+<a id="org50745e7"></a>
 
 ### show-number-of-verses-that-belong-to-this-rub-al-hizb.sh
 
 Shows the **number** of verses that belong to a particular Rub-\`ul-Ḥizb.
 
 
-<a id="org2dcf52c"></a>
+<a id="orgce423ea"></a>
 
 ### show-number-of-verses-that-belong-to-this-page-number.sh
 
 Shows the **number** of verses that belong to a particular page.
 
 
-<a id="orgc32d105"></a>
+<a id="orgab1458d"></a>
 
 ## Show ID of the Greater Unit to Which a Verse Belongs
 
 This will show the **number** (name) of the upper unit to which a verse belongs.
 
 
-<a id="org61ecdce"></a>
+<a id="org32b858d"></a>
 
 ### show-juz-to-which-this-ayah-belongs.sh
 
 It takes one ayah and returns the **number** of the Juz to which it belongs. For instance if given the value `002159`, it returns: `02`, which means: the ayah belongs to Juz N°02 of the Quran.
 
 
-<a id="org86dd10b"></a>
+<a id="org1333022"></a>
 
 ### show-hizb-to-which-this-ayah-belongs.sh
 
 It takes one ayah and returns the **number** of the Ḥizb to which it belongs. For instance if given the value `001007`, it returns: `01`, which means: the ayah belongs to Ḥizb N°01 of the Quran.
 
 
-<a id="orgbdbb7cb"></a>
+<a id="org8425d49"></a>
 
 ### show-rub-al-hizb-to-which-this-ayah-belongs.sh
 
 It takes one ayah and returns the **number** of the Rub-\`ul-Ḥizb to which it belongs. For instance if given the value `114006`, returns: `240`, which means: the ayah belongs to Rub-\`ul-Ḥizb N°240 of the Quran.
 
 
-<a id="org59980a3"></a>
+<a id="orge421958"></a>
 
 ### show-page-number-to-which-this-ayah-belongs.sh
 
 It takes one ayah and returns the **number** of the Page to which it belongs. For instance if given the value `002285`, returns: `049`, which means: the ayah belongs to Page N°049 of the Quran.
 
 
-<a id="org261ac79"></a>
+<a id="org66a095f"></a>
 
 ## Show Some More Info for a Surah
 
 The following functions take one ayah<sub>id</sub> and return some information about the Sûrah to which it belongs.
 
 
-<a id="org38021a9"></a>
+<a id="orgbf26b7e"></a>
 
 ### show-surah-meccan-or-medinan.sh
 
 Shows whether the Sûrah to which this ayah belongs is Meccan or Medinan.
 
 
-<a id="org4a10743"></a>
+<a id="orgcaa43d2"></a>
 
 ### show-surah-name-arabic.sh
 
 Shows the Arabic Name of the Sûrah to which this ayah belongs.
 
 
-<a id="orgba3dc60"></a>
+<a id="org08b4ccf"></a>
 
 ### show-surah-name-english.sh
 
 Shows the English Name of the Sûrah to which this ayah belongs.
 
 
-<a id="orga95de27"></a>
+<a id="orgdd2a257"></a>
 
 ### show-surah-number.sh
 
 Shows the 3-digit Number of the Sûrah to which this ayah belongs.
 
 
-<a id="org8f248d0"></a>
+<a id="org64b7db5"></a>
 
 ### show-surah-number-without-leading-zeros.sh
 
 Shows the 3-digit Number of the Sûrah to which this ayah belongs, without leading zeros. This means, for instance, that where the above script would return `006`, this one returns `6`. This is sometimes useful for some particular purposes.
 
 
-<a id="orgba5fce2"></a>
+<a id="orgfd810be"></a>
 
 ## Show Number of Elements Contained in the Unit to Which a Verse Belongs
 
 This take a single ayah<sub>id</sub> and returns the number of elements contained the greater unit to which it belongs.
 
 
-<a id="org5e2380d"></a>
+<a id="orge0bf5d7"></a>
 
 ### get-number-of-ayaat-of-the-surah-to-which-this-ayah-belongs.sh
 
 Returns the number of verses of the Sûrah to which a given ayah belongs.
 
 
-<a id="org3862f94"></a>
+<a id="orgb5db7b1"></a>
 
 ## Other Ayah Related BASH Functions
 
 
-<a id="org4027656"></a>
+<a id="org70a1065"></a>
 
 ### ayah-necessitates-sadjdah-or-not.sh
 
 
-<a id="org070fba2"></a>
+<a id="org7b1a2d4"></a>
 
 ### play-basmala-for-the-113-suwar.sh
 
 
-<a id="orgd7998f3"></a>
+<a id="org46f4245"></a>
 
 # Download Section
 
 If you clone this `github` repository, you will get all the files at once!
 
 
-<a id="org74a2a90"></a>
+<a id="org8296504"></a>
 
 ## tafsir.sh
 
@@ -969,7 +970,7 @@ Download Link:
 [tafsir.sh](programs/uncompressed/tafsir.sh)
 
 
-<a id="org4ba8e9a"></a>
+<a id="org1a573f3"></a>
 
 ## qap-audio-player.sh
 
@@ -979,7 +980,7 @@ Download Links:
 [qap-audio-player.sh](programs/uncompressed/qap-audio-player.sh)
 
 
-<a id="org13468d8"></a>
+<a id="orgada0e62"></a>
 
 ## rq-ayat-3x-each-then-1-5.0-ALPHA.sh
 
@@ -989,7 +990,7 @@ Download Link:
 [rq-ayat-3x-each-then-1-5.0-ALPHA.sh](programs/uncompressed/rq-ayat-3x-each-then-1-5.0-ALPHA.sh)
 
 
-<a id="org2a0f160"></a>
+<a id="org19ddbe6"></a>
 
 ## Tafsir Files
 
@@ -1015,21 +1016,21 @@ Contains the following files in plain text format:
 -   05 - English Tafsir ibn Kathir.trans.zekr.7z
 
 
-<a id="org204c0f4"></a>
+<a id="org03b5ff9"></a>
 
 ## Playlist Files + Audios
 
 Coming soon in Sha Allah.
 
 
-<a id="orga49c02b"></a>
+<a id="org89489f6"></a>
 
 ## Translation Files Divided into 6236 TXT Files
 
 Coming soon in Sha Allah.
 
 
-<a id="org4cb09fb"></a>
+<a id="orgcfb48f3"></a>
 
 ## Scripts that Divide the Quran 6236 Audio Files into Various Units
 
@@ -1057,7 +1058,7 @@ Download Links - Separate scripts - \*.sh
 [divide-quran-per-suwar.sh](programs/uncompressed/divide-quran-per-PARTS/divide-quran-per-suwar.sh)
 
 
-<a id="orgb4ad5bf"></a>
+<a id="org4b3dad6"></a>
 
 ## Scripts that Divide Translation Text-Files into 6236 TXT Files
 
@@ -1093,7 +1094,7 @@ The file contains the following:
 10. transliteration.trans.zekr
 
 
-<a id="orgc4c7c51"></a>
+<a id="orgffe6a09"></a>
 
 ## Scripts that Show Various Sûrah or Âyah Metadata
 
@@ -1175,7 +1176,7 @@ A Single Script that Shows all the Verses Belonging to A Surah/Juz/Ḥizb/Rub-ul
 [show-list-of-verses-of-various-units.sh](programs/uncompressed/Show_Surah_Metadata/show-list-of-verses-of-various-units.sh)
 
 
-<a id="orga3333b8"></a>
+<a id="orgb6a8ddc"></a>
 
 ## Custom Tanzil/Zekr Translation/Tafsir Files
 
@@ -1184,7 +1185,7 @@ These are a set of Tanzil/Zekr translation or Tafsir files that I prepared for m
 Coming soon in Sha Allah.
 
 
-<a id="orgee8bf7d"></a>
+<a id="orgce0eb37"></a>
 
 ## Other Scripts
 
