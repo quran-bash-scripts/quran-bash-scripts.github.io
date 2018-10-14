@@ -4,7 +4,7 @@
 #+OPTIONS: -:nil
 # Solarized Light theme:
 #+INFOJS_OPT: view:t toc:t ltoc:t mouse:underline buttons:0 path:solarized-css/org-info.min.js
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="solarized-css/normalize.css" media="screen">
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="solarized-css/normalize.css" media="screen" />
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="solarized-css/solarized-light.css" media="screen" />
 
 
@@ -838,9 +838,51 @@ en.al-quran-info-transliteration.trans.zip
    [[file:programs/uncompressed/Show_Surah_Metadata/show-list-of-verses-of-various-units.sh][show-list-of-verses-of-various-units.sh]]
 
 ** Custom Tanzil/Zekr Translation/Tafsir Files
-   These are a set of Tanzil/Zekr translation or Tafsir files that I prepared for my personal use over the years. In the past years I did my best to get in touch with the Tanzil project in order to send them these files for the benefit of other people but they wouldn't answer my emails. In the end I got frustrated and stopped sending them emails. Here I am today, after many years, publishing them on the internet myself. All praise is due to Allah, The Lord of the Worlds.
-   
-   Coming soon in Sha Allah.
+   These are a set of Tanzil/Zekr translation or Tafsir files that I prepared for my personal use over the years. In the past years I did my best to get in touch with the Tanzil project in order to send them these files for the benefit of other people but they wouldn't answer my emails. In the end I got frustrated and stopped sending them emails. Here I am today, after many years, publishing them on the internet myself. All praise is due to Allah, The Lord of the Worlds. \\
+
+
+*Arabic Tafasir of the Quran*:
+ 1. [[file:downloads/zekr-extras-tafasir/ar.baghawy.trans.zip][ar.baghawy.trans.zip]]     *Tafsir Al-Baghawiy*
+
+ 2. [[file:downloads/zekr-extras-tafasir/ar.e3rab.trans.zip][ar.e3rab.trans.zip]]       *I'raab-ul-Quran*
+
+ 3. [[file:downloads/zekr-extras-tafasir/ar.jalalayn.trans.zip][ar.jalalayn.trans.zip]]    *Tafsir Jallalayn*
+
+ 4. [[file:downloads/zekr-extras-tafasir/ar.katheer.trans.zip][ar.katheer.trans.zip]]     *Tafsir Ibn Katheer*
+
+ 5. [[file:downloads/zekr-extras-tafasir/ar.muyassar.trans.zip][ar.muyassar.trans.zip]]    *Tafsir al-Muyassar*
+
+ 6. [[file:downloads/zekr-extras-tafasir/ar.qortoby.trans.zip][ar.qortoby.trans.zip]]     *Tafsir al-Qurṭubi*
+
+ 7. [[file:downloads/zekr-extras-tafasir/ar.sa3dy.trans.zip][ar.sa3dy.trans.zip]]       *Tafsir as-Sa`adi*
+
+ 8. [[file:downloads/zekr-extras-tafasir/ar.tabary.trans.zip][ar.tabary.trans.zip]]      *Tafsir aṭ-Ṭabari*
+
+ 9. [[file:downloads/zekr-extras-tafasir/ar.tanweer.trans.zip][ar.tanweer.trans.zip]]     *Tanwir al-Miqbas Tafsir*
+
+ 10. [[file:downloads/zekr-extras-tafasir/ar.waseet.trans.zip][ar.waseet.trans.zip]]     *Tafsir Waseet*
+
+
+
+*English Tafasir/Translations/Romanizations:*
+ 1) [[file:downloads/zekr-extras-tafasir/en.jallalayn.trans.zip][en.jallalayn.trans.zip]]          *Tafsir Jallalayn English*
+
+ 2) [[file:downloads/zekr-extras-tafasir/en.tafheem.trans.zip][en.tafheem.trans.zip]]            *Tafsir Maududi - Tafheem-ul-Quran*
+
+ 3) [[file:downloads/zekr-extras-tafasir/en.tafsir-ibn-kathir.trans.zip][en.tafsir-ibn-kathir.trans.zip]]  *Tafsir Ibn Katheer English*
+
+ 4) [[file:downloads/zekr-extras-tafasir/en.tanweer.trans.zip][en.tanweer.trans.zip]]            *Tanwir al-Miqbas Tafsir - English*
+
+ 5) [[file:downloads/zekr-extras-tafasir/en.transliteration.trans.zip][en.transliteration.trans.zip]]    *Romanization Type-1*
+
+ 6) [[file:downloads/zekr-extras-tafasir/en.romanization.trans.zip][en.romanization.trans.zip]]       *Romanization Type-2*
+
+
+
+*French Tafasir/Translations/Romanizations:*
+ 1. [[file:downloads/zekr-extras-tafasir/fr.al-quran-info-transliteration.trans.zip][fr.al-quran-info-transliteration.trans.zip]] *Romanization Type-1 - French*
+
+ 2. [[file:downloads/zekr-extras-tafasir/fr.romanization.trans.zip][fr.romanization.trans.zip]]                  *Romanization Type-2 - French*
 
 ** Other Scripts
    Coming soon in Sha Allah.

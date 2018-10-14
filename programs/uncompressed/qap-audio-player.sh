@@ -231,8 +231,8 @@ export quran_total_num_of_pages="604"
 # them have a width of 3, just like our
 # numbers when they get printed on the CLI.
 export zz=""
-export yy=""
-export xx=""
+export Y=""
+export X=""
 export ww=""
 export vv=""
 
@@ -251,18 +251,18 @@ export jj=""
 export kk=""
 export ll=""
 export mm=""
-export mm=""
+export ma=""
 export nn=""
 
 export oo=""
 export pp=""
 export qq=""
-export qq=""
+export qa=""
 export rr=""
 
 export ss=""
-export tt=""
-export uu=""
+export T=""
+export U=""
 export za=""
 export zb=""
 
@@ -277,6 +277,19 @@ export ayaat_metadata_compact_table_2=""
 export ayaat_metadata_compact_table_3=""
 export ayaat_metadata_compact_table_4=""
 
+# Variable that will hold the random
+# number to be used for the selection
+# of the table that will be displayed
+# to the user
+export table_number=0
+
+# colors to be used with the tables
+export table_pln_text="white"
+export table_text_1="yellow"
+export table_text_2="lightgreen"
+export table_text_3="olive"
+export table_text_4="lightblue"
+
 #####################################
 # Whether to play/show translations #
 #####################################
@@ -290,13 +303,15 @@ export SHOW_H_K_ENG_TEXT=""
 # HTML file fonts sizes and other
 export ARABIC_TEXT_FONT_SIZE="2.25em"
 export LATIN_TEXT_FONT_SIZE="1.75em"
-export TABLE_FONT_SIZE="1.15em"
+export TABLE_FONT_SIZE="1.10em"
 export METADATA_FONT_SIZE="1.50em"
 export user_font_file_full_path=""
-export system_font_name=""
-export default_fonts_names=""
-export USER_FONT_FLAG=""
-export SYSTEM_FONT_FLAG=""
+export SYSTEM_FONTS_NAMES="" # has to be empty first
+
+export DEFAULT_FONT_NAMES='QCF2504, Amiri Quran Colored, Amiri Quran, Amiri, Scheherazade, me_quran, LateefGR, Harmattan, Alkalami, Arabic Typesetting, Traditional Arabic, Arial Unicode MS, Roya, mry_KacstQurn, Nazli, Titr, Badr, Nazanin, Tahoma, Nazli, Koodak, Times, Verdana, Helvetica, Arial, Sans-serif'
+
+export USER_FONT_FLAG="FALSE"
+export SYSTEM_FONT_FLAG="FALSE"
 export DISPLAY_COMPACT_TABLE="FALSE"
 
 ###--------------------------###
@@ -46097,14 +46112,14 @@ actualise_ayah_metadata_vars(){
     # make them have a width of 3, just like our
     # numbers when they get printed on the CLI.
     zz="${BOLD_GREEN}$surahNumber${NC}"
-    yy="${BOLD_GREEN}$juz_number${NC}"
-    xx="${BOLD_GREEN}$hizb_number${NC}"
+    Y="${BOLD_GREEN}$juz_number${NC}"
+    X="${BOLD_GREEN}$hizb_number${NC}"
     ww="${BOLD_GREEN}$roubAlHizbNumber${NC}"
     vv="${BOLD_GREEN}$page_number${NC}"
 
     ss="${BOLD_YELLOW}$quran_total_num_of_suwar${NC}"
-    tt="${BOLD_YELLOW}$quran_total_num_of_juz${NC}"
-    uu="${BOLD_YELLOW}$quran_total_num_of_hizb${NC}"
+    T="${BOLD_YELLOW}$quran_total_num_of_juz${NC}"
+    U="${BOLD_YELLOW}$quran_total_num_of_hizb${NC}"
     za="${BOLD_YELLOW}$quran_total_num_of_hizb_rub${NC}"
     zb="${BOLD_YELLOW}$quran_total_num_of_pages${NC}"
 
@@ -46123,13 +46138,13 @@ actualise_ayah_metadata_vars(){
     kk="${BOLD_BLUE}$already_played_ayaat_from_this_surah${NC}"
     ll="${BOLD_BLUE}$already_played_ayaat_from_this_juz${NC}"
     mm="${BOLD_BLUE}$already_played_ayaat_from_this_hizb${NC}"
-    mm="${BOLD_BLUE}$already_played_ayaat_from_this_hizb_rub${NC}"
+    ma="${BOLD_BLUE}$already_played_ayaat_from_this_hizb_rub${NC}"
     nn="${BOLD_BLUE}$already_played_ayaat_from_this_page${NC}"
 
     oo="${BOLD_YELLOW}$remaining_ayaat_in_this_surah${NC}"
     pp="${BOLD_YELLOW}$remaining_ayaat_in_this_juz${NC}"
     qq="${BOLD_YELLOW}$remaining_ayaat_in_this_hizb${NC}"
-    qq="${BOLD_YELLOW}$remaining_ayaat_in_this_hizb_rub${NC}"
+    qa="${BOLD_YELLOW}$remaining_ayaat_in_this_hizb_rub${NC}"
     rr="${BOLD_YELLOW}$remaining_ayaat_in_this_page${NC}"
 
     sura="${BOLD}$sura${OFF_BOLD}"
@@ -46139,162 +46154,159 @@ actualise_ayah_metadata_vars(){
     pge="${BOLD}$pge${OFF_BOLD}"
     
 
-# We provide 4 types of table.
-# TODO: give the user to possibility to
-#       choose the one he/she loves.
-# Table Type-1
-ayaat_metadata_table_1="
+    # We provide 4 types of table.
+    # Table Type-1
+    ayaat_metadata_table_1="
 ───────────────────────────────────────────────────
- Unit   Current  Total    Current   Already  Āyāt   
- Name   Unit N°  Āyāt in  Unit      Played   to be  
-                 Unit     Āyāh Id   Āyāt     Played 
+ Unit   Current  Total N°  Playing   Already  Verses
+ Name    Unit    of Āyāt   Verse     Played   to be  
+        Number   in Unit   Number:   Verses   Played 
 ───────────────────────────────────────────────────
- $sura  $zz/$ss   $aa      $ff      $kk     $oo    
+ $sura  $zz/$ss    $aa     $ff/$aa     $kk     $oo    
 ───────────────────────────────────────────────────
- $jz    $yy/$tt     $bb      $gg      $ll     $pp    
+ $jz     $Y/$T     $bb     $gg/$bb     $ll     $pp    
 ───────────────────────────────────────────────────
- $hzb   $xx/$uu     $cc      $hh      $mm     $qq    
+ $hzb    $X/$U     $cc     $hh/$cc     $mm     $qq    
 ───────────────────────────────────────────────────
- $hzbq  $ww/$za   $dd      $ii      $mm     $qq     
+ $hzbq  $ww/$za    $dd     $ii/$dd     $ma     $qa     
 ───────────────────────────────────────────────────
- $pge   $vv/$zb   $ee      $jj      $nn     $rr    
+ $pge   $vv/$zb    $ee     $jj/$ee     $nn     $rr    
 ───────────────────────────────────────────────────
 "
 
-# Table Type-2
-ayaat_metadata_table_2="
+    # Table Type-2
+    ayaat_metadata_table_2="
 ----------------------------------------------------------
-| Unit  | Current | Total   | Current | Already | Āyāt   |
-| Name  | Unit N° | Āyāt in |  Unit   | Played  | to be  |
-|       |         |  Unit   | Āyāh Id | Āyāt    | Played |
+| Unit  | Current | Total N°| Playing | Already | Verses |
+| Name  |  Unit   | of Āyāt | Verse   | Played  | to be  |
+|       | Number  | in Unit | Number: | Verses  | Played |
 |-------+---------+---------+---------+---------+--------|
-| $sura | $zz/$ss |   $aa   |   $ff   |   $kk   |    $oo |
+| $sura | $zz/$ss |   $aa   | $ff/$aa |   $kk   |  $oo   |
 |-------+---------+---------+---------+---------+--------|
-| $jz   | $yy/$tt   |   $bb   |   $gg   |   $ll   |    $pp |
+| $jz   |  $Y/$T  |   $bb   | $gg/$bb |   $ll   |  $pp   |
 |-------+---------+---------+---------+---------+--------|
-| $hzb  | $xx/$uu   |   $cc   |   $hh   |   $mm   |    $qq |
+| $hzb  |  $X/$U  |   $cc   | $hh/$cc |   $mm   |  $qq   |
 |-------+---------+---------+---------+---------+--------|
-| $hzbq | $ww/$za |   $dd   |   $ii   |   $mm   |    $qq |
+| $hzbq | $ww/$za |   $dd   | $ii/$dd |   $ma   |  $qa   |
 |-------+---------+---------+---------+---------+--------|
-| $pge  | $vv/$zb |   $ee   |   $jj   |   $nn   |    $rr |
+| $pge  | $vv/$zb |   $ee   | $jj/$ee |   $nn   |  $rr   |
 ----------------------------------------------------------
 "
 
-# Table Type-3
-ayaat_metadata_table_3="
+    # Table Type-3
+    ayaat_metadata_table_3="
 ────────+─────────+─────────+─────────+─────────+─────────
-| Unit  | Current | Total   | Current | Already | Āyāt   |
-| Name  | Unit N° | Āyāt in |  Unit   | Played  | to be  |
-|       |         |  Unit   | Āyāh Id | Āyāt    | Played |
+| Unit  | Current | Total N°| Playing | Already | Verses |
+| Name  |  Unit   | of Āyāt | Verse   | Played  | to be  |
+|       | Number  | in Unit | Number: | Verses  | Played |
 |───────+─────────+─────────+─────────+─────────+────────|
-| $sura | $zz/$ss |   $aa   |   $ff   |   $kk   |    $oo |
+| $sura | $zz/$ss |   $aa   | $ff/$aa |   $kk   |  $oo   |
 |───────+─────────+─────────+─────────+─────────+────────|
-| $jz   | $yy/$tt   |   $bb   |   $gg   |   $ll   |    $pp |
+| $jz   |  $Y/$T  |   $bb   | $gg/$bb |   $ll   |  $pp   |
 |───────+─────────+─────────+─────────+─────────+────────|
-| $hzb  | $xx/$uu   |   $cc   |   $hh   |   $mm   |    $qq |
+| $hzb  |  $X/$U  |   $cc   | $hh/$cc |   $mm   |  $qq   |
 |───────+─────────+─────────+─────────+─────────+────────|
-| $hzbq | $ww/$za |   $dd   |   $ii   |   $mm   |    $qq |
+| $hzbq | $ww/$za |   $dd   | $ii/$dd |   $ma   |  $qa   |
 |───────+─────────+─────────+─────────+─────────+────────|
-| $pge  | $vv/$zb |   $ee   |   $jj   |   $nn   |    $rr |
+| $pge  | $vv/$zb |   $ee   | $jj/$ee |   $nn   |  $rr   |
 ────────+─────────+─────────+─────────+─────────+─────────
 "
 
-# Table Type-4
-ayaat_metadata_table_4="
+    # Table Type-4
+    ayaat_metadata_table_4="
 ──────────────────────────────────────────────────────────
-| Unit  | Current | Total   | Current | Already | Āyāt   |
-| Name  | Unit N° | Āyāt in |  Unit   | Played  | to be  |
-|       |         |  Unit   | Āyāh Id | Āyāt    | Played |
+| Unit  | Current | Total N°| Playing | Already | Verses |
+| Name  |  Unit   | of Āyāt | Verse   | Played  | to be  |
+|       | Number  | in Unit | Number: | Verses  | Played |
 |────────────────────────────────────────────────────────|
-| $sura | $zz/$ss |   $aa   |   $ff   |   $kk   |    $oo |
+| $sura | $zz/$ss |   $aa   | $ff/$aa |   $kk   |  $oo   |
 |────────────────────────────────────────────────────────|
-| $jz   | $yy/$tt   |   $bb   |   $gg   |   $ll   |    $pp |
+| $jz   |  $Y/$T  |   $bb   | $gg/$bb |   $ll   |  $pp   |
 |────────────────────────────────────────────────────────|
-| $hzb  | $xx/$uu   |   $cc   |   $hh   |   $mm   |    $qq |
+| $hzb  |  $X/$U  |   $cc   | $hh/$cc |   $mm   |  $qq   |
 |────────────────────────────────────────────────────────|
-| $hzbq | $ww/$za |   $dd   |   $ii   |   $mm   |    $qq |
+| $hzbq | $ww/$za |   $dd   | $ii/$dd |   $ma   |  $qa   |
 |────────────────────────────────────────────────────────|
-| $pge  | $vv/$zb |   $ee   |   $jj   |   $nn   |    $rr |
+| $pge  | $vv/$zb |   $ee   | $jj/$ee |   $nn   |  $rr   |
 ──────────────────────────────────────────────────────────
 "
 
 
-# Compact tables 
-# Compact-Table Type-1
-ayaat_metadata_compact_table_1="
-─────────────────────────────────────
-Unit  This   Total Unit  Āyāt   Āyāt 
-Name  Unit   Unit  Āyāh Played to be 
-       N°    Āyāt   Id  Before Played 
-─────────────────────────────────────
-$sura $zz/$ss $aa  $ff    $kk   $oo    
-─────────────────────────────────────
-$jz    $yy/$tt  $bb  $gg    $ll   $pp    
-─────────────────────────────────────
-$hzb   $xx/$uu  $cc  $hh    $mm   $qq    
-─────────────────────────────────────
-$hzbq $ww/$za $dd  $ii    $mm   $qq     
-─────────────────────────────────────
-$pge  $vv/$zb $ee  $jj    $nn   $rr    
-─────────────────────────────────────
+    # Compact tables 
+    # Compact-Table Type-1
+    ayaat_metadata_compact_table_1="
+───────────────────────────────────────
+Unit    This  Total Unit  Āyāt   Verses
+Name    Unit  Unit  Āyāh  Played to be 
+         N°   Āyāt  N°    Before Played 
+───────────────────────────────────────
+$sura $zz/$ss  $aa   $ff   $kk    $oo  
+───────────────────────────────────────
+$jz    $Y/$T   $bb   $gg   $ll    $pp  
+───────────────────────────────────────
+$hzb   $X/$U   $cc   $hh   $mm    $qq  
+───────────────────────────────────────
+$hzbq $ww/$za  $dd   $ii   $ma    $qa  
+───────────────────────────────────────
+$pge  $vv/$zb  $ee   $jj   $nn    $rr  
+───────────────────────────────────────
 "
 
 
-# Compact-Table Type-2
-ayaat_metadata_compact_table_2="
+    # Compact-Table Type-2
+    ayaat_metadata_compact_table_2="
 ----------------------------------------
-|Unit | This  |Total|Unit|Āyāt  |Āyāt  |
+|Unit | This  |Total|Unit|Āyāt  |Verses|
 |Name | Unit  |Unit |Āyāh|Played|to be |
-|     |  N°   |Āyāt | Id |Before|Played|
+|     |  N°   |Āyāt | N° |Before|Played|
 |-----+-------+-----+----+------+------|
 |$sura|$zz/$ss| $aa |$ff | $kk  | $oo  |
 |-----+-------+-----+----+------+------|
-|$jz  | $yy/$tt | $bb |$gg | $ll  | $pp  |
+|$jz  | $Y/$T | $bb |$gg | $ll  | $pp  |
 |-----+-------+-----+----+------+------|
-|$hzb | $xx/$uu | $cc |$hh | $mm  | $qq  |
+|$hzb | $X/$U | $cc |$hh | $mm  | $qq  |
 |-----+-------+-----+----+------+------|
-|$hzbq|$ww/$za| $dd |$ii | $mm  | $qq  |
+|$hzbq|$ww/$za| $dd |$ii | $ma  | $qa  |
 |-----+-------+-----+----+------+------|
 |$pge |$vv/$zb| $ee |$jj | $nn  | $rr  |
 ----------------------------------------
 "
 
 
-# Compact-Table Type-3
-ayaat_metadata_compact_table_3="
+    # Compact-Table Type-3
+    ayaat_metadata_compact_table_3="
 ──────+───────+─────+────+──────+───────
-|Unit | This  |Total|Unit|Āyāt  |Āyāt  |
+|Unit | This  |Total|Unit|Āyāt  |Verses|
 |Name | Unit  |Unit |Āyāh|Played|to be |
-|     |  N°   |Āyāt |Id  |Before|Played|
+|     |  N°   |Āyāt | N° |Before|Played|
 |─────+───────+─────+────+──────+──────|
 |$sura|$zz/$ss| $aa |$ff | $kk  | $oo  |
 |─────+───────+─────+────+──────+──────|
-|$jz  | $yy/$tt | $bb |$gg | $ll  | $pp  |
+|$jz  | $Y/$T | $bb |$gg | $ll  | $pp  |
 |─────+───────+─────+────+──────+──────|
-|$hzb | $xx/$uu | $cc |$hh | $mm  | $qq  |
+|$hzb | $X/$U | $cc |$hh | $mm  | $qq  |
 |─────+───────+─────+────+──────+──────|
-|$hzbq|$ww/$za| $dd |$ii | $mm  | $qq  |
+|$hzbq|$ww/$za| $dd |$ii | $ma  | $qa  |
 |─────+───────+─────+────+──────+──────|
 |$pge |$vv/$zb| $ee |$jj | $nn  | $rr  |
 ──────+───────+─────+────+──────+───────
 "
 
 
-
-# Compact-Table Type-4
-ayaat_metadata_compact_table_4="
+    # Compact-Table Type-4
+    ayaat_metadata_compact_table_4="
 ────────────────────────────────────────
-|Unit | This  |Total|Unit| Āyāt |Āyāt  |
+|Unit | This  |Total|Unit| Āyāt |Verses|
 |Name | Unit  |Unit |Āyāh|Played|to be |
-|     |  N°   |Āyāt | Id |Before|Played|
+|     |  N°   |Āyāt | N° |Before|Played|
 |──────────────────────────────────────|
 |$sura|$zz/$ss| $aa |$ff | $kk  | $oo  |
 |──────────────────────────────────────|
-|$jz  | $yy/$tt | $bb |$gg | $ll  | $pp  |
+|$jz  | $Y/$T | $bb |$gg | $ll  | $pp  |
 |──────────────────────────────────────|
-|$hzb | $xx/$uu | $cc |$hh | $mm  | $qq  |
+|$hzb | $X/$U | $cc |$hh | $mm  | $qq  |
 |──────────────────────────────────────|
-|$hzbq|$ww/$za| $dd |$ii | $mm  | $qq  |
+|$hzbq|$ww/$za| $dd |$ii | $ma  | $qa  |
 |──────────────────────────────────────|
 |$pge |$vv/$zb| $ee |$jj | $nn  | $rr  |
 ────────────────────────────────────────
@@ -46340,9 +46352,6 @@ get_AyahMetadata_displayThemOnCLI_qap(){
 	# Incrementing by 1 gives desired range of 1 - 4.
 	LIMIT=4
 
-	# Variable that will hold the random number
-	table_number=0
-
 	# set up a new value from 1 to 4
 	let "table_number = $RANDOM % $LIMIT +1"
 
@@ -46367,7 +46376,6 @@ get_AyahMetadata_displayThemOnCLI_qap(){
     elif [[ "$DISPLAY_COMPACT_TABLE" == "FALSE" ]]
     then
 	LIMIT=4
-	table_number=0
 	# set up a new value from 1 to 4
 	let "table_number = $RANDOM % $LIMIT +1"
 
@@ -46553,7 +46561,7 @@ display_verse_translation(){
 
 
 show_termux_notif_bar_only(){
-    local audio_file="$1"
+    local audio_file="`basename $1`"
     local arrayCount="$2"
     local elmt_numb="$3"
     local cur_loop_num="$4"
@@ -46575,7 +46583,7 @@ show_termux_notif_bar_only(){
 
 
 show_ayah_infos_on_cli_and_notif_bar(){
-    local audio_file="$1"
+    local audio_file="`basename $1`"
     local arrayCount="$2"
     local elmt_numb="$3"
     local cur_loop_num="$4"
@@ -46609,17 +46617,17 @@ show_ayah_infos_on_cli_and_notif_bar(){
 
 
 set_up_eta_with_colors_html(){
-    ELAPSED_IN_HTML="⌛ <b style="color:yellow">$(($SECONDS / 3600))-H</b> <b style="color:lightgreen">$((($SECONDS / 60) % 60))-Mn</b> <b style="color:lightblue">$(($SECONDS % 60))-Sec</b>"
+    ELAPSED_IN_HTML="⌛ <b style="color:yellow">$(($SECONDS / 3600))-H</b> <b style="color:lightgreen">$((($SECONDS / 60) % 60))-Mn</b> <b style="color:lightblue">$(($SECONDS % 60))s</b>"
 }
 
 
 set_up_eta_without_colors(){
-    ELAPSED_NO_COLOR="⌛ $(($SECONDS / 3600))-H $((($SECONDS / 60) % 60))-Mn $(($SECONDS % 60))-Sec"
+    ELAPSED_NO_COLOR="⌛ $(($SECONDS / 3600))-H $((($SECONDS / 60) % 60))-Mn $(($SECONDS % 60))s"
 }
 
 
 set_up_eta_with_bash_color(){
-    ELAPSED_BASH_COLORS="⌛ ${BG_YELLOW_FG_BLACK}$(($SECONDS / 3600))-H${NC} ${BG_RED_FG_BLACK}$((($SECONDS / 60) % 60))-Mn${NC} ${BG_GREEN_FG_BLACK}$(($SECONDS % 60))-sec ${NC}"
+    ELAPSED_BASH_COLORS="⌛ ${BG_YELLOW_FG_BLACK}$(($SECONDS / 3600))-H${NC} ${BG_RED_FG_BLACK}$((($SECONDS / 60) % 60))-Mn${NC} ${BG_GREEN_FG_BLACK}$(($SECONDS % 60))s${NC}"
 }
 
 
@@ -46627,15 +46635,14 @@ display_continuation_msg() {
     
     # Continue with the previous ETA
     SECONDS=$(cat "$thisScriptRootDir/`basename $0`_ETA.txt")
-
-    echo -e "${BG_WHITE_FG_BLACK}Resuming a previously saved playback session...${NC}"
-    echo -e "${BG_YELLOW_FG_BLACK}Playing: Resuming a previously saved playback session.ogg${NC}"
+    echo; echo -e "${BG_WHITE_FG_BLACK}Resuming a previously saved playback session...${NC}"
+    echo -e "${BG_YELLOW_FG_BLACK}Playing: Resuming a previously saved playback session.ogg${NC}"; echo
 
     check_audio_file_exists "$thisScriptRootDir/helper_audios/Resuming a previously saved playback session.ogg"
     check_audio_file_exists "$thisScriptRootDir/helper_audios/Resuming a previously saved playback session_Fra.ogg"
     mpv --vid=no --msg-level=all=no --speed 1.6 \
 	"$thisScriptRootDir/helper_audios/Resuming a previously saved playback session.ogg" \
-	"$thisScriptRootDir/helper_audios/Resuming a previously saved playback session_Fra.ogg"
+	"$thisScriptRootDir/helper_audios/Resuming a previously saved playback session_Fra.ogg"; echo
 }
 
 
@@ -46711,23 +46718,29 @@ gen_html_qap(){
     if [[ "$SHOW_ARA_TEXT" == "TRUE" ]]
     then
 
-	## ------Job in progress------ ##
 	if [ "$USER_FONT_FLAG" == "TRUE" ]
 	then
-	    default_fonts_names="$user_font_file_full_path"
+	    DEFAULT_FONT_NAMES="$user_font_file_full_path"
 	    
 	elif [ "$SYSTEM_FONT_FLAG" == "TRUE" ]
 	then
-	    default_fonts_names="$system_font_name"
+	    DEFAULT_FONT_NAMES="$SYSTEM_FONTS_NAMES"
+	else
+	    echo
+	    echo "I don't know how this happened but you"
+	    echo "have to check the code for this error"
+	    echo
 	fi
-	## ------Job in progress------ ##
-
-	    
+	
 	if [[ -f "$verse_arabic" ]]
 	then
-	    echo -n '<span style="font-size:'
+	    echo -n '<span style="font-size: '
 	    echo -n "$ARABIC_TEXT_FONT_SIZE"
-	    echo '; color:white">'
+	    echo -n '; '
+	    echo -n 'color:white; '
+	    echo -n 'font-family: '
+	    echo -n "$DEFAULT_FONT_NAMES"
+	    echo    '">'
 	    echo '<div lang="ar-SA" dir="rtl">'
 	    # Beginning of the actual verse text
 	    echo "$(cat "$verse_arabic")"
@@ -46829,7 +46842,7 @@ gen_html_qap(){
     echo "<p>=======================<br>"
 
     # Surah infos
-    echo -n '<b>⦿ Sūrah: </b>'
+    echo -n '⦿ <b>Sūrah: </b>'
     echo -n '<span style="color:lightblue">'
     echo -n "$surahNameArabic"
     echo -n '</span> | '
@@ -46844,190 +46857,145 @@ gen_html_qap(){
     echo -n "$sadjdah"
     echo '</span><br>'
     # Size of the current set of ayaat being played
-    echo -n "<b>⦿ Āyāt Size:</b> "
+    echo -n "⦿ <b>Āyāt Size:</b> "
     echo -n '<span style="color:red">'
     echo "$size_of_ayaat_for_rq_ayat_3x_then_1</span>"
     echo '<br>=======================</p>'
 
-    # Beginning of the Table of Ayaat Metadata
-    echo -n '<p><table border="5" style="font-size:'
-    echo -n "$TABLE_FONT_SIZE"
-    echo '; color:white">'
-    echo '<tr>'
-    echo '<th>Unit<br>Name</th>'
-    echo '<th>Unit<br>Id (N°)</th>'
-    echo '<th>Total<br>Āyāt<br>In Unit</th>'
-    echo '<th>Current<br>Unit<br>Āyāh Id</th>'
-    echo '<th>Already<br>Played<br>Āyāt</th>'
-    echo '<th>Āyāt<br>to be<br>Played</th>'
-    echo '</tr>'
 
-    echo '<tr>'
-    echo '<td>Sūrah</td>'
+    #--------------------------------#
+    # Start of the Table of Metadata #
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+    #
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~#
+    # HTML tables declarations #
+    #--------------------------#
+    #
+    table_pln_text=white
+    table_text_1=yellow
+    table_text_2=lightgreen
+    table_text_3=olive
+    table_text_4=lightblue
+    ayaat_metadata_html_table(){
 
-    # Surah Number [001-114]
-    echo '<td>'
-    echo -n '<span style="color:green">'
-    echo -n "$surahNumber"
-    echo -n '</span>'
-    echo -n "/" 
-    echo '<span style="color:yellow">114</span>'
-    echo '</td>'
+	echo "<!-- Beginning of the Table of Ayaat Metadata -->"
+	echo "<p><table bgcolor="black" border="3" bordercolor="white" cellpadding="2" cellspacing="2" style="font-size:$TABLE_FONT_SIZE">"
+	echo "<thead bgcolor="darkgray" align="center">"
+	echo "<tr><td colspan="6"><b>Metadata of the Current Âyah Being Played</b></td></tr></thead>"
+	echo "    <tr>"
+	echo "      <th><span style="color:$table_pln_text">Unit<br>Name</span></th>"
+	echo "      <th><span style="color:$table_pln_text">Current<br>Unit<br>Number</span></th>"
+	echo "      <th><span style="color:$table_pln_text">Total.N°<br>of Āyāt<br>in Unit</span></th>"
+	echo "      <th><span style="color:$table_pln_text">Playing<br>Verse<br>Number:</span></th>"
+	echo "      <th><span style="color:$table_pln_text">Already<br>Played<br>Verses</span></th>"
+	echo "      <th><span style="color:$table_pln_text">Verses<br>to be<br>Played</span></th>"
+	echo "    </tr>"
+	echo "    <!-- Sûrah -->"
+	echo "    <tr>"
+	echo "      <td><span style="color:$table_pln_text">Sūrah</span></td>"
+	echo "      <!-- Surah Number [001-114] -->"
+	echo -n "      <td><span style="color:$table_text_2">$surahNumber</span>"
+	echo -n "<span style="color:$table_pln_text">/</span>"
+	echo "<span style="color:$table_text_1">114</span></td>"
+	echo "      <!-- number of verses of surah -->"
+	echo "      <td><span style="color:$table_text_4">$number_of_verses_of_surah</span></td>"
+	echo "      <!-- index_of_current_surah_elmt -->"
+	echo -n "      <td><span style="color:$table_text_3">$index_of_current_surah_elmt</span>"
+	echo -n "<span style="color:$table_pln_text">/</span>"
+	echo "<span style="color:$table_text_4">$number_of_verses_of_surah</span></td>"
+	echo "      <!-- already_played_ayaat_from_this_surah -->"
+	echo "      <td><span style="color:$table_text_2">$already_played_ayaat_from_this_surah</span></td>"
+	echo "      <!-- $remaining_ayaat_in_this_surah -->"
+	echo "      <td><span style="color:$table_text_1">$remaining_ayaat_in_this_surah</span></td>"
+	echo "    </tr>"
+	echo "    <!-- Juz -->"
+	echo "    <tr>"
+	echo "      <td><span style="color:$table_pln_text">Juz</span></td>"
+	echo "      <!-- Juz number -->"
+	echo -n "      <td><span style="color:$table_text_2">$juz_number</span>"
+	echo -n "<span style="color:$table_pln_text">/</span>"
+	echo "<span style="color:$table_text_1">30</span></td>"
+	echo "      <!-- number_of_verses_of_JUZ -->"
+	echo "      <td><span style="color:$table_text_4">$number_of_verses_of_JUZ</span></td>"
+	echo "      <!-- index_of_current_juz_elmt -->"
+	echo -n "      <td><span style="color:$table_text_3">$index_of_current_juz_elmt</span>"
+	echo -n "<span style="color:$table_pln_text">/</span>"
+	echo "<span style="color:$table_text_4">$number_of_verses_of_JUZ</span></td>"
+	echo "      <!-- already_played_ayaat_from_this_juz -->"
+	echo "      <td><span style="color:$table_text_2">$already_played_ayaat_from_this_juz</span></td>"
+	echo "      <!-- remaining_ayaat_in_this_juz -->"
+	echo "      <td><span style="color:$table_text_1">$remaining_ayaat_in_this_juz</span><br></td>"
+	echo "    </tr>"
+	echo "    <!-- Ḥizb -->"
+	echo "    <tr>"
+	echo "      <td><span style="color:$table_pln_text">Ḥizb</span></td>"
+	echo "      <!-- Hizb number -->"
+	echo -n "      <td><span style="color:$table_text_2">$hizb_number</span>"
+	echo -n "<span style="color:$table_pln_text">/</span>"
+	echo "<span style="color:$table_text_1">60</span></td>"
+	echo "      <!-- number_of_verses_of_HIZB -->"
+	echo "      <td><span style="color:$table_text_4">$number_of_verses_of_HIZB</span></td>"
+	echo "      <!-- index_of_current_hizb_elmt -->"
+	echo -n "      <td><span style="color:$table_text_3">$index_of_current_hizb_elmt</span>"
+	echo -n "<span style="color:$table_pln_text">/</span>"
+	echo "<span style="color:$table_text_4">$number_of_verses_of_HIZB</span></td>"
+	echo "      <!-- already_played_ayaat_from_this_hizb -->"
+	echo "      <td><span style="color:$table_text_2">$already_played_ayaat_from_this_hizb</span></td>"
+	echo "      <!-- remaining_ayaat_in_this_hizb -->"
+	echo "      <td><span style="color:$table_text_1">$remaining_ayaat_in_this_hizb</span><br></td>"
+	echo "    </tr>"
+	echo "    <!-- Rub-ul-Ḥizb -->"
+	echo "    <tr>"
+	echo "      <td><span style="color:$table_pln_text">Ḥizb¼</span></td>"
+	echo "      <!-- Rub-ul-Hizb -->"
+	echo -n "      <td><span style="color:$table_text_2">$roubAlHizbNumber</span>"
+	echo -n "<span style="color:$table_pln_text">/</span>"
+	echo "<span style="color:$table_text_1">240</span></td>"
+	echo "      <!-- number_of_verses_of_RUB_UL_HIZB -->"
+	echo "      <td><span style="color:$table_text_4">$number_of_verses_of_RUB_UL_HIZB</span></td>"
+	echo "      <!-- index_of_current_hizb_rub_elmt -->"
+	echo -n "      <td><span style="color:$table_text_3">$index_of_current_hizb_rub_elmt</span>"
+	echo -n "<span style="color:$table_pln_text">/</span>"
+	echo "<span style="color:$table_text_4">$number_of_verses_of_RUB_UL_HIZB</span></td>"
+	echo "      <!-- already_played_ayaat_from_this_hizb_rub -->"
+	echo "      <td><span style="color:$table_text_2">$already_played_ayaat_from_this_hizb_rub</span></td>"
+	echo "      <!-- remaining_ayaat_in_this_hizb_rub -->"
+	echo "      <td><span style="color:$table_text_1">$remaining_ayaat_in_this_hizb_rub</span><br></td>"
+	echo "    </tr>"
+	echo "    <!-- Page -->"
+	echo "    <tr>"
+	echo "      <td><span style="color:$table_pln_text">Page</span></td>"
+	echo "      <!-- Page number -->"
+	echo -n "      <td><span style="color:$table_text_2">$page_number</span>"
+	echo -n "<span style="color:$table_pln_text">/</span>"
+	echo "<span style="color:$table_text_1">604</span></td>"
+	echo "      <!-- number_of_verses_of_PAGE_NUMBER -->"
+	echo "      <td><span style="color:$table_text_4">$number_of_verses_of_PAGE_NUMBER</span></td>"
+	echo "      <!-- index_of_current_page_elmt -->"
+	echo -n "      <td><span style="color:$table_text_3">$index_of_current_page_elmt</span>"
+	echo -n "<span style="color:$table_pln_text">/</span>"
+	echo "<span style="color:$table_text_4">$number_of_verses_of_PAGE_NUMBER</span></td>"
+	echo "      <!-- already_played_ayaat_from_this_page -->"
+	echo "      <td><span style="color:$table_text_2">$already_played_ayaat_from_this_page</span></td>"
+	echo "      <!-- remaining_ayaat_in_this_page -->"
+	echo "      <td><span style="color:$table_text_1">$remaining_ayaat_in_this_page</span></td>"
+	echo "    </tr>"
+	echo "</table></p>"
+    }
 
-    echo '<td>'
-    echo '<span style="color:lightblue">'
-    echo "$number_of_verses_of_surah</span>"
-    echo '</td>'
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+    # Using the declared HTML table #
+    #-------------------------------#
 
-    echo '<td>'
-    echo '<span style="color:green">'
-    echo "$index_of_current_surah_elmt</span>"
-    echo '</td>'
+    ayaat_metadata_html_table
     
-    echo '<td>'
-    echo '<span style="color:green">'
-    echo "$already_played_ayaat_from_this_surah</span>"
-    echo '</td>'
     
-    echo '<td>'
-    echo '<span style="color:yellow">'
-    echo "$remaining_ayaat_in_this_surah</span>"
-    echo '</td>'
-    echo '</tr>'
+    #------------------------------#
+    # End of the Table of Metadata #
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
-    echo '<tr>'
-    echo '<td>Juz</td>'
 
-    # Juz number
-    echo '<td>'
-    echo -n '<span style="color:green">' 
-    echo -n "$juz_number" 
-    echo -n "</span>" 
-    echo -n "/" 
-    echo '<span style="color:yellow">30</span>'
-    echo '</td>'
-
-    echo '<td>'
-    echo '<span style="color:lightblue">'
-    echo "$number_of_verses_of_JUZ</span>"
-    echo '</td>'
-
-    echo '<td>'
-    echo -n '<span style="color:green">'
-    echo -n "$index_of_current_juz_elmt</span>"
-    echo '</td>'
-
-    echo '<td>'
-    echo '<span style="color:green">'
-    echo "$already_played_ayaat_from_this_juz</span>"
-    echo '</td>'
     
-    echo '<td>'
-    echo '<span style="color:yellow">'
-    echo "$remaining_ayaat_in_this_juz</span><br>"
-    echo '</td>'
-    echo '</tr>'
-
-    echo '<tr>'
-    echo '<td>Hizb</td>'
-
-    # Hizb number
-    echo '<td>'
-    echo -n '<span style="color:green">' 
-    echo -n "$hizb_number"
-    echo -n "</span>" 
-    echo -n "/" 
-    echo '<span style="color:yellow">60</span>'
-    echo '</td>'
-
-    echo '<td>'
-    echo '<span style="color:lightblue">'
-    echo "$number_of_verses_of_HIZB</span>"
-    echo '</td>'
-
-    echo '<td>'
-    echo -n '<span style="color:green">'
-    echo -n "$index_of_current_hizb_elmt</span>"
-    echo '</td>'
-
-    echo '<td>'
-    echo '<span style="color:green">'
-    echo "$already_played_ayaat_from_this_hizb</span>"
-    echo '</td>'
-
-    echo '<td>'
-    echo '<span style="color:yellow">'
-    echo "$remaining_ayaat_in_this_hizb</span><br>"
-    echo '</td>'
-    echo '</tr>'
-
-    echo '<tr>'
-    echo '<td>Hizb-1/4</td>'
-
-    # Rub`ul-Hizb
-    echo '<td>'
-    echo -n '<span style="color:green">' 
-    echo -n "$roubAlHizbNumber"
-    echo -n "</span>" 
-    echo -n "/" 
-    echo '<span style="color:yellow">240</span>'
-    echo '</td>'
-
-    echo '<td>'
-    echo '<span style="color:lightblue">'
-    echo "$number_of_verses_of_RUB_UL_HIZB</span>"
-    echo '</td>'
-
-    echo '<td>'
-    echo -n '<span style="color:green">'
-    echo -n "$index_of_current_hizb_rub_elmt</span>"
-    echo '</td>'
-
-    echo '<td>'
-    echo '<span style="color:green">'
-    echo "$already_played_ayaat_from_this_hizb_rub</span>"
-    echo '</td>'
-    
-    echo '<td>'
-    echo '<span style="color:yellow">'
-    echo "$remaining_ayaat_in_this_hizb_rub</span><br>"
-    echo '</td>'
-    echo '</tr>'
-
-    echo '<tr>'
-    echo '<td>Page</td>'
-
-    # Page number
-    echo '<td>'
-    echo -n '<span style="color:green">'
-    echo -n "$page_number"
-    echo -n "</span>" 
-    echo -n "/" 
-    echo '<span style="color:yellow">604</span>'
-    echo '</td>'
-    
-    echo '<td>'
-    echo '<span style="color:lightblue">'
-    echo "$number_of_verses_of_PAGE_NUMBER</span>"
-    echo '</td>'
-
-    echo '<td>'
-    echo -n '<span style="color:green">'
-    echo -n "$index_of_current_page_elmt</span>"
-    echo '</td>'
-
-    echo '<td>'
-    echo '<span style="color:green">'
-    echo "$already_played_ayaat_from_this_page</span>"
-    echo '</td>'
-
-    echo '<td>'
-    echo '<span style="color:yellow">'
-    echo "$remaining_ayaat_in_this_page</span>"
-    echo '</td>'
-    echo '</tr>'
-    echo '</table></p>'
-        
     # Closing the first <span> tag
     echo '</span>' 
     echo
@@ -47170,7 +47138,7 @@ read_ayah_show_metadata_gen_html_qap(){
 		display_various_ayah_infos "$j" "${#ayat_full_path_to_pass_to_mpv[@]}" "$elmt_numb" "$f_loop" "$g_loop" &
 
 		# Generate Updated HTML file with the ayah and its interpretation
-		echo $(gen_html_qap "$j" "$elmt_numb" "${#ayat_full_path_to_pass_to_mpv[@]}") >> "$tmpOutHTMLfile"
+		gen_html_qap "$j" "$elmt_numb" "${#ayat_full_path_to_pass_to_mpv[@]}" >> "$tmpOutHTMLfile"
 		# Now, replace the previous verse file with the new verse one
 		mv -f "$tmpOutHTMLfile" "$outHTMLfile"
 		
@@ -47318,7 +47286,7 @@ readThriceThenOnce(){
 	    done
 
 	    display_script_name
-            echo  -e "${BG_WHITE_FG_BLACK}Restarting Playback from the beginning...${NC}"
+            echo  -e "${BG_WHITE_FG_BLACK}Restarting Playback from the beginning...${NC}"; echo
 	    set_up_eta_with_bash_color
             ((++elmt_numb))
 	    
@@ -47334,7 +47302,7 @@ readThriceThenOnce(){
             show_ayah_infos_on_cli_and_notif_bar "$j" "${#RECITE_1_ARRAY[@]}" $elmt_numb 1 &
 
 	    # Generate Updated HTML file with the ayah and its interpretation
-	    echo $(gen_html_qap "$j" "$elmt_numb" "${#RECITE_1_ARRAY[@]}") >> "$tmpOutHTMLfile"
+	    gen_html_qap "$j" "$elmt_numb" "${#RECITE_1_ARRAY[@]}" >> "$tmpOutHTMLfile"
 	    # Now, replace the previous verse file with the new verse one
 	    mv -f "$tmpOutHTMLfile" "$outHTMLfile"
 
@@ -47366,7 +47334,7 @@ readThriceThenOnce(){
 	check_audio_file_exists "$thisScriptRootDir/helper_audios/Playing a new element N times_Fra.ogg"
 	mpv --vid=no --msg-level=all=no --speed 1.6 \
 	    "$thisScriptRootDir/helper_audios/Playing a new element N times.ogg" \
-	    "$thisScriptRootDir/helper_audios/Playing a new element N times_Fra.ogg"
+	    "$thisScriptRootDir/helper_audios/Playing a new element N times_Fra.ogg"; echo
 	
 	for m in $(seq $file_loop_repeat_count)
 	do
@@ -47389,7 +47357,7 @@ readThriceThenOnce(){
 	    show_termux_notif_bar_only "$i" "$NUMB_OF_FILES" $elmt_numb $m &
 
 	    # Generate HTML file of ayah and translations
-	    echo $(gen_html_qap "$i" "$elmt_numb" "$NUMB_OF_FILES") >> "$tmpOutHTMLfile"
+	    gen_html_qap "$i" "$elmt_numb" "$NUMB_OF_FILES" >> "$tmpOutHTMLfile"
 	    # Now, replace the previous verse file with the new verse one
 	    mv -f "$tmpOutHTMLfile" "$outHTMLfile"
 
@@ -47465,7 +47433,7 @@ readThriceThenOnce(){
 	check_audio_file_exists "$thisScriptRootDir/helper_audios/Restarting playback from the beginning_Fra.ogg"
 	mpv --vid=no --msg-level=all=no --speed 1.6 \
 	    "$thisScriptRootDir/helper_audios/Restarting playback from the beginning.ogg" \
-	    "$thisScriptRootDir/helper_audios/Restarting playback from the beginning_Fra.ogg"
+	    "$thisScriptRootDir/helper_audios/Restarting playback from the beginning_Fra.ogg"; echo
 	
 	# adding element to
 	# RECITE_1_ARRAY so as
@@ -47548,7 +47516,7 @@ readOnceDelete1stElmtEachTime(){
 	    done
 
 	    display_script_name
-            echo -e "${BG_YELLOW_FG_BLACK}Restarting playback from the beginning after removing the topmost element...${NC}"
+            echo -e "${BG_YELLOW_FG_BLACK}Restarting playback from the beginning after removing the topmost element...${NC}"; echo
 	    set_up_eta_with_bash_color
 
             # Here we have a problem after the first iteration
@@ -47572,7 +47540,7 @@ readOnceDelete1stElmtEachTime(){
 	    # "$NUMB_OF_FILES" "$elmt_numb"
 
 	    # Generate Updated HTML file with the ayah and its interpretation
-	    echo $(gen_html_qap "$verse" "$elmt_numb" "$remaining_elmts")  >> "$tmpOutHTMLfile"
+	    gen_html_qap "$verse" "$elmt_numb" "$remaining_elmts" >> "$tmpOutHTMLfile"
 	    # "$elmt_numb" "$NUMB_OF_FILES"
 	    #
 	    # Now, replace the previous verse file with the new verse one
@@ -47610,7 +47578,7 @@ readOnceDelete1stElmtEachTime(){
 	    "$thisScriptRootDir/helper_audios/Restarting playback from the beginning after removing the topmost element_Fra.ogg"
 	mpv --vid=no --msg-level=all=no --speed 2.0 \
 	    "$thisScriptRootDir/helper_audios/Restarting playback from the beginning after removing the topmost element.ogg" \
-	    "$thisScriptRootDir/helper_audios/Restarting playback from the beginning after removing the topmost element_Fra.ogg"
+	    "$thisScriptRootDir/helper_audios/Restarting playback from the beginning after removing the topmost element_Fra.ogg"; echo
     done
 
     # Clean up
@@ -47663,6 +47631,8 @@ activate-rq-ayat-3x-each-then-1-memorization-algorythm(){
     #echo "sorted_ayat_full_path_to_pass_to_mpv:"
     #echo "${sorted_ayat_full_path_to_pass_to_mpv[@]}"
     #echo; #exit 1
+
+    play_istiaadha
     
     # generate the initial HTML file
     echo $(gen_beginning_html) \
@@ -47672,14 +47642,14 @@ activate-rq-ayat-3x-each-then-1-memorization-algorythm(){
     ## our webpage
     type am >/dev/null 2>&1 && {
 	# Mozilla Firefox
-	echo; echo
+	echo
 	am start -a android.intent.action.VIEW -n org.mozilla.firefox/.App -d "file:///$outHTMLfile";
-	echo; echo
+	echo
 
 	# Google Chrome
-	# echo; echo
+	# echo
 	# am start -n com.android.chrome/com.google.android.apps.chrome.Main -a android.intent.action.VIEW -d "file:///$outHTMLfile"
-	# echo; echo
+	# echo
 	
     } || {
 	echo "Please install Mozilla Firefox";
@@ -47747,7 +47717,7 @@ extension: *.$playlist_file_ext:
     for file in "$playlist_files_dir"/*.$playlist_file_ext
     do
 	echo; echo "Working with file:"
-	echo "`readlink --canonicalize-existing ${file}`"; echo; echo
+	echo "`readlink --canonicalize-existing ${file}`"; echo
 
 	# make a look-up with sed
 	# while providing it with
@@ -48035,7 +48005,7 @@ invoque_quran_reader_full_suwar(){
 # function. So, I will not comment it
 # much. It will be used to look for the
 # tafsir of whole units of the Quran: Juz,
-# Ḥizb, Rub-`ul-Ḥizb, Page-Number, etc.
+# Ḥizb, rub-ul-Ḥizb, Page-Number, etc.
 # It is a copy of the above mentioned
 # function. I prefer to leave it alone
 # and make a copy here that I will be
@@ -48194,14 +48164,19 @@ fi
 }
 
 
+play_istiaadha(){
+    # Isti`âdha
+    check_audio_file_exists $thisScriptRootDir/helper_audios/audhubillah.oga
+    mpv --vid=no --speed 1.0 $thisScriptRootDir/helper_audios/audhubillah.oga; echo
+}
+
+
 # Check the validity of the arguments
 # passed to -s and -a. We make sure the
 # user actually provided an argument
 main_function(){
-    
-    # Isti`âdha
-    check_audio_file_exists $thisScriptRootDir/helper_audios/audhubillah.oga
-    mpv --vid=no --speed 1.0 $thisScriptRootDir/helper_audios/audhubillah.oga
+
+    play_istiaadha
     
     if [[ "$query_type_suwar_or_ayat" == "-s" ]]
     then
@@ -48273,8 +48248,8 @@ usage="
  \"*plst.6236.lines\" extension will read the audio files of
  ayât, set of ayât, range of ayât; suwar, set of suwar, range
  of suwar; juz, set of juz, range of juz; ḥizb, set of ḥizb,
- range of ḥizb; rub-\`ul-ḥizb, set of rub-\`ul-ḥizb, range of
- rub-\`ul-ḥizb; page, set of pages or range of pages passed to
+ range of ḥizb; rub-ul-ḥizb, set of rub-ul-ḥizb, range of
+ rub-ul-ḥizb; page, set of pages or range of pages passed to
  it through the command line in the the following format:
  
  FOR AYÂT: 3-digits designating the Sūrah number followed by
@@ -48289,7 +48264,7 @@ usage="
 
  FOR ḤIZB: a number ranging from 1 to 60.
 
- FOR RUB-\`UL-ḤIZB: a number ranging from 1 to 240.
+ FOR RUB-UL-ḤIZB: a number ranging from 1 to 240.
 
  FOR PAGES: a number ranging from 1 to 604.
 
@@ -48322,7 +48297,7 @@ usage="
 
  Note also that -J, -H, -R, and -P will also take single, many
  or range of units to be played. A unit may refer to a Juz, a Ḥizb,
- a Rub-\`ul-Ḥizb or a page. It might also refer to a Sūrah.
+ a Rub-ul-Ḥizb or a page. It might also refer to a Sūrah.
  If you would like to provide any unit in range just separate the
  two numbers with an underscore character just like above.
 
@@ -48418,14 +48393,14 @@ usage="
 
 export error_msg_surah_juz_hizb_rubUlHizb_page="
 You entered a value for either Sūrah, Juz, Ḥizb,
-Rub-\`ul-Ḥizb or Page number which seems wrong.
+Rub-ul-Ḥizb or Page number which seems wrong.
 Numeric values are needed here. You need to provide
 the numbers like this:
 
 * between 1 and 114 for Suwarr
 * between 1 and 30 for Juz
 * between 1 and 60 for Ḥizb
-* between 1 and 240 for Rub-\`ul-Ḥizb
+* between 1 and 240 for Rub-ul-Ḥizb
 * between 1 and 604 for Pages
 
 All these numbers should be provided without any
@@ -48798,9 +48773,9 @@ while true; do
 		    echo "$error_msg_font_name"
 		    ;;
 	        * )
-		    system_font_name="$2"
-		    USER_FONT_FLAG="FALSE"
+		    SYSTEM_FONTS_NAMES="$2"
 		    SYSTEM_FONT_FLAG="TRUE"
+		    USER_FONT_FLAG="FALSE"
 		    ;;
 	    esac
 	    shift 2
