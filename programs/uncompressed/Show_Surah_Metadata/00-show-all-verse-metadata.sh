@@ -75,13 +75,13 @@ export jj=""
 export kk=""
 export ll=""
 export mm=""
-export mm=""
+export ma=""
 export nn=""
 
 export oo=""
 export pp=""
 export qq=""
-export qq=""
+export qa=""
 export rr=""
 
 export ss=""
@@ -130,6 +130,7 @@ export surahMeccanOrMedinan=""
 export hizb_number=""
 export roubAlHizbNumber=""
 export page_number=""
+export current_page_number=""
 export sadjdah=""
 export list_of_verses_that_belong_to_this_HIZB=( )
 export hizb_number=""
@@ -138,13 +139,16 @@ export list_of_verses_that_belong_to_this_JUZ=( )
 export juz_number=""
 export number_of_verses_of_JUZ=""
 export list_of_verses_that_belong_to_this_PAGE_NUMBER=( )
-export page_number=""
 export number_of_verses_of_PAGE_NUMBER=""
 export list_of_verses_that_belong_to_this_RUB_UL_HIZB=( )
 export roubAlHizbNumber=""
 export number_of_verses_of_RUB_UL_HIZB=""
 export ayaat_list_of_given_surah=( )
 export surah_number_without_leading_zeros=""
+export total_number_of_pages_of_surah=0
+export previous_number_of_pages_of_surah=""
+export remaining_number_of_pages_of_surah=""
+
 
 show_surah_number(){
     local file="$1"
@@ -10934,7 +10938,7 @@ give_surah_ayats_list(){
 	*)
 	    reset
 	    echo
-	    echo "The SÃ»rah number you entered in:"
+	    echo "The Sûrah number you entered in:"
 	    echo
 	    echo "$surah_number_without_leading_zeros"
 	    echo
@@ -11178,10 +11182,12 @@ actualise_ayah_metadata_vars(){
     hizb_number_no_zeros=$hizb_number
     rubHizbNum_no_zeros=$roubAlHizbNumber
     page_number_no_zeros=$page_number
+    current_page_number=$page_number
     
     #---------------Sūrah---------------#
     # Strip the Juz number from its leading zeros
-    while [ "$surahNumber_no_zeros" != "${surahNumber_no_zeros#0}" ]; do surahNumber_no_zeros=${surahNumber_no_zeros#0}; done
+    while [ "$surahNumber_no_zeros" != "${surahNumber_no_zeros#0}" ]
+    do surahNumber_no_zeros=${surahNumber_no_zeros#0}; done
     # retrieve array of elements of the Sūrah
     give_surah_ayats_list "$surahNumber_no_zeros"
     # The number of elements of the Sūrah is the array length value
@@ -11189,7 +11195,8 @@ actualise_ayah_metadata_vars(){
 
     #---------------Juz---------------#
     # Strip the Juz number from its leading zeros
-    while [ "$juz_number_no_zeros" != "${juz_number_no_zeros#0}" ]; do juz_number_no_zeros=${juz_number_no_zeros#0}; done
+    while [ "$juz_number_no_zeros" != "${juz_number_no_zeros#0}" ]
+    do juz_number_no_zeros=${juz_number_no_zeros#0}; done
     # retrieve array of elements of the Juz
     show_list_of_verses_that_belong_to_this_juz "$juz_number_no_zeros"
     # The number of elements of the Juz is the array length value
@@ -11197,7 +11204,8 @@ actualise_ayah_metadata_vars(){
 
     #---------------Ḥizb---------------#
     # Strip the Hizb number from its leading zeros
-    while [ "$hizb_number_no_zeros" != "${hizb_number_no_zeros#0}" ]; do hizb_number_no_zeros=${hizb_number_no_zeros#0}; done
+    while [ "$hizb_number_no_zeros" != "${hizb_number_no_zeros#0}" ]
+    do hizb_number_no_zeros=${hizb_number_no_zeros#0}; done
     # retrieve array of elements of the Hizb
     show_list_of_verses_that_belong_to_this_hizb "$hizb_number_no_zeros"
     # The number of elements of the Hizb is the array length value
@@ -11205,7 +11213,8 @@ actualise_ayah_metadata_vars(){
 
     #------------Rub-ul-Ḥizb------------#
     # Strip the rub-ul-hizb number from its leading zeros
-    while [ "$rubHizbNum_no_zeros" != "${rubHizbNum_no_zeros#0}" ]; do rubHizbNum_no_zeros=${rubHizbNum_no_zeros#0}; done
+    while [ "$rubHizbNum_no_zeros" != "${rubHizbNum_no_zeros#0}" ]
+    do rubHizbNum_no_zeros=${rubHizbNum_no_zeros#0}; done
     # retrieve array of elements of the Hizb
     show_list_of_verses_that_belong_to_this_rub_ul_hizb "$rubHizbNum_no_zeros"
     # The number of elements of the rub-ul-hizb is the array length value
@@ -11213,7 +11222,8 @@ actualise_ayah_metadata_vars(){
 
     #---------------Page---------------#
     # Strip the page number from its leading zeros
-    while [ "$page_number_no_zeros" != "${page_number_no_zeros#0}" ]; do page_number_no_zeros=${page_number_no_zeros#0}; done
+    while [ "$page_number_no_zeros" != "${page_number_no_zeros#0}" ]
+    do page_number_no_zeros=${page_number_no_zeros#0}; done
     # retrieve array of elements of the Hizb
     show_list_of_verses_that_belong_to_this_page_number "$page_number_no_zeros"
     # The number of elements of the page is the array length value
@@ -11270,6 +11280,136 @@ actualise_ayah_metadata_vars(){
     remaining_ayaat_in_this_page=$((number_of_verses_of_PAGE_NUMBER - index_of_current_page_elmt))
     already_played_ayaat_from_this_page=$((number_of_verses_of_PAGE_NUMBER - remaining_ayaat_in_this_page))
 
+    ##################################
+    # Info related to the number of  #
+    # pages of Surah, number already #
+    # played and remaining one       #
+    ##################################
+    
+    arLength=""
+    first_ayah_of_surah=""
+    index_of_1st_ayah_of_surah_on_its_page=""
+    index_of_last_ayah_of_surah=""
+    index_of_last_ayah_of_surah_on_its_page=""
+    last_ayah_of_surah=""
+    list_of_ayat_on_1st_page=""
+    list_of_ayat_on_last_page=""
+    number_of_verses_on_1st_page_of_surah=""
+    number_of_verses_on_last_page_of_surah=""
+    number_of_verses_on_last_page_of_surahMoin1=""    
+    page_where_appears_first_ayah_of_surah=""
+    page_where_appears_last_ayah_of_surah=""
+
+    first_ayah_of_surah="${ayaat_list_of_given_surah[0]}"
+    arLength="${#ayaat_list_of_given_surah[@]}"
+    index_of_last_ayah_of_surah=$((arLength-1))
+    last_ayah_of_surah="${ayaat_list_of_given_surah[$index_of_last_ayah_of_surah]}"
+
+    # Get page number of first ayah of Sûrah
+    show_page_number $first_ayah_of_surah
+    page_where_appears_first_ayah_of_surah=$page_number
+
+    # Get page number of last ayah of Sûrah
+    show_page_number $last_ayah_of_surah
+    page_where_appears_last_ayah_of_surah=$page_number
+       
+    # Removing Leading zeros from page numbers
+    # First ayah page:
+    while [ "$page_where_appears_first_ayah_of_surah" != "${page_where_appears_first_ayah_of_surah#0}" ]
+    do	page_where_appears_first_ayah_of_surah=${page_where_appears_first_ayah_of_surah#0}; done
+    # Last ayah page:
+    while [ "$page_where_appears_last_ayah_of_surah" != "${page_where_appears_last_ayah_of_surah#0}" ]
+    do page_where_appears_last_ayah_of_surah=${page_where_appears_last_ayah_of_surah#0}; done
+
+    # Num of verses on 1st page of Sūrah
+    show_list_of_verses_that_belong_to_this_page_number $page_where_appears_first_ayah_of_surah
+    list_of_ayat_on_1st_page="${list_of_verses_that_belong_to_this_PAGE_NUMBER[@]}"
+    number_of_verses_on_1st_page_of_surah="${#list_of_verses_that_belong_to_this_PAGE_NUMBER[*]}"
+
+    # Index of 1st Verse on 1st Page
+    for w in "${!list_of_verses_that_belong_to_this_PAGE_NUMBER[@]}"
+    do
+	if [[ "${list_of_verses_that_belong_to_this_PAGE_NUMBER[$w]}" = "$first_ayah_of_surah" ]]
+	then
+	    index_of_1st_ayah_of_surah_on_its_page=`echo "${w}"`
+	    ((++index_of_1st_ayah_of_surah_on_its_page))
+	    # Bash arrays start at index 0
+	    # make it one for clarity
+	fi
+    done
+
+    # Num of verses on last page of Sūrah
+    show_list_of_verses_that_belong_to_this_page_number $page_where_appears_last_ayah_of_surah
+    list_of_ayat_on_last_page="${list_of_verses_that_belong_to_this_PAGE_NUMBER[@]}"
+    number_of_verses_on_last_page_of_surah="${#list_of_verses_that_belong_to_this_PAGE_NUMBER[*]}"
+
+    # Index of last Verse on last Page
+    for x in "${!list_of_verses_that_belong_to_this_PAGE_NUMBER[@]}"
+    do
+	if [[ "${list_of_verses_that_belong_to_this_PAGE_NUMBER[$x]}" = "$last_ayah_of_surah" ]]
+	then
+	    index_of_last_ayah_of_surah_on_its_page=`echo "${x}"`
+	    ((++index_of_last_ayah_of_surah_on_its_page))
+	    # Bash arrays start at index 0
+	    # make it one for clarity
+	fi
+    done
+
+    # calculate the actual number of pages
+    total_number_of_pages_of_surah=$((page_where_appears_last_ayah_of_surah-page_where_appears_first_ayah_of_surah))
+
+    if [ $page_where_appears_last_ayah_of_surah -ne $page_where_appears_first_ayah_of_surah ]
+       # if the fist and last verses of Sûrah are not on the same page
+    then
+	# if the first ayah of the Sûrah is the first verse on the page, then
+	# the whole page belongs to Sûrah so we add it to the number of pages.
+	if [[ $index_of_1st_ayah_of_surah_on_its_page -eq 1 ]]
+	then
+	    total_number_of_pages_of_surah=$((total_number_of_pages_of_surah+1))
+	fi
+
+	# if the last ayah of the Sûrah is the last verse on the page, then
+	# the whole page belongs to Sûrah so we add it to the number of pages.
+	if [[ $index_of_last_ayah_of_surah_on_its_page -eq $number_of_verses_on_last_page_of_surah ]]
+	then
+	    total_number_of_pages_of_surah=$((total_number_of_pages_of_surah+1))
+	fi	    
+	
+	# For suwar that have their first verse as the first page on the page and
+	# their last verse as the last verse on the page -> they are one-paged suwar
+    elif [ $page_where_appears_last_ayah_of_surah -eq $page_where_appears_first_ayah_of_surah ]
+    then
+	if [[ $index_of_1st_ayah_of_surah_on_its_page \
+		  -eq 1 && $index_of_last_ayah_of_surah_on_its_page \
+			       -eq $number_of_verses_on_last_page_of_surah ]]
+	then	
+	    total_number_of_pages_of_surah=1
+	fi	    
+    fi
+
+    # Played and remaining pages
+    if [[ "$total_number_of_pages_of_surah" -ne 0 ]]
+    then
+	remaining_number_of_pages_of_surah=$(( (page_where_appears_last_ayah_of_surah+1) - page_number_no_zeros ))
+	previous_number_of_pages_of_surah=$(( total_number_of_pages_of_surah-remaining_number_of_pages_of_surah ))
+    else
+	remaining_number_of_pages_of_surah=0
+	previous_number_of_pages_of_surah=0
+    fi
+    
+    # add leading zeros if needed
+    total_number_of_pages_of_surah=$( printf "%02d" $((10#$total_number_of_pages_of_surah)) )
+    remaining_number_of_pages_of_surah=$( printf "%02d" $((10#$remaining_number_of_pages_of_surah)) )
+    previous_number_of_pages_of_surah=$( printf "%02d" $((10#$previous_number_of_pages_of_surah)) )
+
+    # Less than one page suwar
+    if [ $total_number_of_pages_of_surah -eq 0 ]; then total_number_of_pages_of_surah="< 1 page"; fi
+
+    ##############################
+    # End - page number metadata #
+    ##############################
+    
+
     # Adding leading zeros to these
     # numbers to make their with equal
     # code that adds the leading zeros
@@ -11297,6 +11437,7 @@ actualise_ayah_metadata_vars(){
     remaining_ayaat_in_this_hizb=$( printf "%03d" $((10#$remaining_ayaat_in_this_hizb)) )
     remaining_ayaat_in_this_hizb_rub=$( printf "%03d" $((10#$remaining_ayaat_in_this_hizb_rub)) )
     remaining_ayaat_in_this_page=$( printf "%03d" $((10#$remaining_ayaat_in_this_page)) )
+    
 
     # To make our tables look great even here in
     # the code, we will copy these variables and
@@ -11330,13 +11471,13 @@ actualise_ayah_metadata_vars(){
     kk="${BOLD_BLUE}$already_played_ayaat_from_this_surah${NC}"
     ll="${BOLD_BLUE}$already_played_ayaat_from_this_juz${NC}"
     mm="${BOLD_BLUE}$already_played_ayaat_from_this_hizb${NC}"
-    mm="${BOLD_BLUE}$already_played_ayaat_from_this_hizb_rub${NC}"
+    ma="${BOLD_BLUE}$already_played_ayaat_from_this_hizb_rub${NC}"
     nn="${BOLD_BLUE}$already_played_ayaat_from_this_page${NC}"
 
     oo="${BOLD_YELLOW}$remaining_ayaat_in_this_surah${NC}"
     pp="${BOLD_YELLOW}$remaining_ayaat_in_this_juz${NC}"
     qq="${BOLD_YELLOW}$remaining_ayaat_in_this_hizb${NC}"
-    qq="${BOLD_YELLOW}$remaining_ayaat_in_this_hizb_rub${NC}"
+    qa="${BOLD_YELLOW}$remaining_ayaat_in_this_hizb_rub${NC}"
     rr="${BOLD_YELLOW}$remaining_ayaat_in_this_page${NC}"
 
     sura="${BOLD}$sura${OFF_BOLD}"
@@ -11345,7 +11486,7 @@ actualise_ayah_metadata_vars(){
     hzbq="${BOLD}$hzbq${OFF_BOLD}"
     pge="${BOLD}$pge${OFF_BOLD}"
     
-    
+
     # We provide 4 types of table.
     # Table Type-1
     ayaat_metadata_table_1="
@@ -11360,7 +11501,7 @@ actualise_ayah_metadata_vars(){
 ───────────────────────────────────────────────────
  $hzb    $X/$U     $cc     $hh/$cc     $mm     $qq    
 ───────────────────────────────────────────────────
- $hzbq  $ww/$za    $dd     $ii/$dd     $mm     $qq     
+ $hzbq  $ww/$za    $dd     $ii/$dd     $ma     $qa     
 ───────────────────────────────────────────────────
  $pge   $vv/$zb    $ee     $jj/$ee     $nn     $rr    
 ───────────────────────────────────────────────────
@@ -11379,7 +11520,7 @@ actualise_ayah_metadata_vars(){
 |-------+---------+---------+---------+---------+--------|
 | $hzb  |  $X/$U  |   $cc   | $hh/$cc |   $mm   |  $qq   |
 |-------+---------+---------+---------+---------+--------|
-| $hzbq | $ww/$za |   $dd   | $ii/$dd |   $mm   |  $qq   |
+| $hzbq | $ww/$za |   $dd   | $ii/$dd |   $ma   |  $qa   |
 |-------+---------+---------+---------+---------+--------|
 | $pge  | $vv/$zb |   $ee   | $jj/$ee |   $nn   |  $rr   |
 ----------------------------------------------------------
@@ -11398,7 +11539,7 @@ actualise_ayah_metadata_vars(){
 |───────+─────────+─────────+─────────+─────────+────────|
 | $hzb  |  $X/$U  |   $cc   | $hh/$cc |   $mm   |  $qq   |
 |───────+─────────+─────────+─────────+─────────+────────|
-| $hzbq | $ww/$za |   $dd   | $ii/$dd |   $mm   |  $qq   |
+| $hzbq | $ww/$za |   $dd   | $ii/$dd |   $ma   |  $qa   |
 |───────+─────────+─────────+─────────+─────────+────────|
 | $pge  | $vv/$zb |   $ee   | $jj/$ee |   $nn   |  $rr   |
 ────────+─────────+─────────+─────────+─────────+─────────
@@ -11417,7 +11558,7 @@ actualise_ayah_metadata_vars(){
 |────────────────────────────────────────────────────────|
 | $hzb  |  $X/$U  |   $cc   | $hh/$cc |   $mm   |  $qq   |
 |────────────────────────────────────────────────────────|
-| $hzbq | $ww/$za |   $dd   | $ii/$dd |   $mm   |  $qq   |
+| $hzbq | $ww/$za |   $dd   | $ii/$dd |   $ma   |  $qa   |
 |────────────────────────────────────────────────────────|
 | $pge  | $vv/$zb |   $ee   | $jj/$ee |   $nn   |  $rr   |
 ──────────────────────────────────────────────────────────
@@ -11427,21 +11568,21 @@ actualise_ayah_metadata_vars(){
     # Compact tables 
     # Compact-Table Type-1
     ayaat_metadata_compact_table_1="
-─────────────────────────────────────
-Unit  This   Total Unit  Āyāt  Verses
-Name  Unit   Unit  Āyāh Played to be 
-       N°    Āyāt   N°  Before Played 
-─────────────────────────────────────
-$sura $zz/$ss $aa  $ff    $kk   $oo    
-─────────────────────────────────────
-$jz    $Y/$T  $bb  $gg    $ll   $pp    
-─────────────────────────────────────
-$hzb   $X/$U  $cc  $hh    $mm   $qq    
-─────────────────────────────────────
-$hzbq $ww/$za $dd  $ii    $mm   $qq     
-─────────────────────────────────────
-$pge  $vv/$zb $ee  $jj    $nn   $rr    
-─────────────────────────────────────
+───────────────────────────────────────
+Unit    This  Total Unit  Āyāt   Verses
+Name    Unit  Unit  Āyāh  Played to be 
+         N°   Āyāt  N°    Before Played 
+───────────────────────────────────────
+$sura $zz/$ss  $aa   $ff   $kk    $oo  
+───────────────────────────────────────
+$jz    $Y/$T   $bb   $gg   $ll    $pp  
+───────────────────────────────────────
+$hzb   $X/$U   $cc   $hh   $mm    $qq  
+───────────────────────────────────────
+$hzbq $ww/$za  $dd   $ii   $ma    $qa  
+───────────────────────────────────────
+$pge  $vv/$zb  $ee   $jj   $nn    $rr  
+───────────────────────────────────────
 "
 
 
@@ -11458,7 +11599,7 @@ $pge  $vv/$zb $ee  $jj    $nn   $rr
 |-----+-------+-----+----+------+------|
 |$hzb | $X/$U | $cc |$hh | $mm  | $qq  |
 |-----+-------+-----+----+------+------|
-|$hzbq|$ww/$za| $dd |$ii | $mm  | $qq  |
+|$hzbq|$ww/$za| $dd |$ii | $ma  | $qa  |
 |-----+-------+-----+----+------+------|
 |$pge |$vv/$zb| $ee |$jj | $nn  | $rr  |
 ----------------------------------------
@@ -11478,7 +11619,7 @@ $pge  $vv/$zb $ee  $jj    $nn   $rr
 |─────+───────+─────+────+──────+──────|
 |$hzb | $X/$U | $cc |$hh | $mm  | $qq  |
 |─────+───────+─────+────+──────+──────|
-|$hzbq|$ww/$za| $dd |$ii | $mm  | $qq  |
+|$hzbq|$ww/$za| $dd |$ii | $ma  | $qa  |
 |─────+───────+─────+────+──────+──────|
 |$pge |$vv/$zb| $ee |$jj | $nn  | $rr  |
 ──────+───────+─────+────+──────+───────
@@ -11498,11 +11639,12 @@ $pge  $vv/$zb $ee  $jj    $nn   $rr
 |──────────────────────────────────────|
 |$hzb | $X/$U | $cc |$hh | $mm  | $qq  |
 |──────────────────────────────────────|
-|$hzbq|$ww/$za| $dd |$ii | $mm  | $qq  |
+|$hzbq|$ww/$za| $dd |$ii | $ma  | $qa  |
 |──────────────────────────────────────|
 |$pge |$vv/$zb| $ee |$jj | $nn  | $rr  |
 ────────────────────────────────────────
 "
+
 
 }
 
@@ -11597,6 +11739,18 @@ get_AyahMetadata_displayThemOnCLI_rq_3_then_1(){
 	echo "you know how to program, fix this script, this should"
 	echo "not have happened! This is an internal error."; echo
     fi
+
+    echo -n "Total Pages of Sûrah is: "
+    echo "$total_number_of_pages_of_surah"
+
+    echo -n "Current Page of Sūrah: "
+    echo "$current_page_number/$zb"
+
+    echo -n "Previous Pages of Sūrah: "
+    echo "$previous_number_of_pages_of_surah"
+
+    echo -n "Remaining pages in Sūrah: "
+    echo "$remaining_number_of_pages_of_surah"; echo
 
     
     #echo -e "⦿ Sūrah N°: ${BOLD_GREEN}$surahNumber${NC}/${BOLD_YELLOW}114 ${NC}"
@@ -11722,17 +11876,14 @@ gen_html_rq_3_then_1(){
 	if [[ -f "$verse_arabic" ]]
 	then
 
-	    ## ------Job in progress------ ##
 	    if [ "$USER_FONT_FLAG" == "TRUE" ]
 	    then
-		default_fonts_names="$user_font_file_full_path"
+		DEFAULT_FONT_NAMES="$user_font_file_full_path"
 		
 	    elif [ "$SYSTEM_FONT_FLAG" == "TRUE" ]
 	    then
-		default_fonts_names="$system_font_name"
+		DEFAULT_FONT_NAMES="$SYSTEM_FONTS_NAMES"
 	    fi
-	    ## ------Job in progress------ ##
-	    
 	    
 	    echo -n '<span style="font-size:'
 	    echo -n "$ARABIC_TEXT_FONT_SIZE"
@@ -11866,6 +12017,7 @@ gen_html_rq_3_then_1(){
     echo "$folder_size</span>"
     echo '<br>=======================</p>'
 
+
     #--------------------------------#
     # Start of the Table of Metadata #
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -11877,113 +12029,193 @@ gen_html_rq_3_then_1(){
     table_pln_text=white
     table_text_1=yellow
     table_text_2=lightgreen
-    table_text_3=olive
+    table_text_3=b9bd63
     table_text_4=lightblue
+    table_text_5=e3b8b8
+    table_bgcolor=black
+    table_bordercolor=white
+    thead_bgcolor=2b1e01
+    thead_2_bgcolor=120015
+    
     ayaat_metadata_html_table(){
-
+	# Beginning of the Table of Ayaat Metadata
 	echo "<!-- Beginning of the Table of Ayaat Metadata -->"
-	echo "<p><table bgcolor="black" border="3" bordercolor="white" cellpadding="2" cellspacing="2" style="font-size:$TABLE_FONT_SIZE">"
-	echo "<thead bgcolor="darkgray" align="center">"
-	echo "<tr><td colspan="6"><b>Metadata of the Current Âyah Being Played</b></td></tr></thead>"
+	echo "<p><table bgcolor="$table_bgcolor" border="5" bordercolor="$table_bordercolor" cellpadding="2" cellspacing="2" style="font-size:$TABLE_FONT_SIZE">"
+	echo "<thead bgcolor="$thead_bgcolor" align="center"><tr><td colspan="6"><b><span style="color:$table_pln_text">"
+	echo "Metadata of the Current Âyah Being Played"
+	echo "</span></b></td></tr></thead>"
 	echo "    <tr>"
 	echo "      <th><span style="color:$table_pln_text">Unit<br>Name</span></th>"
 	echo "      <th><span style="color:$table_pln_text">Current<br>Unit<br>Number</span></th>"
-	echo "      <th><span style="color:$table_pln_text">Total N°<br>of Āyāt<br>in Unit</span></th>"
+	echo "      <th><span style="color:$table_pln_text">Total.N°<br>of Āyāt<br>in Unit</span></th>"
 	echo "      <th><span style="color:$table_pln_text">Playing<br>Verse<br>Number:</span></th>"
 	echo "      <th><span style="color:$table_pln_text">Already<br>Played<br>Verses</span></th>"
 	echo "      <th><span style="color:$table_pln_text">Verses<br>to be<br>Played</span></th>"
 	echo "    </tr>"
+	# Sûrah
 	echo "    <!-- Sûrah -->"
 	echo "    <tr>"
 	echo "      <td><span style="color:$table_pln_text">Sūrah</span></td>"
+	# Surah Number [001-114]
 	echo "      <!-- Surah Number [001-114] -->"
 	echo -n "      <td><span style="color:$table_text_2">$surahNumber</span>"
 	echo -n "<span style="color:$table_pln_text">/</span>"
 	echo "<span style="color:$table_text_1">114</span></td>"
+	# number of verses of surah
 	echo "      <!-- number of verses of surah -->"
 	echo "      <td><span style="color:$table_text_4">$number_of_verses_of_surah</span></td>"
+	# index_of_current_surah_elmt
 	echo "      <!-- index_of_current_surah_elmt -->"
 	echo -n "      <td><span style="color:$table_text_3">$index_of_current_surah_elmt</span>"
 	echo -n "<span style="color:$table_pln_text">/</span>"
 	echo "<span style="color:$table_text_4">$number_of_verses_of_surah</span></td>"
+	# already_played_ayaat_from_this_surah
 	echo "      <!-- already_played_ayaat_from_this_surah -->"
 	echo "      <td><span style="color:$table_text_2">$already_played_ayaat_from_this_surah</span></td>"
-	echo "      <!-- $remaining_ayaat_in_this_surah -->"
+	# remaining_ayaat_in_this_surah
+	echo "      <!-- remaining_ayaat_in_this_surah -->"
 	echo "      <td><span style="color:$table_text_1">$remaining_ayaat_in_this_surah</span></td>"
 	echo "    </tr>"
+	# Juz
 	echo "    <!-- Juz -->"
 	echo "    <tr>"
 	echo "      <td><span style="color:$table_pln_text">Juz</span></td>"
+	# Juz number
 	echo "      <!-- Juz number -->"
 	echo -n "      <td><span style="color:$table_text_2">$juz_number</span>"
 	echo -n "<span style="color:$table_pln_text">/</span>"
 	echo "<span style="color:$table_text_1">30</span></td>"
+	# number_of_verses_of_JUZ
 	echo "      <!-- number_of_verses_of_JUZ -->"
 	echo "      <td><span style="color:$table_text_4">$number_of_verses_of_JUZ</span></td>"
+	# index_of_current_juz_elmt
 	echo "      <!-- index_of_current_juz_elmt -->"
 	echo -n "      <td><span style="color:$table_text_3">$index_of_current_juz_elmt</span>"
 	echo -n "<span style="color:$table_pln_text">/</span>"
 	echo "<span style="color:$table_text_4">$number_of_verses_of_JUZ</span></td>"
+	# already_played_ayaat_from_this_juz
 	echo "      <!-- already_played_ayaat_from_this_juz -->"
 	echo "      <td><span style="color:$table_text_2">$already_played_ayaat_from_this_juz</span></td>"
+	# remaining_ayaat_in_this_juz
 	echo "      <!-- remaining_ayaat_in_this_juz -->"
 	echo "      <td><span style="color:$table_text_1">$remaining_ayaat_in_this_juz</span><br></td>"
 	echo "    </tr>"
+	# Ḥizb
 	echo "    <!-- Ḥizb -->"
 	echo "    <tr>"
 	echo "      <td><span style="color:$table_pln_text">Ḥizb</span></td>"
+	# Hizb number
 	echo "      <!-- Hizb number -->"
 	echo -n "      <td><span style="color:$table_text_2">$hizb_number</span>"
 	echo -n "<span style="color:$table_pln_text">/</span>"
 	echo "<span style="color:$table_text_1">60</span></td>"
+	# number_of_verses_of_HIZB
 	echo "      <!-- number_of_verses_of_HIZB -->"
 	echo "      <td><span style="color:$table_text_4">$number_of_verses_of_HIZB</span></td>"
+	# index_of_current_hizb_elmt
 	echo "      <!-- index_of_current_hizb_elmt -->"
 	echo -n "      <td><span style="color:$table_text_3">$index_of_current_hizb_elmt</span>"
 	echo -n "<span style="color:$table_pln_text">/</span>"
 	echo "<span style="color:$table_text_4">$number_of_verses_of_HIZB</span></td>"
+	# already_played_ayaat_from_this_hizb
 	echo "      <!-- already_played_ayaat_from_this_hizb -->"
 	echo "      <td><span style="color:$table_text_2">$already_played_ayaat_from_this_hizb</span></td>"
+	# remaining_ayaat_in_this_hizb
 	echo "      <!-- remaining_ayaat_in_this_hizb -->"
 	echo "      <td><span style="color:$table_text_1">$remaining_ayaat_in_this_hizb</span><br></td>"
 	echo "    </tr>"
+	# Rub-ul-Ḥizb
 	echo "    <!-- Rub-ul-Ḥizb -->"
 	echo "    <tr>"
 	echo "      <td><span style="color:$table_pln_text">Ḥizb¼</span></td>"
+	# Rub-ul-Hizb
 	echo "      <!-- Rub-ul-Hizb -->"
 	echo -n "      <td><span style="color:$table_text_2">$roubAlHizbNumber</span>"
 	echo -n "<span style="color:$table_pln_text">/</span>"
 	echo "<span style="color:$table_text_1">240</span></td>"
+	# number_of_verses_of_RUB_UL_HIZB
 	echo "      <!-- number_of_verses_of_RUB_UL_HIZB -->"
 	echo "      <td><span style="color:$table_text_4">$number_of_verses_of_RUB_UL_HIZB</span></td>"
+	# index_of_current_hizb_rub_elmt
 	echo "      <!-- index_of_current_hizb_rub_elmt -->"
 	echo -n "      <td><span style="color:$table_text_3">$index_of_current_hizb_rub_elmt</span>"
 	echo -n "<span style="color:$table_pln_text">/</span>"
 	echo "<span style="color:$table_text_4">$number_of_verses_of_RUB_UL_HIZB</span></td>"
+	# already_played_ayaat_from_this_hizb_rub
 	echo "      <!-- already_played_ayaat_from_this_hizb_rub -->"
 	echo "      <td><span style="color:$table_text_2">$already_played_ayaat_from_this_hizb_rub</span></td>"
+	# remaining_ayaat_in_this_hizb_rub
 	echo "      <!-- remaining_ayaat_in_this_hizb_rub -->"
 	echo "      <td><span style="color:$table_text_1">$remaining_ayaat_in_this_hizb_rub</span><br></td>"
 	echo "    </tr>"
+	# Page
 	echo "    <!-- Page -->"
 	echo "    <tr>"
 	echo "      <td><span style="color:$table_pln_text">Page</span></td>"
+	# Page number
 	echo "      <!-- Page number -->"
 	echo -n "      <td><span style="color:$table_text_2">$page_number</span>"
 	echo -n "<span style="color:$table_pln_text">/</span>"
 	echo "<span style="color:$table_text_1">604</span></td>"
+	# number_of_verses_of_PAGE_NUMBER
 	echo "      <!-- number_of_verses_of_PAGE_NUMBER -->"
 	echo "      <td><span style="color:$table_text_4">$number_of_verses_of_PAGE_NUMBER</span></td>"
+	# index_of_current_page_elmt
 	echo "      <!-- index_of_current_page_elmt -->"
 	echo -n "      <td><span style="color:$table_text_3">$index_of_current_page_elmt</span>"
 	echo -n "<span style="color:$table_pln_text">/</span>"
 	echo "<span style="color:$table_text_4">$number_of_verses_of_PAGE_NUMBER</span></td>"
+	# already_played_ayaat_from_this_page
 	echo "      <!-- already_played_ayaat_from_this_page -->"
 	echo "      <td><span style="color:$table_text_2">$already_played_ayaat_from_this_page</span></td>"
+	# remaining_ayaat_in_this_page
 	echo "      <!-- remaining_ayaat_in_this_page -->"
 	echo "      <td><span style="color:$table_text_1">$remaining_ayaat_in_this_page</span></td>"
 	echo "    </tr>"
 	echo "</table></p>"
+
+	# Table giving PAGE information
+	echo "<!-- Table giving page information -->"
+	echo "<p><table bgcolor="$table_bgcolor" border="3" bordercolor="$table_bordercolor" cellpadding="10" cellspacing="10" style="font-size:$TABLE_FONT_SIZE">"
+	echo "<thead bgcolor="$thead_2_bgcolor" align="center">"
+	echo "<tr><td colspan="2"><b>"
+	echo "<span style="color:$table_pln_text">"
+	echo "Pages of Sûrah Information"
+	echo "</span></b></td></tr></thead>"
+	# Number of Pages of this Sûrah
+	echo "<!-- total_number_of_pages_of_surah -->"
+	echo "<tr>"
+	echo "  <td><span style="color:$table_pln_text">Number of Pages of this Sûrah</span></td>"
+	echo "  "
+	echo "  <td><span style="color:$table_text_5">$total_number_of_pages_of_surah</span></td>"
+	echo "</tr>"
+	echo ""
+	# Current Page of Sûrah
+	echo "<!-- already played pages from surah -->"
+	echo "<tr>"
+	echo "  <td><span style="color:$table_pln_text">Current Page of Sûrah</span></td>"
+	echo ""
+	echo "  <td><span style="color:$table_text_5">$current_page_number/$quran_total_num_of_pages</span></td>"
+	echo "</tr>"
+	echo ""
+	# Already Played Pages from Sûrah
+	echo "<!-- already played pages from surah -->"
+	echo "<tr>"
+	echo "  <td><span style="color:$table_pln_text">Already Played Pages from Sûrah</span></td>"
+	echo ""
+	echo "  <td><span style="color:$table_text_5">$previous_number_of_pages_of_surah</span></td>"
+	echo "</tr>"
+	echo ""	
+	# Remaining Pages in Sûrah
+	echo "<!-- yet to be played pages from surah -->"
+	echo "<tr>"
+	echo "  <td><span style="color:$table_pln_text">Remaining Pages in Sûrah</span></td>"
+	echo "  "
+	echo "  <td><span style="color:$table_text_5">$remaining_number_of_pages_of_surah</span>></td>"
+	echo "</tr>"
+	echo "</table></p>"
+	echo ""
+
     }
 
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -11992,9 +12224,11 @@ gen_html_rq_3_then_1(){
 
     ayaat_metadata_html_table
     
+    
     #------------------------------#
     # End of the Table of Metadata #
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
 
     
     # Closing the first <span> tag
@@ -12023,427 +12257,11 @@ cat /dev/null > "$OutHTMLfile"
 gen_html_rq_3_then_1 "${1}.$fileExt" 1 1 >> "$OutHTMLfile"
 
 # Clean-up
-rm -rfv "${1}".quran-uthmani.txt
-rm -rfv "${1}".transliteration.txt
-rm -rfv "${1}".hamidullah.txt
-rm -rfv "${1}".sahih.txt
-rm -rfv "${1}".hilali.txt
-rm -rfv "$tmpOutHTMLfile"
-
-reset
-# this is a draft function to print
-# the number of pages of each surah
-# and number of played pages and of
-# yet to be played pages in a surah
-show_number_of_pages_of_a_surah(){
-    # depends on the following functions:
-    #+ show_surah_number
-    #+ show_page_number
-    #+ give_surah_ayats_list
-    #+ show_list_of_verses_that_belong_to_this_page_number
-
-    export arLength=""
-    export ayatOf1stPg=""
-    export ayatOf1stPgArray=""
-    export ayatOfLstPg=""
-    export ayatOfLstPgArray=""
-    export firstAyah=""
-    export fstAyahIdx=""
-    export fstAyaPg=""
-    export lastAyah=""
-    export lastElIdx=""
-    export lstAyaArElIdx=""
-    export lstAyaArLen=""
-    export lstAyahIdx=""
-    export lstAyaPg=""
-    export numLstPgAyatMoin1=""
-    export lstButOne=""
-    export numAyatOf1stPg=""
-    export numLstPgAyat=""
-    export pageNum=""
-    export fst_suffix='null'
-    export lst_suffix='null'
-    export extraPgSufx=''
-    export extraPgNum=0
-    export total_number_of_pages=''
-    
-    for ((n=1; n<=114; n++))
-    do
-	echo "--------------------------------"
-	give_surah_ayats_list $n
-	echo
-	echo "List of ayaat of Sūrah N $n:"
-	echo "${ayaat_list_of_given_surah[@]}"
-
-	firstAyah="${ayaat_list_of_given_surah[0]}"
-	arLength="${#ayaat_list_of_given_surah[@]}"
-	lastElIdx=$((arLength-1))
-	lastAyah="${ayaat_list_of_given_surah[$lastElIdx]}"
-
-	echo -n "First verse of Sūrah: "
-	echo "$firstAyah"    
-	echo -n "Last verse of Sūrah: "
-	echo "$lastAyah"
-
-	# Get page number of first ayah of Sûrah
-	show_page_number $firstAyah
-	fstAyaPg=$page_number
-
-	# Get page number of last ayah of Sûrah
-	show_page_number $lastAyah
-	lstAyaPg=$page_number
-	
-	echo -n "Page of 1st Āya of Sūrah: "
-	echo "$fstAyaPg"
-	
-	echo -n "Page of last Āya of Sūrah: "
-	echo "$lstAyaPg"
-	
-	# Removing Leading zeros from page numbers
-	# First ayah page
-	while [ "$fstAyaPg" != "${fstAyaPg#0}" ]; do fstAyaPg=${fstAyaPg#0}; done
-	# Last ayah page
-	while [ "$lstAyaPg" != "${lstAyaPg#0}" ]; do lstAyaPg=${lstAyaPg#0}; done
-	
-
-	# Num of verses on 1st page of Sūrah
-	show_list_of_verses_that_belong_to_this_page_number $fstAyaPg
-	ayatOf1stPg="${list_of_verses_that_belong_to_this_PAGE_NUMBER[@]}"
-	ayatOf1stPgArray=( "${list_of_verses_that_belong_to_this_PAGE_NUMBER[@]}" )
-	numAyatOf1stPg="${#list_of_verses_that_belong_to_this_PAGE_NUMBER[*]}"
-
-	# Index of 1st Verse on 1st Page
-	for w in "${!list_of_verses_that_belong_to_this_PAGE_NUMBER[@]}"
-	do
-	    if [[ "${list_of_verses_that_belong_to_this_PAGE_NUMBER[$w]}" = "$firstAyah" ]]
-	    then
-		fstAyahIdx=`echo "${w}"`
-		((++fstAyahIdx))
-		# Bash arrays start at index 0
-		# make it one for clarity
-	    fi
-	done
-
-	# Num of verses on last page of Sūrah
-	show_list_of_verses_that_belong_to_this_page_number $lstAyaPg
-	ayatOfLstPg="${list_of_verses_that_belong_to_this_PAGE_NUMBER[@]}"
-	ayatOfLstPgArray=( "${list_of_verses_that_belong_to_this_PAGE_NUMBER[@]}" )
-	numLstPgAyat="${#list_of_verses_that_belong_to_this_PAGE_NUMBER[*]}"
-
-	# Index of last Verse on last Page
-	for x in "${!list_of_verses_that_belong_to_this_PAGE_NUMBER[@]}"
-	do
-	    if [[ "${list_of_verses_that_belong_to_this_PAGE_NUMBER[$x]}" = "$lastAyah" ]]
-	    then
-		lstAyahIdx=`echo "${x}"`
-		((++lstAyahIdx))
-		# Bash arrays start at index 0
-		# make it one for clarity
-	    fi
-	done
-
-	# Show Num of verses on first page
-	echo -n "Num of Āyāt on Sūrah's 1st Page: "
-	echo "$numAyatOf1stPg"
-	
-	# Show Num of verses on last page
-	echo -n "Num of Āyāt on Sūrah's last Page: "
-	echo "$numLstPgAyat"
-	
-	# Show Index of 1st Verse on 1st Page
-	echo -n "Index of 1st āyah on 1st Page: "
-	echo "$fstAyahIdx/$numAyatOf1stPg"
-
-	# Show Index of lst Verse on lst Page
-	echo -n "Index of last āyah on last Page: "
-	echo "$lstAyahIdx/$numLstPgAyat"
-	
-	pageNum=$((lstAyaPg-fstAyaPg))
-
-	# From here we will start to calculate
-	# 1/4=0.25, 1/3=0.33, 1/2=0.50, 2/3=0.66, 3/4=0.75
-	# for first verse of Sûrah	    
-	fstAya_one_4th=$((numAyatOf1stPg/4))
-	fstAya_one_3rd=$((numAyatOf1stPg/3))
-	fstAya_one_half=$((numAyatOf1stPg/2))
-	fstAya_two_3rd=$((fstA_one3rd*2))
-	fstAya_three_4th=$((fstA_one4th*3))
-	# showing the values
-	# First page
-	echo
-	echo "First ayah on first page:"
-	echo -n "1/4th of number of Âyat: "
-	echo "$fstAya_one_4th"
-	echo -n "1/3rd of number of Âyat: "
-	echo "$fstAya_one_3rd"
-	echo -n "Half of number of Âyat: "
-	echo "$fstAya_one_half"
-	echo -n "2/3rd of number of Âyat: "
-	echo "$fstAya_two_3rd"
-	echo -n "3/4th of number of Âyat: "
-	echo "$fstAya_three_4th"; echo
-	# for last verse of Sûrah
-	lstAya_one_4th=$((numLstPgAyat/4))
-	lstAya_one_3rd=$((numLstPgAyat/3))
-	lstAya_one_half=$((numLstPgAyat/2))
-	lstAya_two_3rd=$((fstA_one3rd*2))
-	lstAya_three_4th=$((fstA_one4th*3))	    
-	# showing the values
-	# Last page
-	echo "Last ayah on last page:"
-	echo -n "1/4th of number of Âyat: "
-	echo "$lstAya_one_4th"
-	echo -n "1/3rd of number of Âyat: "
-	echo "$lstAya_one_3rd"
-	echo -n "Half of number of Âyat: "
-	echo "$lstAya_one_half"
-	echo -n "2/3rd of number of Âyat: "
-	echo "$lstAya_two_3rd"
-	echo -n "3/4th of number of Âyat: "
-	echo "$lstAya_three_4th"
-	
-	if [ $lstAyaPg -ne $fstAyaPg ]
-	   # if the fist and last verses of
-	   # Sûrah are not on the same page
-	then
-	    # if the first ayah of the Sûrah is the
-	    # first verse on the page,
-	    # then the whole page belongs to Sûrah
-	    # so we add it to the number of pages.
-	    if [[ $fstAyahIdx -eq 1 ]]
-	    then
-		pageNum=$((pageNum+1))
-
-	    elif [[ $fstAyahIdx -eq $fstAya_one_4th ]]
-		 # Starting to calculate half, 3rd and other values
-	    then
-		fst_suffix='0.25'
-		
-	    elif [[ $fstAyahIdx -eq $fstAya_one_3rd ]]
-	    then
-		fst_suffix='0.33'
-
-	    elif [[ $fstAyahIdx -eq $fstAya_one_half ]]
-	    then
-		fst_suffix='0.50'
-
-	    elif [[ $fstAyahIdx -eq $fstAya_two_3rd ]]
-	    then
-		fst_suffix='0.66'
-
-	    elif [[ $fstAyahIdx -eq $fstAya_three_4th ]]
-	    then
-		fst_suffix='0.75'		
-	    fi
-
-	    # array of the verses that are on the
-	    # page on which appears the last verse
-	    # of the Sûrah.
-	    lstAyaArLen="${#ayatOfLstPgArray[@]}"
-	    lstAyaArElIdx=$((lstAyaArLen-1))
-
-	    # if the last ayah of the Sûrah is the
-	    # last verse on the page,
-	    # then the whole page belongs to Sûrah
-	    # so we add it to the number of pages.
-	    if [[ $lstAyahIdx -eq 1 ]]
-	    then
-		pageNum=$((pageNum+1))
-
-	    elif [[ $lstAyahIdx -eq $lstAya_one_4th ]]
-		 # Starting to calculate half, 3rd and other values
-	    then
-		lst_suffix='0.25'
-		
-	    elif [[ $lstAyahIdx -eq $lstAya_one_3rd ]]
-	    then
-		lst_suffix='0.33'
-
-	    elif [[ $lstAyahIdx -eq $lstAya_one_half ]]
-	    then
-		lst_suffix='0.50'
-
-	    elif [[ $lstAyahIdx -eq $lstAya_two_3rd ]]
-	    then
-		lst_suffix='0.66'
-
-	    elif [[ $lstAyahIdx -eq $lstAya_three_4th ]]
-	    then
-		lst_suffix='0.75'
-	    fi
-
-	    # Adding the suffixes to extrapolate
-	    # an additional page number to be added
-	    # we have to do this because bash does
-	    # not support decimal numbers.
-	    if [[ ! "$fst_suffix" == 'null' && ! "$lst_suffix" == 'null' ]]
-	    then
-		# suffix is '0.25'
-		if [[ "$fst_suffix" == '0.25' ]]
-		then	    
-		    if [[ "$lst_suffix" == '0.25' ]]
-		    then
-			extraPgSufx='1/2'
-
-		    elif [[ "$lst_suffix" == '0.33' ]]
-		    then
-			extraPgSufx='4/7'
-			
-		    elif [[ "$lst_suffix" == '0.50' ]]
-		    then
-			extraPgSufx='3/4'
-
-		    elif [[ "$lst_suffix" == '0.66' ]]
-		    then
-			extraPgSufx='9/10'
-			
-		    elif [[ "$lst_suffix" == '0.75' ]]
-		    then
-			extraPgNum=1
-			extraPgSufx=''
-		    fi
-		    
-		    # suffix is '0.33'
-		elif [[ "$fst_suffix" == '0.33' ]]
-		then		    
-		    if [[ "$lst_suffix" == '0.25' ]]
-		    then
-			extraPgSufx='4/7'
-
-		    elif [[ "$lst_suffix" == '0.33' ]]
-		    then
-			extraPgSufx='4/6'
-			
-		    elif [[ "$lst_suffix" == '0.50' ]]
-		    then
-			extraPgSufx='5/6'
-
-		    elif [[ "$lst_suffix" == '0.66' ]]
-		    then
-			extraPgNum='1'
-			extraPgSufx=''
-			
-		    elif [[ "$lst_suffix" == '0.75' ]]
-		    then
-			extraPgNum='1'
-			extraPgSufx=''
-		    fi
-
-		    # suffix is '0.50'
-		elif [[ "$fst_suffix" == '0.50' ]]
-		then		    
-		    if [[ "$lst_suffix" == '0.25' ]]
-		    then
-			extraPgSufx='3/4'
-
-		    elif [[ "$lst_suffix" == '0.33' ]]
-		    then
-			extraPgSufx='5/6'
-			
-		    elif [[ "$lst_suffix" == '0.50' ]]
-		    then
-			extraPgNum='1'
-			extraPgSufx=''
-
-		    elif [[ "$lst_suffix" == '0.66' ]]
-		    then
-			extraPgNum='1'
-			extraPgSufx='1/6'
-			
-		    elif [[ "$lst_suffix" == '0.75' ]]
-		    then
-			extraPgNum='1'
-			extraPgSufx='1/4'
-		    fi
-
-		    # suffix is '0.66'
-		elif [[ "$fst_suffix" == '0.66' ]]
-		then		    
-		    if [[ "$lst_suffix" == '0.25' ]]
-		    then
-			extraPgSufx='9/10'
-
-		    elif [[ "$lst_suffix" == '0.33' ]]
-		    then
-			extraPgNum='1'
-			extraPgSufx=''
-			
-		    elif [[ "$lst_suffix" == '0.50' ]]
-		    then
-			extraPgNum='1'
-			extraPgSufx='1/6'
-
-		    elif [[ "$lst_suffix" == '0.66' ]]
-		    then
-			extraPgNum='1'
-			extraPgSufx='1/3'
-			
-		    elif [[ "$lst_suffix" == '0.75' ]]
-		    then
-			extraPgNum='1'
-			extraPgSufx='3/7'
-		    fi
-
-		    # suffix is '0.75'
-		elif [[ "$fst_suffix" == '0.75' ]]
-		then		    
-		    if [[ "$lst_suffix" == '0.25' ]]
-		    then
-			extraPgNum='1'
-			extraPgSufx=''
-
-		    elif [[ "$lst_suffix" == '0.33' ]]
-		    then
-			extraPgNum='1'
-			extraPgSufx=''
-			
-		    elif [[ "$lst_suffix" == '0.50' ]]
-		    then
-			extraPgNum='1'
-			extraPgSufx='1/4'
-
-		    elif [[ "$lst_suffix" == '0.66' ]]
-		    then
-			extraPgNum='1'
-			extraPgSufx='3/7'
-			
-		    elif [[ "$lst_suffix" == '0.75' ]]
-		    then
-			extraPgNum='1'
-			extraPgSufx='1/2'
-		    fi
-		else
-		    extraPgNum=0
-		    extraPgSufx=''
-		fi
-	    fi
-
-	    total_number_of_pages=$((total_number_of_pages+pageNum))
-	    # now that we have $extraPgNum let's use it
-	    pageNum=$((pageNum+extraPgNum))
-	    	    
-	elif [ $pageNum -eq 0 ]
-	then
-	    pageNum="less than 1 page"
-	fi
-
-	# Let's use $extraPgSufx here
-	echo    "Extra page number: $extraPgNum"
-	echo    "Extra page suffix: $extraPgSufx"
-	
-	if [[ ! $extraPgSufx == '' && ! "$pageNum" == 'less than 1 page' ]]
-	then
-	    echo -n "Num of pages of Sūrah: "
-	    echo "$pageNum & $extraPgSufx"
-	else
-	    echo -n "Num of pages of Sūrah: "
-	    echo "$pageNum"
-	fi
-    done
-    
-    echo "$total_number_of_pages"
-}
-
-#show_number_of_pages_of_a_surah
+rm -rf "${1}".quran-uthmani.txt
+rm -rf "${1}".transliteration.txt
+rm -rf "${1}".hamidullah.txt
+rm -rf "${1}".sahih.txt
+rm -rf "${1}".hilali.txt
+rm -rf "$tmpOutHTMLfile"
 
 exit $?

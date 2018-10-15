@@ -638,7 +638,13 @@ en.al-quran-info-transliteration.trans.zip
     Returns the number of verses of the Sûrah to which a given ayah belongs.
 
 ** Other Ayah Related BASH Functions
+*** =show_number_of_pages_of_a_surah.sh=
+    This program take one verse id (i.e., 002008) and returns the following:
 
++ The Total Pages of the Sûrah
++ The Page on which is located the entered verse id
++ The the pages that come before the entered verse id
++ And the number of the Remaining pages in the Sūrah
 
 *** ayah-necessitates-sadjdah-or-not.sh
     This tells us wether a given verse necessitates prosternation after recitation or not.
@@ -830,6 +836,9 @@ en.al-quran-info-transliteration.trans.zip
 
    [[file:programs/uncompressed/Show_Surah_Metadata/Show_Some_Info_for_a_Surah/show-surah-number-without-leading-zeros.sh][show-surah-number-without-leading-zeros.sh]]
 
+   [[file:programs/uncompressed/Show_Surah_Metadata/show_number_of_pages_of_a_surah.sh][show_number_of_pages_of_a_surah.sh]]
+
+\\
 
    A Single Script that Shows all the Informations of a Given Ayah - It is the combination of most of the other scripts:
    [[file:programs/uncompressed/Show_Surah_Metadata/00-show-all-verse-metadata.sh][00-show-all-verse-metadata.sh]]
@@ -886,5 +895,4 @@ en.al-quran-info-transliteration.trans.zip
 
 ** Other Scripts
    Coming soon in Sha Allah.
-
 

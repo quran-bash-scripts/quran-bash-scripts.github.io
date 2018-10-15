@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-10-13 Sat 10:50 -->
+<!-- 2018-10-15 Mon 15:35 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Quran BASH Scripts</title>
@@ -180,7 +180,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="solarized-css/normalize.css" media="screen">
+<link rel="stylesheet" type="text/css" href="solarized-css/normalize.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="solarized-css/solarized-light.css" media="screen" />
 
 <script type="text/javascript" src="solarized-css/org-info.min.js">
@@ -308,133 +308,134 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org91aed22">1. IMPORTANT INFORMATION:</a></li>
-<li><a href="#orgc4267d4">2. IMPORTANT NOTES:</a>
+<li><a href="#org23e25fd">1. IMPORTANT INFORMATION:</a></li>
+<li><a href="#org0446cd8">2. IMPORTANT NOTES:</a>
 <ul>
-<li><a href="#orged9b26c">2.1. Important Note N°1</a></li>
-<li><a href="#org75c8085">2.2. Important Note N°2</a></li>
+<li><a href="#orgb29bae9">2.1. Important Note N°1</a></li>
+<li><a href="#orgc183ee0">2.2. Important Note N°2</a></li>
 </ul>
 </li>
-<li><a href="#org6d3b7d7">3. tafsir.sh</a>
+<li><a href="#org6f6baa4">3. tafsir.sh</a>
 <ul>
-<li><a href="#orgea1d7bf">3.1. SYNOPSIS</a></li>
-<li><a href="#org0275465">3.2. DESCRIPTION</a></li>
-<li><a href="#org5bf1ed0">3.3. EXAMPLES:</a></li>
-<li><a href="#org33ddeb6">3.4. DEPENDENCIES</a>
+<li><a href="#org4530968">3.1. SYNOPSIS</a></li>
+<li><a href="#org3362838">3.2. DESCRIPTION</a></li>
+<li><a href="#org3d47615">3.3. EXAMPLES:</a></li>
+<li><a href="#orgaf54e22">3.4. DEPENDENCIES</a>
 <ul>
-<li><a href="#org55b1451">3.4.1. App dependencies</a></li>
-<li><a href="#orgaf56afc">3.4.2. Supported Format of Tafsir Files</a></li>
-<li><a href="#orgdce0336">3.4.3. How to Prepare the Tafsir Files</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#org96478a5">4. qap-audio-player.sh</a>
-<ul>
-<li><a href="#orgcca4ba7">4.1. SYNOPSIS</a></li>
-<li><a href="#orgf39d977">4.2. DESCRIPTION</a></li>
-<li><a href="#org136432c">4.3. EXAMPLES</a></li>
-<li><a href="#orgbbd965d">4.4. AS FOR THE REST OF THE OPTIONS:</a></li>
-<li><a href="#org72f26eb">4.5. DEPENDENCIES</a></li>
-<li><a href="#orgbb76932">4.6. CREATING THE PLAYLIST FILES</a></li>
-</ul>
-</li>
-<li><a href="#orge4ef96b">5. rq-ayat-3x-each-then-1.sh</a>
-<ul>
-<li><a href="#orge95b3fc">5.1. SYNOPSYS</a></li>
-<li><a href="#orga16ec31">5.2. DESCRIPTION</a></li>
-<li><a href="#orgc42483d">5.3. COMMAND LINE OPTIONS</a></li>
-<li><a href="#orgf201e20">5.4. EXAMPLES</a></li>
-<li><a href="#org2fbc411">5.5. DEPENDENCIES</a></li>
-</ul>
-</li>
-<li><a href="#org22b7ec9">6. Divide Quran 6236 Audio Files to Various Units</a>
-<ul>
-<li><a href="#org747eafb">6.1. divide-quran-per-suwar.sh</a></li>
-<li><a href="#org5be5270">6.2. divide-quran-per-juz.sh</a></li>
-<li><a href="#org67b77c2">6.3. divide-quran-per-hizb-1-safe.sh</a></li>
-<li><a href="#org2759020">6.4. divide-quran-per-hizb-2-unsafe.sh</a></li>
-<li><a href="#org8db2db9">6.5. divide-quran-per-hizb-roub-1-safe.sh</a></li>
-<li><a href="#org0035d81">6.6. divide-quran-per-hizb-roub-2-unsafe.sh</a></li>
-<li><a href="#org88645ab">6.7. divide-quran-per-page-1-safe.sh</a></li>
-<li><a href="#orgab96b62">6.8. divide-quran-per-page-2-unsafe.sh</a></li>
-<li><a href="#org704027c">6.9. Bonus: move-21-ayat-in-subdirs.sh</a></li>
-</ul>
-</li>
-<li><a href="#orgafcc96d">7. div-trans-textFile-to-6236-TXT-Files</a>
-<ul>
-<li><a href="#orgd3f0fc8">7.1. Dependencies:</a>
-<ul>
-<li><a href="#orgef28afe">7.1.1. 01-Quran-Verses-Line-Numbers.txt</a></li>
-<li><a href="#orge48759f">7.1.2. 02-VerseByVerse-Quran-Ayat-List.txt</a></li>
-<li><a href="#orgfb13814">7.1.3. Zekr/Tanzil Translation files</a></li>
+<li><a href="#org1d4dbd3">3.4.1. App dependencies</a></li>
+<li><a href="#org1bc3371">3.4.2. Supported Format of Tafsir Files</a></li>
+<li><a href="#org882286a">3.4.3. How to Prepare the Tafsir Files</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org59935bc">8. Show Sûrah or Âyah Metadata</a>
+<li><a href="#org9fca6de">4. qap-audio-player.sh</a>
 <ul>
-<li><a href="#org540e317">8.1. List of Verses of Surah-Juz-Hizb-RubUlHizb-PageNumber</a>
-<ul>
-<li><a href="#org779d145">8.1.1. show-list-of-verses-that-belong-to-this-surah.sh</a></li>
-<li><a href="#org1d0db01">8.1.2. show-list-of-verses-that-belong-to-this-juz.sh</a></li>
-<li><a href="#orgaf0c060">8.1.3. show-list-of-verses-that-belong-to-this-hizb.sh</a></li>
-<li><a href="#org0cff21f">8.1.4. show-list-of-verses-that-belong-to-this-rub-al-hizb.sh</a></li>
-<li><a href="#org8d7eb34">8.1.5. show-list-of-verses-that-belong-to-this-page-number.sh</a></li>
+<li><a href="#org4b44cb6">4.1. SYNOPSIS</a></li>
+<li><a href="#orgaeef58b">4.2. DESCRIPTION</a></li>
+<li><a href="#org109175f">4.3. EXAMPLES</a></li>
+<li><a href="#orge1cb26b">4.4. AS FOR THE REST OF THE OPTIONS:</a></li>
+<li><a href="#org0e5a7e7">4.5. DEPENDENCIES</a></li>
+<li><a href="#org1ec7fb3">4.6. CREATING THE PLAYLIST FILES</a></li>
 </ul>
 </li>
-<li><a href="#org176d16f">8.2. Number of Verses of Surah-Juz-Hizb-RubUlHizb-PageNumber</a>
+<li><a href="#org7fd0206">5. rq-ayat-3x-each-then-1.sh</a>
 <ul>
-<li><a href="#org9560e80">8.2.1. give-the-number-of-verses-of-surah.sh</a></li>
-<li><a href="#orgcf21604">8.2.2. show-number-of-verses-that-belong-to-this-juz.sh</a></li>
-<li><a href="#orgf36c733">8.2.3. show-number-of-verses-that-belong-to-this-hizb.sh</a></li>
-<li><a href="#orgf9860e3">8.2.4. show-number-of-verses-that-belong-to-this-rub-al-hizb.sh</a></li>
-<li><a href="#org9e5a160">8.2.5. show-number-of-verses-that-belong-to-this-page-number.sh</a></li>
+<li><a href="#orga31d602">5.1. SYNOPSYS</a></li>
+<li><a href="#orgd0f2803">5.2. DESCRIPTION</a></li>
+<li><a href="#orgcf0127c">5.3. COMMAND LINE OPTIONS</a></li>
+<li><a href="#orgc869810">5.4. EXAMPLES</a></li>
+<li><a href="#org89b56ab">5.5. DEPENDENCIES</a></li>
 </ul>
 </li>
-<li><a href="#orgedeb4ef">8.3. Show ID of the Greater Unit to Which a Verse Belongs</a>
+<li><a href="#org35d60b8">6. Divide Quran 6236 Audio Files to Various Units</a>
 <ul>
-<li><a href="#org4cb3d22">8.3.1. show-juz-to-which-this-ayah-belongs.sh</a></li>
-<li><a href="#org27e94d5">8.3.2. show-hizb-to-which-this-ayah-belongs.sh</a></li>
-<li><a href="#org3e1c782">8.3.3. show-rub-al-hizb-to-which-this-ayah-belongs.sh</a></li>
-<li><a href="#org561535e">8.3.4. show-page-number-to-which-this-ayah-belongs.sh</a></li>
+<li><a href="#org967a645">6.1. divide-quran-per-suwar.sh</a></li>
+<li><a href="#org4f89a80">6.2. divide-quran-per-juz.sh</a></li>
+<li><a href="#orgf22b9fe">6.3. divide-quran-per-hizb-1-safe.sh</a></li>
+<li><a href="#orgcdcef6e">6.4. divide-quran-per-hizb-2-unsafe.sh</a></li>
+<li><a href="#org4faaaa9">6.5. divide-quran-per-hizb-roub-1-safe.sh</a></li>
+<li><a href="#org9fdd0c2">6.6. divide-quran-per-hizb-roub-2-unsafe.sh</a></li>
+<li><a href="#orgd20e3ae">6.7. divide-quran-per-page-1-safe.sh</a></li>
+<li><a href="#org398a2eb">6.8. divide-quran-per-page-2-unsafe.sh</a></li>
+<li><a href="#org7892be0">6.9. Bonus: move-21-ayat-in-subdirs.sh</a></li>
 </ul>
 </li>
-<li><a href="#org05bcd3c">8.4. Show Some More Info for a Surah</a>
+<li><a href="#org1b34a74">7. div-trans-textFile-to-6236-TXT-Files</a>
 <ul>
-<li><a href="#orgcc3bc39">8.4.1. show-surah-meccan-or-medinan.sh</a></li>
-<li><a href="#orgf1acd73">8.4.2. show-surah-name-arabic.sh</a></li>
-<li><a href="#org149c596">8.4.3. show-surah-name-english.sh</a></li>
-<li><a href="#orgdff85b6">8.4.4. show-surah-number.sh</a></li>
-<li><a href="#orgdefcd5d">8.4.5. show-surah-number-without-leading-zeros.sh</a></li>
-</ul>
-</li>
-<li><a href="#org5052e81">8.5. Show Number of Elements Contained in the Unit to Which a Verse Belongs</a>
+<li><a href="#org69f09c6">7.1. Dependencies:</a>
 <ul>
-<li><a href="#org4754b4c">8.5.1. get-number-of-ayaat-of-the-surah-to-which-this-ayah-belongs.sh</a></li>
-</ul>
-</li>
-<li><a href="#org41e3047">8.6. Other Ayah Related BASH Functions</a>
-<ul>
-<li><a href="#org8c5a4c6">8.6.1. ayah-necessitates-sadjdah-or-not.sh</a></li>
-<li><a href="#org0d403bb">8.6.2. play-basmala-for-the-113-suwar.sh</a></li>
+<li><a href="#orgd805539">7.1.1. 01-Quran-Verses-Line-Numbers.txt</a></li>
+<li><a href="#org8f7fcc7">7.1.2. 02-VerseByVerse-Quran-Ayat-List.txt</a></li>
+<li><a href="#org4196bfc">7.1.3. Zekr/Tanzil Translation files</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgb234870">9. Download Section</a>
+<li><a href="#org275cbd8">8. Show Sûrah or Âyah Metadata</a>
 <ul>
-<li><a href="#orge013c6d">9.1. tafsir.sh</a></li>
-<li><a href="#org1442708">9.2. qap-audio-player.sh</a></li>
-<li><a href="#org530ffde">9.3. rq-ayat-3x-each-then-1-5.0-ALPHA.sh</a></li>
-<li><a href="#org893e083">9.4. Tafsir Files</a></li>
-<li><a href="#orgf4f4934">9.5. Playlist Files + Audios</a></li>
-<li><a href="#orgc1461c6">9.6. Translation Files Divided into 6236 TXT Files</a></li>
-<li><a href="#orgaf07189">9.7. Scripts that Divide the Quran 6236 Audio Files into Various Units</a></li>
-<li><a href="#org8a9f516">9.8. Scripts that Divide Translation Text-Files into 6236 TXT Files</a></li>
-<li><a href="#orgbefe726">9.9. Scripts that Show Various Sûrah or Âyah Metadata</a></li>
-<li><a href="#org5d88a19">9.10. Custom Tanzil/Zekr Translation/Tafsir Files</a></li>
-<li><a href="#orgc28bb80">9.11. Other Scripts</a></li>
+<li><a href="#org05fd6ab">8.1. List of Verses of Surah-Juz-Hizb-RubUlHizb-PageNumber</a>
+<ul>
+<li><a href="#orgeb9eec0">8.1.1. show-list-of-verses-that-belong-to-this-surah.sh</a></li>
+<li><a href="#orga4ec3b6">8.1.2. show-list-of-verses-that-belong-to-this-juz.sh</a></li>
+<li><a href="#orgd941f2f">8.1.3. show-list-of-verses-that-belong-to-this-hizb.sh</a></li>
+<li><a href="#org0145276">8.1.4. show-list-of-verses-that-belong-to-this-rub-al-hizb.sh</a></li>
+<li><a href="#orge506e06">8.1.5. show-list-of-verses-that-belong-to-this-page-number.sh</a></li>
+</ul>
+</li>
+<li><a href="#org30cd4b1">8.2. Number of Verses of Surah-Juz-Hizb-RubUlHizb-PageNumber</a>
+<ul>
+<li><a href="#orgb3f3566">8.2.1. give-the-number-of-verses-of-surah.sh</a></li>
+<li><a href="#org55a6fe8">8.2.2. show-number-of-verses-that-belong-to-this-juz.sh</a></li>
+<li><a href="#org9f86cc0">8.2.3. show-number-of-verses-that-belong-to-this-hizb.sh</a></li>
+<li><a href="#orgd82772f">8.2.4. show-number-of-verses-that-belong-to-this-rub-al-hizb.sh</a></li>
+<li><a href="#org0141f19">8.2.5. show-number-of-verses-that-belong-to-this-page-number.sh</a></li>
+</ul>
+</li>
+<li><a href="#orga1e9a0d">8.3. Show ID of the Greater Unit to Which a Verse Belongs</a>
+<ul>
+<li><a href="#org5758f2f">8.3.1. show-juz-to-which-this-ayah-belongs.sh</a></li>
+<li><a href="#org41278b1">8.3.2. show-hizb-to-which-this-ayah-belongs.sh</a></li>
+<li><a href="#org5dcf35e">8.3.3. show-rub-al-hizb-to-which-this-ayah-belongs.sh</a></li>
+<li><a href="#orgfb78ea4">8.3.4. show-page-number-to-which-this-ayah-belongs.sh</a></li>
+</ul>
+</li>
+<li><a href="#orga5ec480">8.4. Show Some More Info for a Surah</a>
+<ul>
+<li><a href="#orgea4605f">8.4.1. show-surah-meccan-or-medinan.sh</a></li>
+<li><a href="#org108a42e">8.4.2. show-surah-name-arabic.sh</a></li>
+<li><a href="#orgbe99525">8.4.3. show-surah-name-english.sh</a></li>
+<li><a href="#org62a6e12">8.4.4. show-surah-number.sh</a></li>
+<li><a href="#orge55f8b0">8.4.5. show-surah-number-without-leading-zeros.sh</a></li>
+</ul>
+</li>
+<li><a href="#orga010f27">8.5. Show Number of Elements Contained in the Unit to Which a Verse Belongs</a>
+<ul>
+<li><a href="#org64ca5f3">8.5.1. get-number-of-ayaat-of-the-surah-to-which-this-ayah-belongs.sh</a></li>
+</ul>
+</li>
+<li><a href="#org043fafc">8.6. Other Ayah Related BASH Functions</a>
+<ul>
+<li><a href="#org242e568">8.6.1. <code>show_number_of_pages_of_a_surah.sh</code></a></li>
+<li><a href="#orgdc14a5d">8.6.2. ayah-necessitates-sadjdah-or-not.sh</a></li>
+<li><a href="#org6d9afb4">8.6.3. play-basmala-for-the-113-suwar.sh</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org3677350">9. Download Section</a>
+<ul>
+<li><a href="#org931c048">9.1. tafsir.sh</a></li>
+<li><a href="#org543f281">9.2. qap-audio-player.sh</a></li>
+<li><a href="#org74000f9">9.3. rq-ayat-3x-each-then-1-5.0-ALPHA.sh</a></li>
+<li><a href="#orgbc841a6">9.4. Tafsir Files</a></li>
+<li><a href="#org29aa335">9.5. Playlist Files + Audios</a></li>
+<li><a href="#org681ae02">9.6. Translation Files Divided into 6236 TXT Files</a></li>
+<li><a href="#org478e74a">9.7. Scripts that Divide the Quran 6236 Audio Files into Various Units</a></li>
+<li><a href="#orga6df07f">9.8. Scripts that Divide Translation Text-Files into 6236 TXT Files</a></li>
+<li><a href="#orgf70c5b9">9.9. Scripts that Show Various Sûrah or Âyah Metadata</a></li>
+<li><a href="#org3b69689">9.10. Custom Tanzil/Zekr Translation/Tafsir Files</a></li>
+<li><a href="#org1ebe1a7">9.11. Other Scripts</a></li>
 </ul>
 </li>
 </ul>
@@ -444,8 +445,8 @@ for the JavaScript code in this tag.
 
 
 
-<div id="outline-container-org91aed22" class="outline-2">
-<h2 id="org91aed22"><span class="section-number-2">1</span> IMPORTANT INFORMATION:</h2>
+<div id="outline-container-org23e25fd" class="outline-2">
+<h2 id="org23e25fd"><span class="section-number-2">1</span> IMPORTANT INFORMATION:</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <b>In the Name of Allah The entirely Mercifyl, the especially Merciful</b>
@@ -458,12 +459,12 @@ Please note that this site and the programs it provides are a work in progress. 
 </div>
 
 
-<div id="outline-container-orgc4267d4" class="outline-2">
-<h2 id="orgc4267d4"><span class="section-number-2">2</span> IMPORTANT NOTES:</h2>
+<div id="outline-container-org0446cd8" class="outline-2">
+<h2 id="org0446cd8"><span class="section-number-2">2</span> IMPORTANT NOTES:</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orged9b26c" class="outline-3">
-<h3 id="orged9b26c"><span class="section-number-3">2.1</span> Important Note N°1</h3>
+<div id="outline-container-orgb29bae9" class="outline-3">
+<h3 id="orgb29bae9"><span class="section-number-3">2.1</span> Important Note N°1</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 The first lines of the scripts contain:
@@ -487,8 +488,8 @@ Just after that, appear huge functions of thousands of lines which get for us va
 </div>
 </div>
 
-<div id="outline-container-org75c8085" class="outline-3">
-<h3 id="org75c8085"><span class="section-number-3">2.2</span> Important Note N°2</h3>
+<div id="outline-container-orgc183ee0" class="outline-3">
+<h3 id="orgc183ee0"><span class="section-number-3">2.2</span> Important Note N°2</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 The Quran has 6236 verses. This is the number of verses you should find in any Tanzil/Zekr Tafsir/Translation files. This is also the number of verses you should normally get in any Zekr Quran Audio Recitation file. However, this number could change. This number could vary if each Sûrah has the Basmala as its first verse. For example 002000.mp3 (or 002000.oga) would be the Basmala for Sûratul-Baqarah.
@@ -506,12 +507,12 @@ The app heavily relies on the playlist file having 6236 lines, each line corresp
 </div>
 
 
-<div id="outline-container-org6d3b7d7" class="outline-2">
-<h2 id="org6d3b7d7"><span class="section-number-2">3</span> tafsir.sh</h2>
+<div id="outline-container-org6f6baa4" class="outline-2">
+<h2 id="org6f6baa4"><span class="section-number-2">3</span> tafsir.sh</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgea1d7bf" class="outline-3">
-<h3 id="orgea1d7bf"><span class="section-number-3">3.1</span> SYNOPSIS</h3>
+<div id="outline-container-org4530968" class="outline-3">
+<h3 id="org4530968"><span class="section-number-3">3.1</span> SYNOPSIS</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 tafsir.sh -a|--ayaat verse(s) -s|--suwar sûrah(s) -f|--tafsir-format format of the tafsir files to generate: txt || htm -h|--help -J|--juz -H|--hizb -R|--rub-ul-hizb -P|--page-number -t|--txt-tafasir -x|--htm-tafasir -o|--output-file-root
@@ -520,8 +521,8 @@ tafsir.sh -a|--ayaat verse(s) -s|--suwar sûrah(s) -f|--tafsir-format format of 
 </div>
 
 
-<div id="outline-container-org0275465" class="outline-3">
-<h3 id="org0275465"><span class="section-number-3">3.2</span> DESCRIPTION</h3>
+<div id="outline-container-org3362838" class="outline-3">
+<h3 id="org3362838"><span class="section-number-3">3.2</span> DESCRIPTION</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 This script, if given zekr/tanzil translation/tafsir files with the "*trans.zekr" extension, or the  "*trans.zekr.7z" extension will generate/or show the tafsir one or more ayat, one or more suwar passed through the command line as follows:
@@ -557,8 +558,8 @@ One can also provide ayah numbers  in range. For instance:
 </div>
 
 
-<div id="outline-container-org5bf1ed0" class="outline-3">
-<h3 id="org5bf1ed0"><span class="section-number-3">3.3</span> EXAMPLES:</h3>
+<div id="outline-container-org3d47615" class="outline-3">
+<h3 id="org3d47615"><span class="section-number-3">3.3</span> EXAMPLES:</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 <b>*</b> ONE AYAH OR ONE SÛRAH:
@@ -600,12 +601,12 @@ in E.g.1 we generate a tafsir for the whole Sûrah 15 of the Quran, thus the opt
 </div>
 
 
-<div id="outline-container-org33ddeb6" class="outline-3">
-<h3 id="org33ddeb6"><span class="section-number-3">3.4</span> DEPENDENCIES</h3>
+<div id="outline-container-orgaf54e22" class="outline-3">
+<h3 id="orgaf54e22"><span class="section-number-3">3.4</span> DEPENDENCIES</h3>
 <div class="outline-text-3" id="text-3-4">
 </div>
-<div id="outline-container-org55b1451" class="outline-4">
-<h4 id="org55b1451"><span class="section-number-4">3.4.1</span> App dependencies</h4>
+<div id="outline-container-org1d4dbd3" class="outline-4">
+<h4 id="org1d4dbd3"><span class="section-number-4">3.4.1</span> App dependencies</h4>
 <div class="outline-text-4" id="text-3-4-1">
 <p>
 sed coreutils p7zip-full.
@@ -653,8 +654,8 @@ or
 </div>
 </div>
 
-<div id="outline-container-orgaf56afc" class="outline-4">
-<h4 id="orgaf56afc"><span class="section-number-4">3.4.2</span> Supported Format of Tafsir Files</h4>
+<div id="outline-container-org1bc3371" class="outline-4">
+<h4 id="org1bc3371"><span class="section-number-4">3.4.2</span> Supported Format of Tafsir Files</h4>
 <div class="outline-text-4" id="text-3-4-2">
 <p>
 The tafsir files that the program uses are in the format of Tanzil/Zekr translation/tafsir files. You can grab some files from the above-mentioned projects web-sites or (if the tafsir/translation file you would like to work on has not already been setup for zekr/tanzil) create your own. The Tanzil/Zekr file format is a simple text file which has 6236 lines. Each line corresponds to a verse of the Quran. The lines are arranged in the order of the appearance of the verses in the Qur'an from Sûratul-Fatiha to Sûratun-Nâss. Note that after the 6236 lines, you can add some other lines of information or licence, provided that all the 6236 lines of verses appear properly.
@@ -662,8 +663,8 @@ The tafsir files that the program uses are in the format of Tanzil/Zekr translat
 </div>
 </div>
 
-<div id="outline-container-orgdce0336" class="outline-4">
-<h4 id="orgdce0336"><span class="section-number-4">3.4.3</span> How to Prepare the Tafsir Files</h4>
+<div id="outline-container-org882286a" class="outline-4">
+<h4 id="org882286a"><span class="section-number-4">3.4.3</span> How to Prepare the Tafsir Files</h4>
 <div class="outline-text-4" id="text-3-4-3">
 <p>
 Let's say we have a set of Zekr tafsir files (this is recommended, though Tanzil files also work fine) as follows:
@@ -688,52 +689,52 @@ To prepare them for this tafsir look-up Bash script, do the following:
 
 <div class="org-src-container">
 <pre class="src src-bash">
-<span style="color: #fa8072;"># </span><span style="color: #ff7f24; font-style: italic;">Move them in a working folder</span>
+<span style="color: #00cd66;"># </span><span style="color: #00cd66;">Move them in a working folder</span>
 mkdir ./work
-mv -fv en.hilali.trans.zip en.jallalayn.trans.zip <span style="color: #ffc1c1;">\</span>
-   en.sahih.trans.zip <span style="color: #ffc1c1;">\</span>
+mv -fv en.hilali.trans.zip en.jallalayn.trans.zip <span style="color: #bdb76b;">\</span>
+   en.sahih.trans.zip <span style="color: #bdb76b;">\</span>
    en.al-quran-info-transliteration.trans.zip work
 
-<span style="color: #fa8072;"># </span><span style="color: #ff7f24; font-style: italic;">Change to the working folder</span>
+<span style="color: #00cd66;"># </span><span style="color: #00cd66;">Change to the working folder</span>
 <span style="color: #b0c4de;">cd</span> work
 
-<span style="color: #fa8072;"># </span><span style="color: #ff7f24; font-style: italic;">Extract them</span>
-<span style="color: #00ffff;">for</span> file<span style="color: #00ffff;"> in</span> *.zip
-<span style="color: #00ffff;">do</span>
-    7z -aoa x <span style="color: #ffc1c1;">"$file"</span>
-    <span style="color: #fa8072;"># </span><span style="color: #ff7f24; font-style: italic;">-aoa will make 7z overwrite the file</span>
-    <span style="color: #fa8072;"># </span><span style="color: #ff7f24; font-style: italic;">'translation.properties' which has</span>
-    <span style="color: #fa8072;"># </span><span style="color: #ff7f24; font-style: italic;">the same name in all zekr files</span>
-<span style="color: #00ffff;">done</span>
+<span style="color: #00cd66;"># </span><span style="color: #00cd66;">Extract them</span>
+<span style="color: #ffffff;">for</span> file<span style="color: #ffffff;"> in</span> *.zip
+<span style="color: #ffffff;">do</span>
+    7z -aoa x <span style="color: #bdb76b;">"$file"</span>
+    <span style="color: #00cd66;"># </span><span style="color: #00cd66;">-aoa will make 7z overwrite the file</span>
+    <span style="color: #00cd66;"># </span><span style="color: #00cd66;">'translation.properties' which has</span>
+    <span style="color: #00cd66;"># </span><span style="color: #00cd66;">the same name in all zekr files</span>
+<span style="color: #ffffff;">done</span>
 
-<span style="color: #fa8072;"># </span><span style="color: #ff7f24; font-style: italic;">Rename them to *trans.zekr | *trans.zekr.7z</span>
-<span style="color: #00ffff;">for</span> file<span style="color: #00ffff;"> in</span> *.txt
-<span style="color: #00ffff;">do</span>
-    mv -fv <span style="color: #ffc1c1;">"$file"</span> <span style="color: #ffc1c1;">"${file%%.txt}.trans.zekr"</span>
-<span style="color: #00ffff;">done</span>
+<span style="color: #00cd66;"># </span><span style="color: #00cd66;">Rename them to *trans.zekr | *trans.zekr.7z</span>
+<span style="color: #ffffff;">for</span> file<span style="color: #ffffff;"> in</span> *.txt
+<span style="color: #ffffff;">do</span>
+    mv -fv <span style="color: #bdb76b;">"$file"</span> <span style="color: #bdb76b;">"${file%%.txt}.trans.zekr"</span>
+<span style="color: #ffffff;">done</span>
 
-<span style="color: #fa8072;"># </span><span style="color: #ff7f24; font-style: italic;">Compress them with 7z. This is particularly</span>
-<span style="color: #fa8072;"># </span><span style="color: #ff7f24; font-style: italic;">important since these files should never be</span>
-<span style="color: #fa8072;"># </span><span style="color: #ff7f24; font-style: italic;">modified inadvertantly. This is serious stuff!</span>
-<span style="color: #00ffff;">for</span> file<span style="color: #00ffff;"> in</span> *.trans.zekr
-<span style="color: #00ffff;">do</span>
-    7za a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on <span style="color: #ffc1c1;">"${file}.7z"</span> <span style="color: #ffc1c1;">"${file}"</span>
-<span style="color: #00ffff;">done</span>
+<span style="color: #00cd66;"># </span><span style="color: #00cd66;">Compress them with 7z. This is particularly</span>
+<span style="color: #00cd66;"># </span><span style="color: #00cd66;">important since these files should never be</span>
+<span style="color: #00cd66;"># </span><span style="color: #00cd66;">modified inadvertantly. This is serious stuff!</span>
+<span style="color: #ffffff;">for</span> file<span style="color: #ffffff;"> in</span> *.trans.zekr
+<span style="color: #ffffff;">do</span>
+    7za a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on <span style="color: #bdb76b;">"${file}.7z"</span> <span style="color: #bdb76b;">"${file}"</span>
+<span style="color: #ffffff;">done</span>
 
-<span style="color: #fa8072;"># </span><span style="color: #ff7f24; font-style: italic;">Clean-up: OPTIONAL</span>
-<span style="color: #fa8072;"># </span><span style="color: #ff7f24; font-style: italic;">clean-up *.trans.zekr files</span>
-<span style="color: #00ffff;">for</span> file<span style="color: #00ffff;"> in</span> *.trans.zekr
-<span style="color: #00ffff;">do</span>
-    rm -rfv <span style="color: #ffc1c1;">"${file}"</span>
-<span style="color: #00ffff;">done</span>
+<span style="color: #00cd66;"># </span><span style="color: #00cd66;">Clean-up: OPTIONAL</span>
+<span style="color: #00cd66;"># </span><span style="color: #00cd66;">clean-up *.trans.zekr files</span>
+<span style="color: #ffffff;">for</span> file<span style="color: #ffffff;"> in</span> *.trans.zekr
+<span style="color: #ffffff;">do</span>
+    rm -rfv <span style="color: #bdb76b;">"${file}"</span>
+<span style="color: #ffffff;">done</span>
 
-<span style="color: #fa8072;"># </span><span style="color: #ff7f24; font-style: italic;">clean-up the original zekr zip files</span>
-<span style="color: #00ffff;">for</span> file<span style="color: #00ffff;"> in</span> *.zip
-<span style="color: #00ffff;">do</span>
-    rm -rfv <span style="color: #ffc1c1;">"$file"</span>
-<span style="color: #00ffff;">done</span>
+<span style="color: #00cd66;"># </span><span style="color: #00cd66;">clean-up the original zekr zip files</span>
+<span style="color: #ffffff;">for</span> file<span style="color: #ffffff;"> in</span> *.zip
+<span style="color: #ffffff;">do</span>
+    rm -rfv <span style="color: #bdb76b;">"$file"</span>
+<span style="color: #ffffff;">done</span>
 
-<span style="color: #fa8072;"># </span><span style="color: #ff7f24; font-style: italic;">The properties file</span>
+<span style="color: #00cd66;"># </span><span style="color: #00cd66;">The properties file</span>
 rm -rfv translation.properties
 
 </pre>
@@ -809,16 +810,16 @@ or provide your own directory with the CLI swith:
 
 
 
-<div id="outline-container-org96478a5" class="outline-2">
-<h2 id="org96478a5"><span class="section-number-2">4</span> qap-audio-player.sh</h2>
+<div id="outline-container-org9fca6de" class="outline-2">
+<h2 id="org9fca6de"><span class="section-number-2">4</span> qap-audio-player.sh</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Please, if you have not already read the <b>Important Note N°2</b>, go up and do so. This is vital.
 </p>
 </div>
 
-<div id="outline-container-orgcca4ba7" class="outline-3">
-<h3 id="orgcca4ba7"><span class="section-number-3">4.1</span> SYNOPSIS</h3>
+<div id="outline-container-org4b44cb6" class="outline-3">
+<h3 id="org4b44cb6"><span class="section-number-3">4.1</span> SYNOPSIS</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 qap-audio-player.sh -a|--ayaat verse(s) -s|--suwar sûrah(s) -m|--mpv-speed PlaybackSpeed -l|--mpv-loop LoopNumber -f|--file-loop LoopNumber -g|--groupLoop LoopNumber -p|--play-trans TranslationID --r|--reset-eta (takes no option) -J|--juz JuzNumber -H|--hizb HizbNumber -R|--rub-ul-hizb RubUlHizbNumber-P|--page-number PageNumber -o|--output-quran-html-root WhereToCreateQuran.html -q|--hifz-ul-quran ActivateHifzMode -L|--playlist-file-root WhereToSearchForPlaylist -e|--extension-of-audios QuranAudioFilesExtension -G|--generate-playlist QuranFilesRoot --ara-font-size size --lat-font-size size --metadata-font-size size --table-font-size size --system-font-name FontName --user-font-file FullPathToFontFile -h|--help (takes no option). All the following take no option also: -k|--compact-table --eng-audio --fra-audio --no-ara-txt --translit --eng-txt-sahih --eng-txt-hilali-khan --fra-txt-hamid
@@ -827,8 +828,8 @@ qap-audio-player.sh -a|--ayaat verse(s) -s|--suwar sûrah(s) -m|--mpv-speed Play
 </div>
 
 
-<div id="outline-container-orgf39d977" class="outline-3">
-<h3 id="orgf39d977"><span class="section-number-3">4.2</span> DESCRIPTION</h3>
+<div id="outline-container-orgaeef58b" class="outline-3">
+<h3 id="orgaeef58b"><span class="section-number-3">4.2</span> DESCRIPTION</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 This script, if given playlist files in zekr/tanzil format with the "*plst.6236.lines.7z" extension, or "*plst.6236.lines" extension will read the audio files of ayât, set of ayât, range of ayât; suwar, set of suwar, range of suwar; juz, set of juz, range of juz; ḥizb, set of ḥizb, range of ḥizb; rub-`ul-ḥizb, set of rub-`ul-ḥizb, range of rub-`ul-ḥizb; page, set of pages or range of pages passed to it through the command line in the the following format:
@@ -896,8 +897,8 @@ Also, do not input any leading zeros. And take into account the maximum  number 
 </div>
 
 
-<div id="outline-container-org136432c" class="outline-3">
-<h3 id="org136432c"><span class="section-number-3">4.3</span> EXAMPLES</h3>
+<div id="outline-container-org109175f" class="outline-3">
+<h3 id="org109175f"><span class="section-number-3">4.3</span> EXAMPLES</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 <b>*</b> E.g.1 (v1):
@@ -930,8 +931,8 @@ in the second example we play the audio file for verse number 102 of Sûratul-Ba
 </div>
 
 
-<div id="outline-container-orgbbd965d" class="outline-3">
-<h3 id="orgbbd965d"><span class="section-number-3">4.4</span> AS FOR THE REST OF THE OPTIONS:</h3>
+<div id="outline-container-orge1cb26b" class="outline-3">
+<h3 id="orge1cb26b"><span class="section-number-3">4.4</span> AS FOR THE REST OF THE OPTIONS:</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 -m|--mpv-speed is the playback speed for the MPV-Player. The default value it 1.00.
@@ -1022,8 +1023,8 @@ Most of the above options have default values.
 </div>
 
 
-<div id="outline-container-org72f26eb" class="outline-3">
-<h3 id="org72f26eb"><span class="section-number-3">4.5</span> DEPENDENCIES</h3>
+<div id="outline-container-org0e5a7e7" class="outline-3">
+<h3 id="org0e5a7e7"><span class="section-number-3">4.5</span> DEPENDENCIES</h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
 Under Debian-based GNU/Linux systems run the following to install them:
@@ -1072,8 +1073,8 @@ Note that the <code>termux-apis</code> package is specific to Android and is not
 </div>
 
 
-<div id="outline-container-orgbb76932" class="outline-3">
-<h3 id="orgbb76932"><span class="section-number-3">4.6</span> CREATING THE PLAYLIST FILES</h3>
+<div id="outline-container-org1ec7fb3" class="outline-3">
+<h3 id="org1ec7fb3"><span class="section-number-3">4.6</span> CREATING THE PLAYLIST FILES</h3>
 <div class="outline-text-3" id="text-4-6">
 <p>
 To generate the playlist files, you need 6236 Quran audio files in a directory. It if recommended that you seperate the 6236 verses into the units that you like. We call unit any of the following: Sûrah, Juz, Ḥizb, Rub-`ul-Ḥizb and Page-Number.
@@ -1094,14 +1095,14 @@ We recognize the Basmala files by the fact that they bear the number of the suwa
 
 <div class="org-src-container">
 <pre class="src src-bash">
-find . -name <span style="color: #ffc1c1;">'*000.mp3'</span> | parallel --line-buffer --jobs=32 <span style="color: #ffc1c1;">'rm -rfv {}'</span>
-<span style="color: #fa8072;"># </span><span style="color: #ff7f24; font-style: italic;">I love GNU-Parallel. If you don't have it installed, use this:</span>
+find . -name <span style="color: #bdb76b;">'*000.mp3'</span> | parallel --line-buffer --jobs=32 <span style="color: #bdb76b;">'rm -rfv {}'</span>
+<span style="color: #00cd66;"># </span><span style="color: #00cd66;">I love GNU-Parallel. If you don't have it installed, use this:</span>
 
-find . -name <span style="color: #ffc1c1;">'*000.mp3'</span> -exec bash -c <span style="color: #ffc1c1;">'rm -rfv "$0"'</span> {} <span style="color: #ffc1c1;">\;</span>
-<span style="color: #fa8072;"># </span><span style="color: #ff7f24; font-style: italic;">This should work if you are on any decent GNU/Linux distro</span>
+find . -name <span style="color: #bdb76b;">'*000.mp3'</span> -exec bash -c <span style="color: #bdb76b;">'rm -rfv "$0"'</span> {} <span style="color: #bdb76b;">\;</span>
+<span style="color: #00cd66;"># </span><span style="color: #00cd66;">This should work if you are on any decent GNU/Linux distro</span>
 
-<span style="color: #fa8072;"># </span><span style="color: #ff7f24; font-style: italic;">If you are dealing with *.oga files,</span>
-<span style="color: #fa8072;"># </span><span style="color: #ff7f24; font-style: italic;">replace the '*000.mp3' with '*000.oga'</span>
+<span style="color: #00cd66;"># </span><span style="color: #00cd66;">If you are dealing with *.oga files,</span>
+<span style="color: #00cd66;"># </span><span style="color: #00cd66;">replace the '*000.mp3' with '*000.oga'</span>
 
 </pre>
 </div>
@@ -1146,12 +1147,12 @@ The extension of the Playlist files is: <code>plst.6236.lines.7z</code> -- It ne
 </div>
 
 
-<div id="outline-container-orge4ef96b" class="outline-2">
-<h2 id="orge4ef96b"><span class="section-number-2">5</span> rq-ayat-3x-each-then-1.sh</h2>
+<div id="outline-container-org7fd0206" class="outline-2">
+<h2 id="org7fd0206"><span class="section-number-2">5</span> rq-ayat-3x-each-then-1.sh</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-orge95b3fc" class="outline-3">
-<h3 id="orge95b3fc"><span class="section-number-3">5.1</span> SYNOPSYS</h3>
+<div id="outline-container-orga31d602" class="outline-3">
+<h3 id="orga31d602"><span class="section-number-3">5.1</span> SYNOPSYS</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 `basename $0` -m|--mpv-speed playback-speed -l--mpv-loop mpv-loop-number -f|--file-loop each-file-loop-number -e|--extension-of-audios QuranAudioFilesExtension -G|--generate-playlist QuranFilesRoot -C|--create-fake-audios NumberOfFakeAudiosPerFolder --ara-font-size size --lat-font-size size --metadata-font-size size --table-font-size size --system-font-name FontName --user-font-file FullPathToFontFile. All the following take no option also: -k|--compact-table --eng-audio --fra-audio --no-ara-txt --translit --eng-txt-sahih --eng-txt-hilali-khan --fra-txt-hamid -h|--help
@@ -1160,8 +1161,8 @@ The extension of the Playlist files is: <code>plst.6236.lines.7z</code> -- It ne
 </div>
 
 
-<div id="outline-container-orga16ec31" class="outline-3">
-<h3 id="orga16ec31"><span class="section-number-3">5.2</span> DESCRIPTION</h3>
+<div id="outline-container-orgd0f2803" class="outline-3">
+<h3 id="orgd0f2803"><span class="section-number-3">5.2</span> DESCRIPTION</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 This script tries to implement an algorithm to let the Quranic reader who wishes to memorize a set of verses to do it in a consistent manner. The program gets a list of ayat and then does the following:
@@ -1242,8 +1243,8 @@ In total, we would play each verse 3x + 5x (which is the number of total files t
 </div>
 
 
-<div id="outline-container-orgc42483d" class="outline-3">
-<h3 id="orgc42483d"><span class="section-number-3">5.3</span> COMMAND LINE OPTIONS</h3>
+<div id="outline-container-orgcf0127c" class="outline-3">
+<h3 id="orgcf0127c"><span class="section-number-3">5.3</span> COMMAND LINE OPTIONS</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 -m|--mpv-speed MPV-Player playback speed (default: 1.00)
@@ -1308,8 +1309,8 @@ h
 </div>
 
 
-<div id="outline-container-orgf201e20" class="outline-3">
-<h3 id="orgf201e20"><span class="section-number-3">5.4</span> EXAMPLES</h3>
+<div id="outline-container-orgc869810" class="outline-3">
+<h3 id="orgc869810"><span class="section-number-3">5.4</span> EXAMPLES</h3>
 <div class="outline-text-3" id="text-5-4">
 <p>
 rq-ayat-3x-each-then-1.sh -m|--mpv-speed 1.8 -l|--mpv-loop 6 -f|--file-loop 2
@@ -1322,8 +1323,8 @@ Playback speed 180%. Make mpv play each file 6 time. Pass each file 2 times to m
 </div>
 
 
-<div id="outline-container-org2fbc411" class="outline-3">
-<h3 id="org2fbc411"><span class="section-number-3">5.5</span> DEPENDENCIES</h3>
+<div id="outline-container-org89b56ab" class="outline-3">
+<h3 id="org89b56ab"><span class="section-number-3">5.5</span> DEPENDENCIES</h3>
 <div class="outline-text-3" id="text-5-5">
 <p>
 See the "DEPENDENCIES" section of the qap-audio-player.sh script above.
@@ -1333,16 +1334,16 @@ See the "DEPENDENCIES" section of the qap-audio-player.sh script above.
 </div>
 
 
-<div id="outline-container-org22b7ec9" class="outline-2">
-<h2 id="org22b7ec9"><span class="section-number-2">6</span> Divide Quran 6236 Audio Files to Various Units</h2>
+<div id="outline-container-org35d60b8" class="outline-2">
+<h2 id="org35d60b8"><span class="section-number-2">6</span> Divide Quran 6236 Audio Files to Various Units</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Scripts that divide a set of Zekr Quran audio files into 114 Suwar, 30-Juz, 60-Ḥizb, 240-Rub-ul-Ḥizb or 604-Pages
 </p>
 </div>
 
-<div id="outline-container-org747eafb" class="outline-3">
-<h3 id="org747eafb"><span class="section-number-3">6.1</span> divide-quran-per-suwar.sh</h3>
+<div id="outline-container-org967a645" class="outline-3">
+<h3 id="org967a645"><span class="section-number-3">6.1</span> divide-quran-per-suwar.sh</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 This divides the 6236 Quran audio files into 114 folders, each corresponding to a Sûrah of the Quran.
@@ -1350,8 +1351,8 @@ This divides the 6236 Quran audio files into 114 folders, each corresponding to 
 </div>
 </div>
 
-<div id="outline-container-org5be5270" class="outline-3">
-<h3 id="org5be5270"><span class="section-number-3">6.2</span> divide-quran-per-juz.sh</h3>
+<div id="outline-container-org4f89a80" class="outline-3">
+<h3 id="org4f89a80"><span class="section-number-3">6.2</span> divide-quran-per-juz.sh</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 This divides the 6236 Quran files into 30 folders, each corresponding to a Juz of the Noble Quran.
@@ -1359,8 +1360,8 @@ This divides the 6236 Quran files into 30 folders, each corresponding to a Juz o
 </div>
 </div>
 
-<div id="outline-container-org67b77c2" class="outline-3">
-<h3 id="org67b77c2"><span class="section-number-3">6.3</span> divide-quran-per-hizb-1-safe.sh</h3>
+<div id="outline-container-orgf22b9fe" class="outline-3">
+<h3 id="orgf22b9fe"><span class="section-number-3">6.3</span> divide-quran-per-hizb-1-safe.sh</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
 This divides the 6236 Quran audio files into 60 folders, each corresponding to a Ḥizb of the Quran. It has the tag <code>safe</code> because it is fast and uses only Bash specific features. This holds true for all the remaining scripts of the list that have that tag.
@@ -1368,8 +1369,8 @@ This divides the 6236 Quran audio files into 60 folders, each corresponding to a
 </div>
 </div>
 
-<div id="outline-container-org2759020" class="outline-3">
-<h3 id="org2759020"><span class="section-number-3">6.4</span> divide-quran-per-hizb-2-unsafe.sh</h3>
+<div id="outline-container-orgcdcef6e" class="outline-3">
+<h3 id="orgcdcef6e"><span class="section-number-3">6.4</span> divide-quran-per-hizb-2-unsafe.sh</h3>
 <div class="outline-text-3" id="text-6-4">
 <p>
 The <code>safe</code> version of the above script.
@@ -1389,8 +1390,8 @@ The <code>unsafe</code> version uses Bash to extrapolate the elements between a 
 </div>
 </div>
 
-<div id="outline-container-org8db2db9" class="outline-3">
-<h3 id="org8db2db9"><span class="section-number-3">6.5</span> divide-quran-per-hizb-roub-1-safe.sh</h3>
+<div id="outline-container-org4faaaa9" class="outline-3">
+<h3 id="org4faaaa9"><span class="section-number-3">6.5</span> divide-quran-per-hizb-roub-1-safe.sh</h3>
 <div class="outline-text-3" id="text-6-5">
 <p>
 Divides the Quran verses into 240 Rub-`ul-Ḥizb. The <code>safe</code> version.
@@ -1398,8 +1399,8 @@ Divides the Quran verses into 240 Rub-`ul-Ḥizb. The <code>safe</code> version.
 </div>
 </div>
 
-<div id="outline-container-org0035d81" class="outline-3">
-<h3 id="org0035d81"><span class="section-number-3">6.6</span> divide-quran-per-hizb-roub-2-unsafe.sh</h3>
+<div id="outline-container-org9fdd0c2" class="outline-3">
+<h3 id="org9fdd0c2"><span class="section-number-3">6.6</span> divide-quran-per-hizb-roub-2-unsafe.sh</h3>
 <div class="outline-text-3" id="text-6-6">
 <p>
 The <code>unsafe</code> version of the above script.
@@ -1407,8 +1408,8 @@ The <code>unsafe</code> version of the above script.
 </div>
 </div>
 
-<div id="outline-container-org88645ab" class="outline-3">
-<h3 id="org88645ab"><span class="section-number-3">6.7</span> divide-quran-per-page-1-safe.sh</h3>
+<div id="outline-container-orgd20e3ae" class="outline-3">
+<h3 id="orgd20e3ae"><span class="section-number-3">6.7</span> divide-quran-per-page-1-safe.sh</h3>
 <div class="outline-text-3" id="text-6-7">
 <p>
 Will divide the Quran version into 604 folders, each corresponding to a page of the Quran in the `Uthmanic Musḥaff.
@@ -1416,8 +1417,8 @@ Will divide the Quran version into 604 folders, each corresponding to a page of 
 </div>
 </div>
 
-<div id="outline-container-orgab96b62" class="outline-3">
-<h3 id="orgab96b62"><span class="section-number-3">6.8</span> divide-quran-per-page-2-unsafe.sh</h3>
+<div id="outline-container-org398a2eb" class="outline-3">
+<h3 id="org398a2eb"><span class="section-number-3">6.8</span> divide-quran-per-page-2-unsafe.sh</h3>
 <div class="outline-text-3" id="text-6-8">
 <p>
 The <code>unsafe</code> version of the above script.
@@ -1425,14 +1426,14 @@ The <code>unsafe</code> version of the above script.
 </div>
 </div>
 
-<div id="outline-container-org704027c" class="outline-3">
-<h3 id="org704027c"><span class="section-number-3">6.9</span> Bonus: move-21-ayat-in-subdirs.sh</h3>
+<div id="outline-container-org7892be0" class="outline-3">
+<h3 id="org7892be0"><span class="section-number-3">6.9</span> Bonus: move-21-ayat-in-subdirs.sh</h3>
 </div>
 </div>
 
 
-<div id="outline-container-orgafcc96d" class="outline-2">
-<h2 id="orgafcc96d"><span class="section-number-2">7</span> div-trans-textFile-to-6236-TXT-Files</h2>
+<div id="outline-container-org1b34a74" class="outline-2">
+<h2 id="org1b34a74"><span class="section-number-2">7</span> div-trans-textFile-to-6236-TXT-Files</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 This script, if given a zekr/tanzil translation file with the "*.trans.zekr" extension, will create a folder with the basename of the current input file and then moves to it in order to generate 6236 text files, according to the 6236 lines of the file. Those lines correspond to the 6236 verses of the Quran.
@@ -1459,16 +1460,16 @@ For instance: <code>en-hilali.trans.zekr</code> or <code>en-sahih.trans.zekr</co
 </p>
 </div>
 
-<div id="outline-container-orgd3f0fc8" class="outline-3">
-<h3 id="orgd3f0fc8"><span class="section-number-3">7.1</span> Dependencies:</h3>
+<div id="outline-container-org69f09c6" class="outline-3">
+<h3 id="org69f09c6"><span class="section-number-3">7.1</span> Dependencies:</h3>
 <div class="outline-text-3" id="text-7-1">
 <p>
 we need the following two files:
 </p>
 </div>
 
-<div id="outline-container-orgef28afe" class="outline-4">
-<h4 id="orgef28afe"><span class="section-number-4">7.1.1</span> 01-Quran-Verses-Line-Numbers.txt</h4>
+<div id="outline-container-orgd805539" class="outline-4">
+<h4 id="orgd805539"><span class="section-number-4">7.1.1</span> 01-Quran-Verses-Line-Numbers.txt</h4>
 <div class="outline-text-4" id="text-7-1-1">
 <p>
 This is a simple list of line numbers from 0001 to 6236. This will be used in conjunction with <code>02-VerseByVerse-Quran-Ayat-List.txt</code> to rename the generated verses from their original line numbers to their ayah_id.
@@ -1476,8 +1477,8 @@ This is a simple list of line numbers from 0001 to 6236. This will be used in co
 </div>
 </div>
 
-<div id="outline-container-orge48759f" class="outline-4">
-<h4 id="orge48759f"><span class="section-number-4">7.1.2</span> 02-VerseByVerse-Quran-Ayat-List.txt</h4>
+<div id="outline-container-org8f7fcc7" class="outline-4">
+<h4 id="org8f7fcc7"><span class="section-number-4">7.1.2</span> 02-VerseByVerse-Quran-Ayat-List.txt</h4>
 <div class="outline-text-4" id="text-7-1-2">
 <p>
 This is also a simple list, but it consists of ayah_ids, from 001001 (the first verse of Sûratu-Fatiḥa) to 114006 (the last verse of Sûratun-Nâss).
@@ -1485,8 +1486,8 @@ This is also a simple list, but it consists of ayah_ids, from 001001 (the first 
 </div>
 </div>
 
-<div id="outline-container-orgfb13814" class="outline-4">
-<h4 id="orgfb13814"><span class="section-number-4">7.1.3</span> Zekr/Tanzil Translation files</h4>
+<div id="outline-container-org4196bfc" class="outline-4">
+<h4 id="org4196bfc"><span class="section-number-4">7.1.3</span> Zekr/Tanzil Translation files</h4>
 <div class="outline-text-4" id="text-7-1-3">
 <p>
 This may be any Tanzil/Zekr Translation/Tafsir file either downloaded from their respective web-sites or prepared by a third party, provided that the file is well-prepared and is valid. If you would not want to end up with HTML tags in the generated 6236 text files, you would have to remove all HTML tags using some text editor or some regex engine. Google is your best friend here ;-).
@@ -1497,24 +1498,24 @@ This may be any Tanzil/Zekr Translation/Tafsir file either downloaded from their
 </div>
 
 
-<div id="outline-container-org59935bc" class="outline-2">
-<h2 id="org59935bc"><span class="section-number-2">8</span> Show Sûrah or Âyah Metadata</h2>
+<div id="outline-container-org275cbd8" class="outline-2">
+<h2 id="org275cbd8"><span class="section-number-2">8</span> Show Sûrah or Âyah Metadata</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 These display various metadata related to either verses or Sûwar of the Quran.
 </p>
 </div>
 
-<div id="outline-container-org540e317" class="outline-3">
-<h3 id="org540e317"><span class="section-number-3">8.1</span> List of Verses of Surah-Juz-Hizb-RubUlHizb-PageNumber</h3>
+<div id="outline-container-org05fd6ab" class="outline-3">
+<h3 id="org05fd6ab"><span class="section-number-3">8.1</span> List of Verses of Surah-Juz-Hizb-RubUlHizb-PageNumber</h3>
 <div class="outline-text-3" id="text-8-1">
 <p>
 These will give the <b>list</b> of verses of various units.
 </p>
 </div>
 
-<div id="outline-container-org779d145" class="outline-4">
-<h4 id="org779d145"><span class="section-number-4">8.1.1</span> show-list-of-verses-that-belong-to-this-surah.sh</h4>
+<div id="outline-container-orgeb9eec0" class="outline-4">
+<h4 id="orgeb9eec0"><span class="section-number-4">8.1.1</span> show-list-of-verses-that-belong-to-this-surah.sh</h4>
 <div class="outline-text-4" id="text-8-1-1">
 <p>
 Shows the <b>list</b> of verses that belong to a particular Sûrah.
@@ -1522,8 +1523,8 @@ Shows the <b>list</b> of verses that belong to a particular Sûrah.
 </div>
 </div>
 
-<div id="outline-container-org1d0db01" class="outline-4">
-<h4 id="org1d0db01"><span class="section-number-4">8.1.2</span> show-list-of-verses-that-belong-to-this-juz.sh</h4>
+<div id="outline-container-orga4ec3b6" class="outline-4">
+<h4 id="orga4ec3b6"><span class="section-number-4">8.1.2</span> show-list-of-verses-that-belong-to-this-juz.sh</h4>
 <div class="outline-text-4" id="text-8-1-2">
 <p>
 Shows the <b>list</b> of verses that belong to a particular Juz.
@@ -1531,8 +1532,8 @@ Shows the <b>list</b> of verses that belong to a particular Juz.
 </div>
 </div>
 
-<div id="outline-container-orgaf0c060" class="outline-4">
-<h4 id="orgaf0c060"><span class="section-number-4">8.1.3</span> show-list-of-verses-that-belong-to-this-hizb.sh</h4>
+<div id="outline-container-orgd941f2f" class="outline-4">
+<h4 id="orgd941f2f"><span class="section-number-4">8.1.3</span> show-list-of-verses-that-belong-to-this-hizb.sh</h4>
 <div class="outline-text-4" id="text-8-1-3">
 <p>
 Shows the <b>list</b> of verses that belong to a particular Ḥizb.
@@ -1540,8 +1541,8 @@ Shows the <b>list</b> of verses that belong to a particular Ḥizb.
 </div>
 </div>
 
-<div id="outline-container-org0cff21f" class="outline-4">
-<h4 id="org0cff21f"><span class="section-number-4">8.1.4</span> show-list-of-verses-that-belong-to-this-rub-al-hizb.sh</h4>
+<div id="outline-container-org0145276" class="outline-4">
+<h4 id="org0145276"><span class="section-number-4">8.1.4</span> show-list-of-verses-that-belong-to-this-rub-al-hizb.sh</h4>
 <div class="outline-text-4" id="text-8-1-4">
 <p>
 Shows the <b>list</b> of verses that belong to a particular Rub-`ul-Ḥizb.
@@ -1549,8 +1550,8 @@ Shows the <b>list</b> of verses that belong to a particular Rub-`ul-Ḥizb.
 </div>
 </div>
 
-<div id="outline-container-org8d7eb34" class="outline-4">
-<h4 id="org8d7eb34"><span class="section-number-4">8.1.5</span> show-list-of-verses-that-belong-to-this-page-number.sh</h4>
+<div id="outline-container-orge506e06" class="outline-4">
+<h4 id="orge506e06"><span class="section-number-4">8.1.5</span> show-list-of-verses-that-belong-to-this-page-number.sh</h4>
 <div class="outline-text-4" id="text-8-1-5">
 <p>
 Shows the <b>list</b> of verses that belong to a particular page.
@@ -1559,16 +1560,16 @@ Shows the <b>list</b> of verses that belong to a particular page.
 </div>
 </div>
 
-<div id="outline-container-org176d16f" class="outline-3">
-<h3 id="org176d16f"><span class="section-number-3">8.2</span> Number of Verses of Surah-Juz-Hizb-RubUlHizb-PageNumber</h3>
+<div id="outline-container-org30cd4b1" class="outline-3">
+<h3 id="org30cd4b1"><span class="section-number-3">8.2</span> Number of Verses of Surah-Juz-Hizb-RubUlHizb-PageNumber</h3>
 <div class="outline-text-3" id="text-8-2">
 <p>
 These will give, not the <b>list</b> of verses, but the <b>number</b> of verses of various units.
 </p>
 </div>
 
-<div id="outline-container-org9560e80" class="outline-4">
-<h4 id="org9560e80"><span class="section-number-4">8.2.1</span> give-the-number-of-verses-of-surah.sh</h4>
+<div id="outline-container-orgb3f3566" class="outline-4">
+<h4 id="orgb3f3566"><span class="section-number-4">8.2.1</span> give-the-number-of-verses-of-surah.sh</h4>
 <div class="outline-text-4" id="text-8-2-1">
 <p>
 Shows the <b>number</b> of verses that belong to a particular Sûrah.
@@ -1576,8 +1577,8 @@ Shows the <b>number</b> of verses that belong to a particular Sûrah.
 </div>
 </div>
 
-<div id="outline-container-orgcf21604" class="outline-4">
-<h4 id="orgcf21604"><span class="section-number-4">8.2.2</span> show-number-of-verses-that-belong-to-this-juz.sh</h4>
+<div id="outline-container-org55a6fe8" class="outline-4">
+<h4 id="org55a6fe8"><span class="section-number-4">8.2.2</span> show-number-of-verses-that-belong-to-this-juz.sh</h4>
 <div class="outline-text-4" id="text-8-2-2">
 <p>
 Shows the <b>number</b> of verses that belong to a particular Juz.
@@ -1585,8 +1586,8 @@ Shows the <b>number</b> of verses that belong to a particular Juz.
 </div>
 </div>
 
-<div id="outline-container-orgf36c733" class="outline-4">
-<h4 id="orgf36c733"><span class="section-number-4">8.2.3</span> show-number-of-verses-that-belong-to-this-hizb.sh</h4>
+<div id="outline-container-org9f86cc0" class="outline-4">
+<h4 id="org9f86cc0"><span class="section-number-4">8.2.3</span> show-number-of-verses-that-belong-to-this-hizb.sh</h4>
 <div class="outline-text-4" id="text-8-2-3">
 <p>
 Shows the <b>number</b> of verses that belong to a particular Ḥizb.
@@ -1594,8 +1595,8 @@ Shows the <b>number</b> of verses that belong to a particular Ḥizb.
 </div>
 </div>
 
-<div id="outline-container-orgf9860e3" class="outline-4">
-<h4 id="orgf9860e3"><span class="section-number-4">8.2.4</span> show-number-of-verses-that-belong-to-this-rub-al-hizb.sh</h4>
+<div id="outline-container-orgd82772f" class="outline-4">
+<h4 id="orgd82772f"><span class="section-number-4">8.2.4</span> show-number-of-verses-that-belong-to-this-rub-al-hizb.sh</h4>
 <div class="outline-text-4" id="text-8-2-4">
 <p>
 Shows the <b>number</b> of verses that belong to a particular Rub-`ul-Ḥizb.
@@ -1603,8 +1604,8 @@ Shows the <b>number</b> of verses that belong to a particular Rub-`ul-Ḥizb.
 </div>
 </div>
 
-<div id="outline-container-org9e5a160" class="outline-4">
-<h4 id="org9e5a160"><span class="section-number-4">8.2.5</span> show-number-of-verses-that-belong-to-this-page-number.sh</h4>
+<div id="outline-container-org0141f19" class="outline-4">
+<h4 id="org0141f19"><span class="section-number-4">8.2.5</span> show-number-of-verses-that-belong-to-this-page-number.sh</h4>
 <div class="outline-text-4" id="text-8-2-5">
 <p>
 Shows the <b>number</b> of verses that belong to a particular page.
@@ -1613,16 +1614,16 @@ Shows the <b>number</b> of verses that belong to a particular page.
 </div>
 </div>
 
-<div id="outline-container-orgedeb4ef" class="outline-3">
-<h3 id="orgedeb4ef"><span class="section-number-3">8.3</span> Show ID of the Greater Unit to Which a Verse Belongs</h3>
+<div id="outline-container-orga1e9a0d" class="outline-3">
+<h3 id="orga1e9a0d"><span class="section-number-3">8.3</span> Show ID of the Greater Unit to Which a Verse Belongs</h3>
 <div class="outline-text-3" id="text-8-3">
 <p>
 This will show the <b>number</b> (name) of the upper unit to which a verse belongs.
 </p>
 </div>
 
-<div id="outline-container-org4cb3d22" class="outline-4">
-<h4 id="org4cb3d22"><span class="section-number-4">8.3.1</span> show-juz-to-which-this-ayah-belongs.sh</h4>
+<div id="outline-container-org5758f2f" class="outline-4">
+<h4 id="org5758f2f"><span class="section-number-4">8.3.1</span> show-juz-to-which-this-ayah-belongs.sh</h4>
 <div class="outline-text-4" id="text-8-3-1">
 <p>
 It takes one ayah and returns the <b>number</b> of the Juz to which it belongs. For instance if given the value <code>002159</code>, it returns: <code>02</code>, which means: the ayah belongs to Juz N°02 of the Quran.
@@ -1630,8 +1631,8 @@ It takes one ayah and returns the <b>number</b> of the Juz to which it belongs. 
 </div>
 </div>
 
-<div id="outline-container-org27e94d5" class="outline-4">
-<h4 id="org27e94d5"><span class="section-number-4">8.3.2</span> show-hizb-to-which-this-ayah-belongs.sh</h4>
+<div id="outline-container-org41278b1" class="outline-4">
+<h4 id="org41278b1"><span class="section-number-4">8.3.2</span> show-hizb-to-which-this-ayah-belongs.sh</h4>
 <div class="outline-text-4" id="text-8-3-2">
 <p>
 It takes one ayah and returns the <b>number</b> of the Ḥizb to which it belongs. For instance if given the value <code>001007</code>, it returns: <code>01</code>, which means: the ayah belongs to Ḥizb N°01 of the Quran.
@@ -1639,8 +1640,8 @@ It takes one ayah and returns the <b>number</b> of the Ḥizb to which it belong
 </div>
 </div>
 
-<div id="outline-container-org3e1c782" class="outline-4">
-<h4 id="org3e1c782"><span class="section-number-4">8.3.3</span> show-rub-al-hizb-to-which-this-ayah-belongs.sh</h4>
+<div id="outline-container-org5dcf35e" class="outline-4">
+<h4 id="org5dcf35e"><span class="section-number-4">8.3.3</span> show-rub-al-hizb-to-which-this-ayah-belongs.sh</h4>
 <div class="outline-text-4" id="text-8-3-3">
 <p>
 It takes one ayah and returns the <b>number</b> of the Rub-`ul-Ḥizb to which it belongs. For instance if given the value <code>114006</code>, returns: <code>240</code>, which means: the ayah belongs to Rub-`ul-Ḥizb N°240 of the Quran.
@@ -1648,8 +1649,8 @@ It takes one ayah and returns the <b>number</b> of the Rub-`ul-Ḥizb to which i
 </div>
 </div>
 
-<div id="outline-container-org561535e" class="outline-4">
-<h4 id="org561535e"><span class="section-number-4">8.3.4</span> show-page-number-to-which-this-ayah-belongs.sh</h4>
+<div id="outline-container-orgfb78ea4" class="outline-4">
+<h4 id="orgfb78ea4"><span class="section-number-4">8.3.4</span> show-page-number-to-which-this-ayah-belongs.sh</h4>
 <div class="outline-text-4" id="text-8-3-4">
 <p>
 It takes one ayah and returns the <b>number</b> of the Page to which it belongs. For instance if given the value <code>002285</code>, returns: <code>049</code>, which means: the ayah belongs to Page N°049 of the Quran.
@@ -1658,16 +1659,16 @@ It takes one ayah and returns the <b>number</b> of the Page to which it belongs.
 </div>
 </div>
 
-<div id="outline-container-org05bcd3c" class="outline-3">
-<h3 id="org05bcd3c"><span class="section-number-3">8.4</span> Show Some More Info for a Surah</h3>
+<div id="outline-container-orga5ec480" class="outline-3">
+<h3 id="orga5ec480"><span class="section-number-3">8.4</span> Show Some More Info for a Surah</h3>
 <div class="outline-text-3" id="text-8-4">
 <p>
 The following functions take one ayah_id and return some information about the Sûrah to which it belongs.
 </p>
 </div>
 
-<div id="outline-container-orgcc3bc39" class="outline-4">
-<h4 id="orgcc3bc39"><span class="section-number-4">8.4.1</span> show-surah-meccan-or-medinan.sh</h4>
+<div id="outline-container-orgea4605f" class="outline-4">
+<h4 id="orgea4605f"><span class="section-number-4">8.4.1</span> show-surah-meccan-or-medinan.sh</h4>
 <div class="outline-text-4" id="text-8-4-1">
 <p>
 Shows whether the Sûrah to which this ayah belongs is Meccan or Medinan.
@@ -1675,8 +1676,8 @@ Shows whether the Sûrah to which this ayah belongs is Meccan or Medinan.
 </div>
 </div>
 
-<div id="outline-container-orgf1acd73" class="outline-4">
-<h4 id="orgf1acd73"><span class="section-number-4">8.4.2</span> show-surah-name-arabic.sh</h4>
+<div id="outline-container-org108a42e" class="outline-4">
+<h4 id="org108a42e"><span class="section-number-4">8.4.2</span> show-surah-name-arabic.sh</h4>
 <div class="outline-text-4" id="text-8-4-2">
 <p>
 Shows the Arabic Name of the Sûrah to which this ayah belongs.
@@ -1684,8 +1685,8 @@ Shows the Arabic Name of the Sûrah to which this ayah belongs.
 </div>
 </div>
 
-<div id="outline-container-org149c596" class="outline-4">
-<h4 id="org149c596"><span class="section-number-4">8.4.3</span> show-surah-name-english.sh</h4>
+<div id="outline-container-orgbe99525" class="outline-4">
+<h4 id="orgbe99525"><span class="section-number-4">8.4.3</span> show-surah-name-english.sh</h4>
 <div class="outline-text-4" id="text-8-4-3">
 <p>
 Shows the English Name of the Sûrah to which this ayah belongs.
@@ -1693,8 +1694,8 @@ Shows the English Name of the Sûrah to which this ayah belongs.
 </div>
 </div>
 
-<div id="outline-container-orgdff85b6" class="outline-4">
-<h4 id="orgdff85b6"><span class="section-number-4">8.4.4</span> show-surah-number.sh</h4>
+<div id="outline-container-org62a6e12" class="outline-4">
+<h4 id="org62a6e12"><span class="section-number-4">8.4.4</span> show-surah-number.sh</h4>
 <div class="outline-text-4" id="text-8-4-4">
 <p>
 Shows the 3-digit Number of the Sûrah to which this ayah belongs.
@@ -1702,8 +1703,8 @@ Shows the 3-digit Number of the Sûrah to which this ayah belongs.
 </div>
 </div>
 
-<div id="outline-container-orgdefcd5d" class="outline-4">
-<h4 id="orgdefcd5d"><span class="section-number-4">8.4.5</span> show-surah-number-without-leading-zeros.sh</h4>
+<div id="outline-container-orge55f8b0" class="outline-4">
+<h4 id="orge55f8b0"><span class="section-number-4">8.4.5</span> show-surah-number-without-leading-zeros.sh</h4>
 <div class="outline-text-4" id="text-8-4-5">
 <p>
 Shows the 3-digit Number of the Sûrah to which this ayah belongs, without leading zeros. This means, for instance, that where the above script would return <code>006</code>, this one returns <code>6</code>. This is sometimes useful for some particular purposes.
@@ -1712,16 +1713,16 @@ Shows the 3-digit Number of the Sûrah to which this ayah belongs, without leadi
 </div>
 </div>
 
-<div id="outline-container-org5052e81" class="outline-3">
-<h3 id="org5052e81"><span class="section-number-3">8.5</span> Show Number of Elements Contained in the Unit to Which a Verse Belongs</h3>
+<div id="outline-container-orga010f27" class="outline-3">
+<h3 id="orga010f27"><span class="section-number-3">8.5</span> Show Number of Elements Contained in the Unit to Which a Verse Belongs</h3>
 <div class="outline-text-3" id="text-8-5">
 <p>
 This take a single ayah_id and returns the number of elements contained the greater unit to which it belongs.
 </p>
 </div>
 
-<div id="outline-container-org4754b4c" class="outline-4">
-<h4 id="org4754b4c"><span class="section-number-4">8.5.1</span> get-number-of-ayaat-of-the-surah-to-which-this-ayah-belongs.sh</h4>
+<div id="outline-container-org64ca5f3" class="outline-4">
+<h4 id="org64ca5f3"><span class="section-number-4">8.5.1</span> get-number-of-ayaat-of-the-surah-to-which-this-ayah-belongs.sh</h4>
 <div class="outline-text-4" id="text-8-5-1">
 <p>
 Returns the number of verses of the Sûrah to which a given ayah belongs.
@@ -1730,22 +1731,38 @@ Returns the number of verses of the Sûrah to which a given ayah belongs.
 </div>
 </div>
 
-<div id="outline-container-org41e3047" class="outline-3">
-<h3 id="org41e3047"><span class="section-number-3">8.6</span> Other Ayah Related BASH Functions</h3>
+<div id="outline-container-org043fafc" class="outline-3">
+<h3 id="org043fafc"><span class="section-number-3">8.6</span> Other Ayah Related BASH Functions</h3>
 <div class="outline-text-3" id="text-8-6">
 </div>
-<div id="outline-container-org8c5a4c6" class="outline-4">
-<h4 id="org8c5a4c6"><span class="section-number-4">8.6.1</span> ayah-necessitates-sadjdah-or-not.sh</h4>
+<div id="outline-container-org242e568" class="outline-4">
+<h4 id="org242e568"><span class="section-number-4">8.6.1</span> <code>show_number_of_pages_of_a_surah.sh</code></h4>
 <div class="outline-text-4" id="text-8-6-1">
+<p>
+This program take one verse id (i.e., 002008) and returns the following:
+</p>
+
+<ul class="org-ul">
+<li>The Total Pages of the Sûrah</li>
+<li>The Page on which is located the entered verse id</li>
+<li>The the pages that come before the entered verse id</li>
+<li>And the number of the Remaining pages in the Sūrah</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgdc14a5d" class="outline-4">
+<h4 id="orgdc14a5d"><span class="section-number-4">8.6.2</span> ayah-necessitates-sadjdah-or-not.sh</h4>
+<div class="outline-text-4" id="text-8-6-2">
 <p>
 This tells us wether a given verse necessitates prosternation after recitation or not.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org0d403bb" class="outline-4">
-<h4 id="org0d403bb"><span class="section-number-4">8.6.2</span> play-basmala-for-the-113-suwar.sh</h4>
-<div class="outline-text-4" id="text-8-6-2">
+<div id="outline-container-org6d9afb4" class="outline-4">
+<h4 id="org6d9afb4"><span class="section-number-4">8.6.3</span> play-basmala-for-the-113-suwar.sh</h4>
+<div class="outline-text-4" id="text-8-6-3">
 <p>
 This program is able to know when the user is playing the first verses of the 113 chapters of the Quran for which it is mandatory to read the Basmalah and it consequently plays it.
 </p>
@@ -1755,16 +1772,16 @@ This program is able to know when the user is playing the first verses of the 11
 </div>
 
 
-<div id="outline-container-orgb234870" class="outline-2">
-<h2 id="orgb234870"><span class="section-number-2">9</span> Download Section</h2>
+<div id="outline-container-org3677350" class="outline-2">
+<h2 id="org3677350"><span class="section-number-2">9</span> Download Section</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 If you clone this <code>github</code> repository, you will get all the files at once!
 </p>
 </div>
 
-<div id="outline-container-orge013c6d" class="outline-3">
-<h3 id="orge013c6d"><span class="section-number-3">9.1</span> tafsir.sh</h3>
+<div id="outline-container-org931c048" class="outline-3">
+<h3 id="org931c048"><span class="section-number-3">9.1</span> tafsir.sh</h3>
 <div class="outline-text-3" id="text-9-1">
 <p>
 Download Link:
@@ -1777,8 +1794,8 @@ Download Link:
 </div>
 </div>
 
-<div id="outline-container-org1442708" class="outline-3">
-<h3 id="org1442708"><span class="section-number-3">9.2</span> qap-audio-player.sh</h3>
+<div id="outline-container-org543f281" class="outline-3">
+<h3 id="org543f281"><span class="section-number-3">9.2</span> qap-audio-player.sh</h3>
 <div class="outline-text-3" id="text-9-2">
 <p>
 Download Links:
@@ -1791,8 +1808,8 @@ Download Links:
 </div>
 </div>
 
-<div id="outline-container-org530ffde" class="outline-3">
-<h3 id="org530ffde"><span class="section-number-3">9.3</span> rq-ayat-3x-each-then-1-5.0-ALPHA.sh</h3>
+<div id="outline-container-org74000f9" class="outline-3">
+<h3 id="org74000f9"><span class="section-number-3">9.3</span> rq-ayat-3x-each-then-1-5.0-ALPHA.sh</h3>
 <div class="outline-text-3" id="text-9-3">
 <p>
 Download Link:
@@ -1805,8 +1822,8 @@ Download Link:
 </div>
 </div>
 
-<div id="outline-container-org893e083" class="outline-3">
-<h3 id="org893e083"><span class="section-number-3">9.4</span> Tafsir Files</h3>
+<div id="outline-container-orgbc841a6" class="outline-3">
+<h3 id="orgbc841a6"><span class="section-number-3">9.4</span> Tafsir Files</h3>
 <div class="outline-text-3" id="text-9-4">
 <p>
 Download Links:
@@ -1838,8 +1855,8 @@ Contains the following files in plain text format:
 </div>
 </div>
 
-<div id="outline-container-orgf4f4934" class="outline-3">
-<h3 id="orgf4f4934"><span class="section-number-3">9.5</span> Playlist Files + Audios</h3>
+<div id="outline-container-org29aa335" class="outline-3">
+<h3 id="org29aa335"><span class="section-number-3">9.5</span> Playlist Files + Audios</h3>
 <div class="outline-text-3" id="text-9-5">
 <p>
 Coming soon in Sha Allah.
@@ -1847,8 +1864,8 @@ Coming soon in Sha Allah.
 </div>
 </div>
 
-<div id="outline-container-orgc1461c6" class="outline-3">
-<h3 id="orgc1461c6"><span class="section-number-3">9.6</span> Translation Files Divided into 6236 TXT Files</h3>
+<div id="outline-container-org681ae02" class="outline-3">
+<h3 id="org681ae02"><span class="section-number-3">9.6</span> Translation Files Divided into 6236 TXT Files</h3>
 <div class="outline-text-3" id="text-9-6">
 <p>
 Coming soon in Sha Allah.
@@ -1856,8 +1873,8 @@ Coming soon in Sha Allah.
 </div>
 </div>
 
-<div id="outline-container-orgaf07189" class="outline-3">
-<h3 id="orgaf07189"><span class="section-number-3">9.7</span> Scripts that Divide the Quran 6236 Audio Files into Various Units</h3>
+<div id="outline-container-org478e74a" class="outline-3">
+<h3 id="org478e74a"><span class="section-number-3">9.7</span> Scripts that Divide the Quran 6236 Audio Files into Various Units</h3>
 <div class="outline-text-3" id="text-9-7">
 <p>
 Please download the following archive and extract it with <code>7zip</code> and you will get the whole set of scripts that divide your Quran 6236 audio files into folders representing various units of the Quran, i.e., Sûrah, Juz, Hizb etc.
@@ -1906,8 +1923,8 @@ Download Links - Separate scripts - *.sh
 </div>
 </div>
 
-<div id="outline-container-org8a9f516" class="outline-3">
-<h3 id="org8a9f516"><span class="section-number-3">9.8</span> Scripts that Divide Translation Text-Files into 6236 TXT Files</h3>
+<div id="outline-container-orga6df07f" class="outline-3">
+<h3 id="orga6df07f"><span class="section-number-3">9.8</span> Scripts that Divide Translation Text-Files into 6236 TXT Files</h3>
 <div class="outline-text-3" id="text-9-8">
 <p>
 Download link - one 7z archive containing the script and its dependencies: 
@@ -1963,8 +1980,8 @@ The file contains the following:
 </div>
 </div>
 
-<div id="outline-container-orgbefe726" class="outline-3">
-<h3 id="orgbefe726"><span class="section-number-3">9.9</span> Scripts that Show Various Sûrah or Âyah Metadata</h3>
+<div id="outline-container-orgf70c5b9" class="outline-3">
+<h3 id="orgf70c5b9"><span class="section-number-3">9.9</span> Scripts that Show Various Sûrah or Âyah Metadata</h3>
 <div class="outline-text-3" id="text-9-9">
 <p>
 Below, you can download the whole set of functions that display all sorts of information related to Quranic Chapers (Suwar) and verses (âyât)
@@ -2112,6 +2129,13 @@ Scripts that Show Some Extras Information for a Surah:
 <a href="programs/uncompressed/Show_Surah_Metadata/Show_Some_Info_for_a_Surah/show-surah-number-without-leading-zeros.sh">show-surah-number-without-leading-zeros.sh</a>
 </p>
 
+<p>
+<a href="programs/uncompressed/Show_Surah_Metadata/show_number_of_pages_of_a_surah.sh">show_number_of_pages_of_a_surah.sh</a>
+</p>
+
+<p>
+<br />
+</p>
 
 <p>
 A Single Script that Shows all the Informations of a Given Ayah - It is the combination of most of the other scripts:
@@ -2125,8 +2149,8 @@ A Single Script that Shows all the Verses Belonging to A Surah/Juz/Ḥizb/Rub-ul
 </div>
 </div>
 
-<div id="outline-container-org5d88a19" class="outline-3">
-<h3 id="org5d88a19"><span class="section-number-3">9.10</span> Custom Tanzil/Zekr Translation/Tafsir Files</h3>
+<div id="outline-container-org3b69689" class="outline-3">
+<h3 id="org3b69689"><span class="section-number-3">9.10</span> Custom Tanzil/Zekr Translation/Tafsir Files</h3>
 <div class="outline-text-3" id="text-9-10">
 <p>
 These are a set of Tanzil/Zekr translation or Tafsir files that I prepared for my personal use over the years. In the past years I did my best to get in touch with the Tanzil project in order to send them these files for the benefit of other people but they wouldn't answer my emails. In the end I got frustrated and stopped sending them emails. Here I am today, after many years, publishing them on the internet myself. All praise is due to Allah, The Lord of the Worlds. <br />
@@ -2190,8 +2214,8 @@ These are a set of Tanzil/Zekr translation or Tafsir files that I prepared for m
 </div>
 </div>
 
-<div id="outline-container-orgc28bb80" class="outline-3">
-<h3 id="orgc28bb80"><span class="section-number-3">9.11</span> Other Scripts</h3>
+<div id="outline-container-org1ebe1a7" class="outline-3">
+<h3 id="org1ebe1a7"><span class="section-number-3">9.11</span> Other Scripts</h3>
 <div class="outline-text-3" id="text-9-11">
 <p>
 Coming soon in Sha Allah.
@@ -2202,7 +2226,7 @@ Coming soon in Sha Allah.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Copyright (C) Hijri 1440 (Gregorian 2018) The Quran BASH Scripts authors</p>
-<p class="date">Created: 2018-10-13 Sat 10:50</p>
+<p class="date">Created: 2018-10-15 Mon 15:35</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
