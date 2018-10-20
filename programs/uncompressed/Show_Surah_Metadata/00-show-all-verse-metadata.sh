@@ -29,12 +29,69 @@ export DISPLAY_COMPACT_TABLE="FALSE"
 # HTML file fonts sizes and other
 export ARABIC_TEXT_FONT_SIZE="2.25em"
 export LATIN_TEXT_FONT_SIZE="1.75em"
-export METADATA_FONT_SIZE="1.50em"
 export TABLE_FONT_SIZE="1.10em"
-export user_font_file_full_path=""
-export system_font_name=""
-export default_fonts_names=""
-export DISPLAY_COMPACT_TABLE="TRUE"
+export METADATA_FONT_SIZE="1.50em"
+export chosen_font_number=""
+export SYSTEM_FONTS_NAMES="" # has to be empty first
+
+export DEFAULT_FONT_NAMES='Amiri Quran Colored, Amiri Quran, Amiri, Scheherazade, me_quran, LateefGR, Harmattan, Alkalami, Arabic Typesetting, Traditional Arabic, Arial Unicode MS, Roya, mry_KacstQurn, Nazli, Titr, Badr, Nazanin, Tahoma, Nazli, Koodak, Times, Verdana, Helvetica, Arial, Sans-serif'
+
+# Noto Serif
+export DEFAULT_FONT_NAMES_HAMIDULLAH='Noto Serif Light, Noto Serif Semi Cond, Noto Serif Semi Cond Med, Noto Serif Semi Cond Light, Noto Serif Semi Cond Thin, Noto Serif Cond, Noto Serif Cond Med, Noto Serif Cond Light, Noto Serif Cond ExtLt, Noto Serif Cond Thin, Noto Serif Extra Cond, Noto Serif Extra Cond Med, Noto Serif Extra Cond Light, Noto Serif Extra Cond Thin, Noto Serif Med, Noto Serif Regular'
+
+# Noto Sans
+export DEFAULT_FONT_NAMES_SAHIH_INT='Noto Sans Light, Noto Sans Semi Cond, Noto Sans Semi Cond Med, Noto Sans Semi Cond Light, Noto Sans Semi Cond Thin, Noto Sans Cond, Noto Sans Cond Med, Noto Sans Cond Light, Noto Sans Cond ExtLt, Noto Sans Cond Thin, Noto Sans Extra Cond, Noto Sans Extra Cond Med, Noto Sans Extra Cond Light, Noto Sans Extra Cond Thin, Noto Sans Med, Noto Sans Regular'
+
+# Roboto
+export DEFAULT_FONT_NAMES_HILALI_KHAN='Roboto Light, Roboto Condensed Light, Roboto Condensed, Roboto Medium, Roboto'
+
+# Noto Mono
+export DEFAULT_FONT_NAMES_TRANSLIT='Noto Sans Mono Light, Noto Sans Mono Semi Cond, Noto Sans Mono Semi Cond Med, Noto Sans Mono Semi Cond Light, Noto Sans Mono Semi Cond Thin, Noto Sans Mono Cond, Noto Sans Mono Cond Med, Noto Sans Mono Cond Light, Noto Sans Mono Cond ExtLt, Noto Sans Mono Cond Thin, Noto Sans Mono Extra Cond, Noto Sans Mono Extra Cond Med, Noto Sans Mono Extra Cond Light, Noto Sans Mono Extra Cond Thin, Noto Sans Mono Med, Noto Sans Mono Regular'
+
+# Other fonts
+export DEFAULT_FONT_NAMES_METADATA=''
+
+export USER_FONT_FLAG="FALSE"
+export SYSTEM_FONT_FLAG="FALSE"
+export DISPLAY_COMPACT_TABLE="FALSE"
+export CHOSEN_BASE64_FONT_NAME=""
+export FONT_EXT="ttf"
+export font_full_path=""
+
+# Real font names used in html output file
+export Alkalami_Regular_name="Alkalami"
+export AmiriQuranColored_name="Amiri Quran Colored"
+export AmiriQuran_name="Amiri Quran"
+export Arabic_Typesetting_name="Arabic Typesetting"
+export Harmattan_Regular_name="Harmattan"
+export LateefGR_Regular_name="LateefGR"
+export me_quran_name="me_quran"
+export noorehuda_name="noorehuda"
+export QCF2504_name="QCF2504"
+export Scheherazade_R_name="Scheherazade"
+
+# Names used while creating files from base64
+export AlkalamiRegularFileName="Alkalami.ttf"
+export AmiriQuranColoredFileName="AmiriQuranColored.ttf"
+export AmiriQuranFileName="AmiriQuran.ttf"
+export ArabicTypesettingFileName="ArabicTypesetting.ttf"
+export HarmattanRegularFileName="Harmattan.ttf"
+export LateefGRRegularFileName="LateefGR.ttf"
+export mequranFileName="MeQuran.ttf"
+export noorehudaFileName="NooreHuda.ttf"
+export QCF2504FileName="QCF2504.ttf"
+export ScheherazadeRFileName="Scheherazade.ttf"
+
+export AlkalamiRegularBase64=""
+export AmiriQuranColoredBase64=""
+export AmiriQuranBase64=""
+export ArabicTypesettingBase64=""
+export HarmattanRegularBase64=""
+export LateefGRRegularBase64=""
+export mequranBase64=""
+export noorehudaBase64=""
+export QCF2504Base64=""
+export ScheherazadeRBase64=""
 
 export SHOW_ARA_TEXT="TRUE"
 export SHOW_TRANSLITERATION="TRUE"
@@ -90,23 +147,41 @@ export U=""
 export za=""
 export zb=""
 
+export V=""
+export zd=""
+export W=""
+export S=""
+
 # Our table global variables #
 export ayaat_metadata_table_1=""
 export ayaat_metadata_table_2=""
 export ayaat_metadata_table_3=""
 export ayaat_metadata_table_4=""
+export ayaat_metadata_table_5=""
+export ayaat_metadata_table_6=""
 
 export ayaat_metadata_compact_table_1=""
 export ayaat_metadata_compact_table_2=""
 export ayaat_metadata_compact_table_3=""
 export ayaat_metadata_compact_table_4=""
+export ayaat_metadata_compact_table_5=""
+export ayaat_metadata_compact_table_6=""
 
 export table_number=0
 
+# Colors used in html output file
+export body_bg_colour=black
+export bleue_ciel_colour=lightblue
+export vert_clair_colour=lightgreen
+export jaune_clair_colour=lightyellow
+export rouge_colour=red
+export blanc_colour=white
+export jaune_colour=yellow
+
 # colors to be used with the tables
-export table_pln_text="white"
-export table_text_1="yellow"
-export table_text_2="lightgreen"
+export table_pln_text="$blanc_colour"
+export table_text_1="$jaune_colour"
+export table_text_2="$vert_clair_colour"
 export table_text_3="olive"
 export table_text_4="lightblue"
 
@@ -11403,7 +11478,7 @@ actualise_ayah_metadata_vars(){
     previous_number_of_pages_of_surah=$( printf "%02d" $((10#$previous_number_of_pages_of_surah)) )
 
     # Less than one page suwar
-    if [ $total_number_of_pages_of_surah -eq 0 ]; then total_number_of_pages_of_surah="< 1 page"; fi
+    if [ $total_number_of_pages_of_surah -eq 0 ]; then total_number_of_pages_of_surah="<1"; fi
 
     ##############################
     # End - page number metadata #
@@ -11448,7 +11523,7 @@ actualise_ayah_metadata_vars(){
     Y="${BOLD_GREEN}$juz_number${NC}"
     X="${BOLD_GREEN}$hizb_number${NC}"
     ww="${BOLD_GREEN}$roubAlHizbNumber${NC}"
-    vv="${BOLD_GREEN}$page_number${NC}"
+    vv="${BOLD_GREEN}$current_page_number${NC}"
 
     ss="${BOLD_YELLOW}$quran_total_num_of_suwar${NC}"
     T="${BOLD_YELLOW}$quran_total_num_of_juz${NC}"
@@ -11480,6 +11555,12 @@ actualise_ayah_metadata_vars(){
     qa="${BOLD_YELLOW}$remaining_ayaat_in_this_hizb_rub${NC}"
     rr="${BOLD_YELLOW}$remaining_ayaat_in_this_page${NC}"
 
+
+    V="${BG_GREEN_FG_WHITE}$total_number_of_pages_of_surah${NC}"
+    zd="${BOLD_BLUE}$current_page_number${NC}"
+    W="${BG_BLUE_FG_WHITE}$previous_number_of_pages_of_surah${NC}"
+    S="${BG_RED_FG_WHITE}$remaining_number_of_pages_of_surah${NC}"
+
     sura="${BOLD}$sura${OFF_BOLD}"
     jz="${BOLD}$jz${OFF_BOLD}"
     hzb="${BOLD}$hzb${OFF_BOLD}"
@@ -11490,21 +11571,29 @@ actualise_ayah_metadata_vars(){
     # We provide 4 types of table.
     # Table Type-1
     ayaat_metadata_table_1="
-───────────────────────────────────────────────────
+────────────────────────────────────────────────────
  Unit   Current  Total N°  Playing   Already  Verses
  Name    Unit    of Āyāt   Verse     Played   to be  
         Number   in Unit   Number:   Verses   Played 
-───────────────────────────────────────────────────
+────────────────────────────────────────────────────
  $sura  $zz/$ss    $aa     $ff/$aa     $kk     $oo    
-───────────────────────────────────────────────────
+────────────────────────────────────────────────────
  $jz     $Y/$T     $bb     $gg/$bb     $ll     $pp    
-───────────────────────────────────────────────────
+────────────────────────────────────────────────────
  $hzb    $X/$U     $cc     $hh/$cc     $mm     $qq    
-───────────────────────────────────────────────────
+────────────────────────────────────────────────────
  $hzbq  $ww/$za    $dd     $ii/$dd     $ma     $qa     
-───────────────────────────────────────────────────
+────────────────────────────────────────────────────
  $pge   $vv/$zb    $ee     $jj/$ee     $nn     $rr    
-───────────────────────────────────────────────────
+────────────────────────────────────────────────────
+         Total Pages of Sûrah is        $V
+       ─────────────────────────────────────
+         Current Page of Sūrah     $zd/$zb
+       ─────────────────────────────────────
+         Previous Pages of Sūrah        $W
+       ─────────────────────────────────────
+         Remaining pages in Sūrah       $S
+       ─────────────────────────────────────
 "
 
     # Table Type-2
@@ -11524,11 +11613,19 @@ actualise_ayah_metadata_vars(){
 |-------+---------+---------+---------+---------+--------|
 | $pge  | $vv/$zb |   $ee   | $jj/$ee |   $nn   |  $rr   |
 ----------------------------------------------------------
+         | Total Pages of Sûrah is  |   $V    |
+         |--------------------------+---------|
+         | Current Page of Sūrah    | $zd/$zb |
+         |--------------------------+---------|
+         | Previous Pages of Sūrah  |   $W    |
+         |--------------------------+---------|
+         | Remaining pages in Sūrah |   $S    |
+         ---------------------------+----------
 "
 
     # Table Type-3
     ayaat_metadata_table_3="
-────────+─────────+─────────+─────────+─────────+─────────
++───────+─────────+─────────+─────────+─────────+────────+
 | Unit  | Current | Total N°| Playing | Already | Verses |
 | Name  |  Unit   | of Āyāt | Verse   | Played  | to be  |
 |       | Number  | in Unit | Number: | Verses  | Played |
@@ -11542,12 +11639,20 @@ actualise_ayah_metadata_vars(){
 | $hzbq | $ww/$za |   $dd   | $ii/$dd |   $ma   |  $qa   |
 |───────+─────────+─────────+─────────+─────────+────────|
 | $pge  | $vv/$zb |   $ee   | $jj/$ee |   $nn   |  $rr   |
-────────+─────────+─────────+─────────+─────────+─────────
++───────+─────────+─────────+─────────+─────────+────────+
+          | Total Pages of Sûrah is  |   $V    |
+          |──────────────────────────+─────────|
+          | Current Page of Sūrah    | $zd/$zb |
+          |──────────────────────────+─────────|
+          | Previous Pages of Sūrah  |   $W    |
+          |──────────────────────────+─────────|
+          | Remaining pages in Sūrah |   $S    |
+          +──────────────────────────+─────────+
 "
 
     # Table Type-4
     ayaat_metadata_table_4="
-──────────────────────────────────────────────────────────
+•────────────────────────────────────────────────────────•
 | Unit  | Current | Total N°| Playing | Already | Verses |
 | Name  |  Unit   | of Āyāt | Verse   | Played  | to be  |
 |       | Number  | in Unit | Number: | Verses  | Played |
@@ -11561,12 +11666,75 @@ actualise_ayah_metadata_vars(){
 | $hzbq | $ww/$za |   $dd   | $ii/$dd |   $ma   |  $qa   |
 |────────────────────────────────────────────────────────|
 | $pge  | $vv/$zb |   $ee   | $jj/$ee |   $nn   |  $rr   |
-──────────────────────────────────────────────────────────
+•────────────────────────────────────────────────────────•
+          | Total Pages of Sûrah is  |   $V    |
+          |────────────────────────────────────|
+          | Current Page of Sūrah    | $zd/$zb |
+          |────────────────────────────────────|
+          | Previous Pages of Sūrah  |   $W    |
+          |────────────────────────────────────|
+          | Remaining pages in Sūrah |   $S    |
+          ──────────────────────────────────────
 "
 
+    # Table Type-5
+    ayaat_metadata_table_5="
+•────────────────────────────────────────────────────────•
+░ Unit  ░ Current ░ Total N°░ Playing ░ Already ░ Verses ░
+░ Name  ░  Unit   ░ of Āyāt ░ Verse   ░ Played  ░ to be  ░
+░       ░ Number  ░ in Unit ░ Number: ░ Verses  ░ Played ░
+░────────────────────────────────────────────────────────░
+░ $sura ░ $zz/$ss ░   $aa   ░ $ff/$aa ░   $kk   ░  $oo   ░
+░────────────────────────────────────────────────────────░
+░ $jz   ░  $Y/$T  ░   $bb   ░ $gg/$bb ░   $ll   ░  $pp   ░
+░────────────────────────────────────────────────────────░
+░ $hzb  ░  $X/$U  ░   $cc   ░ $hh/$cc ░   $mm   ░  $qq   ░
+░────────────────────────────────────────────────────────░
+░ $hzbq ░ $ww/$za ░   $dd   ░ $ii/$dd ░   $ma   ░  $qa   ░
+░────────────────────────────────────────────────────────░
+░ $pge  ░ $vv/$zb ░   $ee   ░ $jj/$ee ░   $nn   ░  $rr   ░
+•────────────────────────────────────────────────────────•
+          ░ Total Pages of Sûrah is  ░   $V    ░
+          ░────────────────────────────────────░
+          ░ Current Page of Sūrah    ░ $zd/$zb ░
+          ░────────────────────────────────────░
+          ░ Previous Pages of Sūrah  ░   $W    ░
+          ░────────────────────────────────────░
+          ░ Remaining pages in Sūrah ░   $S    ░
+          •────────────────────────────────────•
+"
 
-    # Compact tables 
-    # Compact-Table Type-1
+    # Table Type-6
+    ayaat_metadata_table_6="
+••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
+▒ Unit  ▒ Current ▒ Total N°▒ Playing ▒ Already ▒ Verses ▒
+▒ Name  ▒  Unit   ▒ of Āyāt ▒ Verse   ▒ Played  ▒ to be  ▒
+▒       ▒ Number  ▒ in Unit ▒ Number: ▒ Verses  ▒ Played ▒
+▒••••••••••••••••••••••••••••••••••••••••••••••••••••••••▒
+▒ $sura ▒ $zz/$ss ▒   $aa   ▒ $ff/$aa ▒   $kk   ▒  $oo   ▒
+▒••••••••••••••••••••••••••••••••••••••••••••••••••••••••▒
+▒ $jz   ▒  $Y/$T  ▒   $bb   ▒ $gg/$bb ▒   $ll   ▒  $pp   ▒
+▒••••••••••••••••••••••••••••••••••••••••••••••••••••••••▒
+▒ $hzb  ▒  $X/$U  ▒   $cc   ▒ $hh/$cc ▒   $mm   ▒  $qq   ▒
+▒••••••••••••••••••••••••••••••••••••••••••••••••••••••••▒
+▒ $hzbq ▒ $ww/$za ▒   $dd   ▒ $ii/$dd ▒   $ma   ▒  $qa   ▒
+▒••••••••••••••••••••••••••••••••••••••••••••••••••••••••▒
+▒ $pge  ▒ $vv/$zb ▒   $ee   ▒ $jj/$ee ▒   $nn   ▒  $rr   ▒
+••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
+          ▒ Total Pages of Sûrah is  ▒   $V    ▒
+          ▒••••••••••••••••••••••••••••••••••••▒
+          ▒ Current Page of Sūrah    ▒ $zd/$zb ▒
+          ▒••••••••••••••••••••••••••••••••••••▒
+          ▒ Previous Pages of Sūrah  ▒   $W    ▒
+          ▒••••••••••••••••••••••••••••••••••••▒
+          ▒ Remaining pages in Sūrah ▒   $S    ▒
+          ••••••••••••••••••••••••••••••••••••••
+"
+
+    ########################
+    # Compact tables       #
+    # Compact-Table Type-1 #
+    ########################
     ayaat_metadata_compact_table_1="
 ───────────────────────────────────────
 Unit    This  Total Unit  Āyāt   Verses
@@ -11583,6 +11751,14 @@ $hzbq $ww/$za  $dd   $ii   $ma    $qa
 ───────────────────────────────────────
 $pge  $vv/$zb  $ee   $jj   $nn    $rr  
 ───────────────────────────────────────
+    Total Pages of Sûrah is     $V
+    ──────────────────────────────
+    Current Page of Sūrah  $zd/$zb
+    ──────────────────────────────
+    Previous Pages of Sūrah     $W
+    ──────────────────────────────
+    Remaining pages in Sūrah    $S
+    ──────────────────────────────
 "
 
 
@@ -11603,12 +11779,20 @@ $pge  $vv/$zb  $ee   $jj   $nn    $rr
 |-----+-------+-----+----+------+------|
 |$pge |$vv/$zb| $ee |$jj | $nn  | $rr  |
 ----------------------------------------
+   |Total Pages of Sûrah is |  $V   |
+   |------------------------+-------|
+   |Current Page of Sūrah   |$zd/$zb|
+   |------------------------+-------|
+   |Previous Pages of Sūrah |  $W   |
+   |------------------------+-------|
+   |Remaining pages in Sūrah|  $S   |
+   +------------------------+-------+
 "
 
 
     # Compact-Table Type-3
     ayaat_metadata_compact_table_3="
-──────+───────+─────+────+──────+───────
++─────+───────+─────+────+──────+──────+
 |Unit | This  |Total|Unit|Āyāt  |Verses|
 |Name | Unit  |Unit |Āyāh|Played|to be |
 |     |  N°   |Āyāt | N° |Before|Played|
@@ -11622,13 +11806,21 @@ $pge  $vv/$zb  $ee   $jj   $nn    $rr
 |$hzbq|$ww/$za| $dd |$ii | $ma  | $qa  |
 |─────+───────+─────+────+──────+──────|
 |$pge |$vv/$zb| $ee |$jj | $nn  | $rr  |
-──────+───────+─────+────+──────+───────
++─────+───────+─────+────+──────+──────+
+   |Total Pages of Sûrah is |  $V   |
+   |────────────────────────+───────|
+   |Current Page of Sūrah   |$zd/$zb|
+   |────────────────────────+───────|
+   |Previous Pages of Sūrah |  $W   |
+   |────────────────────────+───────|
+   |Remaining pages in Sūrah|  $S   |
+   +────────────────────────+───────+
 "
 
 
     # Compact-Table Type-4
     ayaat_metadata_compact_table_4="
-────────────────────────────────────────
+•──────────────────────────────────────•
 |Unit | This  |Total|Unit| Āyāt |Verses|
 |Name | Unit  |Unit |Āyāh|Played|to be |
 |     |  N°   |Āyāt | N° |Before|Played|
@@ -11642,7 +11834,69 @@ $pge  $vv/$zb  $ee   $jj   $nn    $rr
 |$hzbq|$ww/$za| $dd |$ii | $ma  | $qa  |
 |──────────────────────────────────────|
 |$pge |$vv/$zb| $ee |$jj | $nn  | $rr  |
-────────────────────────────────────────
+•──────────────────────────────────────•
+   |Total Pages of Sûrah is |  $V   |
+   |────────────────────────────────|
+   |Current Page of Sūrah   |$zd/$zb|
+   |────────────────────────────────|
+   |Previous Pages of Sūrah |  $W   |
+   |────────────────────────────────|
+   |Remaining pages in Sūrah|  $S   |
+   ──────────────────────────────────
+"
+
+    # Compact-Table Type-5
+    ayaat_metadata_compact_table_5="
+•──────────────────────────────────────•
+░Unit ░ This  ░Total░Unit░ Āyāt ░Verses░
+░Name ░ Unit  ░Unit ░Āyāh░Played░to be ░
+░     ░  N°   ░Āyāt ░ N° ░Before░Played░
+░──────────────────────────────────────░
+░$sura░$zz/$ss░ $aa ░$ff ░ $kk  ░ $oo  ░
+░──────────────────────────────────────░
+░$jz  ░ $Y/$T ░ $bb ░$gg ░ $ll  ░ $pp  ░
+░──────────────────────────────────────░
+░$hzb ░ $X/$U ░ $cc ░$hh ░ $mm  ░ $qq  ░
+░──────────────────────────────────────░
+░$hzbq░$ww/$za░ $dd ░$ii ░ $ma  ░ $qa  ░
+░──────────────────────────────────────░
+░$pge ░$vv/$zb░ $ee ░$jj ░ $nn  ░ $rr  ░
+•──────────────────────────────────────•
+   ░Total Pages of Sûrah is ░  $V   ░
+   ░────────────────────────────────░
+   ░Current Page of Sūrah   ░$zd/$zb░
+   ░────────────────────────────────░
+   ░Previous Pages of Sūrah ░  $W   ░
+   ░────────────────────────────────░
+   ░Remaining pages in Sūrah░  $S   ░
+   •────────────────────────────────•
+"
+
+        # Compact-Table Type-6
+    ayaat_metadata_compact_table_6="
+••••••••••••••••••••••••••••••••••••••••
+▒Unit ▒ This  ▒Total▒Unit▒ Āyāt ▒Verses▒
+▒Name ▒ Unit  ▒Unit ▒Āyāh▒Played▒to be ▒
+▒     ▒  N°   ▒Āyāt ▒ N° ▒Before▒Played▒
+▒••••••••••••••••••••••••••••••••••••••▒
+▒$sura▒$zz/$ss▒ $aa ▒$ff ▒ $kk  ▒ $oo  ▒
+▒••••••••••••••••••••••••••••••••••••••▒
+▒$jz  ▒ $Y/$T ▒ $bb ▒$gg ▒ $ll  ▒ $pp  ▒
+▒••••••••••••••••••••••••••••••••••••••▒
+▒$hzb ▒ $X/$U ▒ $cc ▒$hh ▒ $mm  ▒ $qq  ▒
+▒••••••••••••••••••••••••••••••••••••••▒
+▒$hzbq▒$ww/$za▒ $dd ▒$ii ▒ $ma  ▒ $qa  ▒
+▒••••••••••••••••••••••••••••••••••••••▒
+▒$pge ▒$vv/$zb▒ $ee ▒$jj ▒ $nn  ▒ $rr  ▒
+••••••••••••••••••••••••••••••••••••••••
+   ▒Total Pages of Sûrah is ▒  $V   ▒
+   ▒••••••••••••••••••••••••••••••••▒
+   ▒Current Page of Sūrah   ▒$zd/$zb▒
+   ▒••••••••••••••••••••••••••••••••▒
+   ▒Previous Pages of Sūrah ▒  $W   ▒
+   ▒••••••••••••••••••••••••••••••••▒
+   ▒Remaining pages in Sūrah▒  $S   ▒
+   ••••••••••••••••••••••••••••••••••
 "
 
 
@@ -11653,7 +11907,7 @@ $pge  $vv/$zb  $ee   $jj   $nn    $rr
 get_AyahMetadata_displayThemOnCLI_rq_3_then_1(){
     local file="$1"
 
-    # my unicode symbols:  ⦿ • ‣ ◘ ⌛
+    # my unicode symbols: ⦿ • ‣ ◘ ⌛ ░ █ ▄ ▀ ▓ ▒ ◘
     
     actualise_ayah_metadata_vars "$file"
     
@@ -11682,11 +11936,11 @@ get_AyahMetadata_displayThemOnCLI_rq_3_then_1(){
 	# Note, code adapted from the ABS-Guide of Mendel
 	# Cooper which is now in the public domain.
 
-	# Modulo 4 gives range 0 - 4.
-	# Incrementing by 1 gives desired range of 1 - 4.
-	LIMIT=4
+	# Modulo 6 gives range 0 - 6.
+	# Incrementing by 1 gives desired range of 1 - 6.
+	LIMIT=6
 
-	# set up a new value from 1 to 4
+	# set up a new value from 1 to 6
 	let "table_number = $RANDOM % $LIMIT +1"
 
 	case "$table_number" in
@@ -11702,6 +11956,12 @@ get_AyahMetadata_displayThemOnCLI_rq_3_then_1(){
 	    4 )
 		echo "$ayaat_metadata_compact_table_4"
 		;;
+	    5 )
+		echo "$ayaat_metadata_compact_table_5"
+		;;
+	    6 )
+		echo "$ayaat_metadata_compact_table_6"
+		;;
 	    * )
 		echo "$ayaat_metadata_compact_table_1"
 		;;
@@ -11709,8 +11969,8 @@ get_AyahMetadata_displayThemOnCLI_rq_3_then_1(){
 
     elif [[ "$DISPLAY_COMPACT_TABLE" == "FALSE" ]]
     then
-	LIMIT=4
-	# set up a new value from 1 to 4
+	LIMIT=6
+	# set up a new value from 1 to 6
 	let "table_number = $RANDOM % $LIMIT +1"
 
 	case "$table_number" in
@@ -11726,6 +11986,12 @@ get_AyahMetadata_displayThemOnCLI_rq_3_then_1(){
 	    4 )
 		echo "$ayaat_metadata_table_4"
 		;;
+	    5 )
+		echo "$ayaat_metadata_table_5"
+		;;
+	    6 )
+		echo "$ayaat_metadata_table_6"
+		;;
 	    * )
 		echo "$ayaat_metadata_table_1"
 		;;
@@ -11740,39 +12006,36 @@ get_AyahMetadata_displayThemOnCLI_rq_3_then_1(){
 	echo "not have happened! This is an internal error."; echo
     fi
 
-    echo -n "Total Pages of Sûrah is: "
-    echo "$total_number_of_pages_of_surah"
-
-    echo -n "Current Page of Sūrah: "
-    echo "$current_page_number/$zb"
-
-    echo -n "Previous Pages of Sūrah: "
-    echo "$previous_number_of_pages_of_surah"
-
-    echo -n "Remaining pages in Sūrah: "
-    echo "$remaining_number_of_pages_of_surah"; echo
-
-    
+    #echo -n "Total Pages of Sûrah is: "
+    #echo "$total_number_of_pages_of_surah"
+    #echo -n "Current Page of Sūrah: "
+    #echo "$current_page_number/$zb"
+    #echo -n "Previous Pages of Sūrah: "
+    #echo "$previous_number_of_pages_of_surah"
+    #echo -n "Remaining pages in Sūrah: "
+    #echo "$remaining_number_of_pages_of_surah"; #echo
     #echo -e "⦿ Sūrah N°: ${BOLD_GREEN}$surahNumber${NC}/${BOLD_YELLOW}114 ${NC}"
     #echo -e "⦿ Juz N°: ${BOLD_GREEN}$juz_number/${BOLD_YELLOW}30 ${NC}"
     #echo -e "⦿ Ḥizb N°: ${BOLD_GREEN}$hizb_number/${BOLD_YELLOW}60 ${NC}"
     #echo -e "⦿ Ḥizb ¼ N°: ${BOLD_GREEN}۞ $roubAlHizbNumber/${BOLD_YELLOW}240 ${NC}"
-    #echo -e "⦿ Page N°: ${BOLD_GREEN}$page_number/${BOLD_YELLOW}604 ${NC}"
-    #echo -e "${BOLD_BLUE}    ––––––––    ${NC}";
+    #echo -e "⦿ Page N°: ${BOLD_GREEN}$current_page_number/${BOLD_YELLOW}604 ${NC}"
+    #echo -e "${BOLD_BLUE}––––––––${NC}";
     #echo "Number of Āyāt of this:"
     #echo -e "⦿ Sūrah is: ${BOLD_BLUE}$number_of_verses_of_surah ${NC}"
     #echo -e "⦿ Juz is: ${BOLD_BLUE}$number_of_verses_of_JUZ ${NC}"
     #echo -e "⦿ Ḥizb is: ${BOLD_BLUE}$number_of_verses_of_HIZB ${NC}"
     #echo -e "⦿ Ḥizb-¼ is: ${BOLD_BLUE}$number_of_verses_of_RUB_UL_HIZB ${NC}"
     #echo -e "⦿ Page is: ${BOLD_BLUE}$number_of_verses_of_PAGE_NUMBER ${NC}"
-    #echo -e "${BOLD_BLUE}    ––––––––    ${NC}";
-    #echo "Āyāh Being Played from the:"    
+    #echo -e "${BOLD_BLUE}––––––––${NC}";
+    #echo "Āyāh Being Played from the:"
     #echo -e "•Sūrah is Āyāh N°: ${BOLD_GREEN}$index_of_current_surah_elmt/${BOLD_YELLOW}$number_of_verses_of_surah ${NC}"
     #echo -e "•Juz is Āyāh N°: ${BOLD_GREEN}$index_of_current_juz_elmt/${BOLD_YELLOW}$number_of_verses_of_JUZ ${NC}"
     #echo -e "•Ḥizb is Āyāh N°: ${BOLD_GREEN}$index_of_current_hizb_elmt/${BOLD_YELLOW}$number_of_verses_of_HIZB ${NC}"
-    #echo -e "•Ḥizb-¼ is Āyāh N°: ${BOLD_GREEN}$index_of_current_hizb_rub_elmt/${BOLD_YELLOW}$number_of_verses_of_RUB_UL_HIZB ${NC}"
-    #echo -e "•Page is Āyāh N°: ${BOLD_GREEN}$index_of_current_page_elmt/${BOLD_YELLOW}$number_of_verses_of_PAGE_NUMBER ${NC}"
-    #echo -e "${BOLD_BLUE}    ––––––––    ${NC}";
+    #echo -n -e "•Ḥizb-¼ is Āyāh N°: ${BOLD_GREEN}$index_of_current_hizb_rub_elmt/"
+    #echo "${BOLD_YELLOW}$number_of_verses_of_RUB_UL_HIZB ${NC}"
+    #echo -n -e "•Page is Āyāh N°: ${BOLD_GREEN}$index_of_current_page_elmt"
+    #echo "/${BOLD_YELLOW}$number_of_verses_of_PAGE_NUMBER ${NC}"
+    #echo -e "${BOLD_BLUE}––––––––${NC}";
     #echo -e "‣Played ${BOLD_GREEN}$already_played_ayaat_from_this_surah${NC} Āyāh from this Sūrah"
     #echo -e "   It Remains ${BOLD_YELLOW}$remaining_ayaat_in_this_surah${NC}"
     #echo -e "‣Played ${BOLD_GREEN}$already_played_ayaat_from_this_juz${NC} Āyāh from this Juz"
@@ -11789,7 +12052,7 @@ get_AyahMetadata_displayThemOnCLI_rq_3_then_1(){
 
 
 set_up_eta_with_colors_html(){
-    ELAPSED_IN_HTML="⌛ <b style="color:yellow">$(($SECONDS / 3600))-H</b> <b style="color:lightgreen">$((($SECONDS / 60) % 60))-Mn</b> <b style="color:lightblue">$(($SECONDS % 60))-Sec</b>"
+    ELAPSED_IN_HTML="⌛ <b style=\"color: $jaune_colour\">$(($SECONDS / 3600))-H</b> <b style=\"color: $vert_clair_colour\">$((($SECONDS / 60) % 60))-Mn</b> <b style=\"color: $bleue_ciel_colour\">$(($SECONDS % 60))-Sec</b>"
 }
 
 
@@ -11804,17 +12067,17 @@ show_progress_in_html_file(){
 	echo -n "$(echo $ELAPSED_IN_HTML)"
 	echo -n " | "
 	echo -n 'Remains '
-	echo -n '<b style="color:cyan">'
+	echo -n '<b style="color: cyan">'
 	echo -n "$all_elmts_numb"
 	echo -n '</b> Āyāt'
     else
 	echo -n "$(echo $ELAPSED_IN_HTML)"
 	echo -n " | "
 	echo -n 'Āyah [ '
-	echo -n '<b style="color:cyan">'
+	echo -n '<b style="color: cyan">'
 	echo -n "$is_playing"
 	echo -n '</b>/'
-	echo -n '<b style="color:cyan">'
+	echo -n '<b style="color: cyan">'
 	echo -n "$all_elmts_numb"
 	echo -n '</b> ]'
     fi
@@ -11831,7 +12094,7 @@ gen_html_rq_3_then_1(){
     local verse_taq_muh=`echo "${1%.$fileExt}.hilali.txt"`
     local being_played="$2"
     local total_elmts="$3"
-    
+
     # Create file or clean up its contents
     actualise_ayah_metadata_vars "$file"
     touch "$tmpOutHTMLfile"
@@ -11857,50 +12120,147 @@ gen_html_rq_3_then_1(){
     
     echo "</head>"
     echo
-    echo '<body lang="ar-SA" lang="fr-FR" lang="en-US"; dir="ltr"; style="background-color:black" >' 
+    echo -n '<body lang="ar-SA" lang="fr-FR" lang="en-US"; dir="ltr"; style="background-color:'
+    echo -n "$body_bg_colour"
+    echo '">'
     echo
 
     # Display progress information
     echo -n '<span style="font-size:'
     echo -n "$METADATA_FONT_SIZE"
-    echo '; color:white">' 
+    echo -n '; color:'
+    echo -n "$blanc_colour"
+    echo -n '">'
     echo "<p>$(show_progress_in_html_file $being_played $total_elmts)</p>"
     echo '</span>' 
     echo
 
-    # Display Ayah (Arabic, Transliteration,
-    # Translations, Tafasir)
-    # Arabic Verse
-    if [[ "$SHOW_ARA_TEXT" == "TRUE" ]]
-    then
-	if [[ -f "$verse_arabic" ]]
-	then
+     # Display Ayah (Arabic, Transliteration,
+     # Translations, Tafasir)
+     # Arabic Verse
+     if [[ "$SHOW_ARA_TEXT" == "TRUE" ]]
+     then	
+	 if [ "$SYSTEM_FONT_FLAG" == "TRUE" ]
+	 then
+	     DEFAULT_FONT_NAMES="$SYSTEM_FONTS_NAMES"
+	 fi
+	 
+	 if [[ -f "$verse_arabic" ]]
+	 then
 
-	    if [ "$USER_FONT_FLAG" == "TRUE" ]
-	    then
-		DEFAULT_FONT_NAMES="$user_font_file_full_path"
-		
-	    elif [ "$SYSTEM_FONT_FLAG" == "TRUE" ]
-	    then
-		DEFAULT_FONT_NAMES="$SYSTEM_FONTS_NAMES"
-	    fi
-	    
-	    echo -n '<span style="font-size:'
-	    echo -n "$ARABIC_TEXT_FONT_SIZE"
-	    echo '; color:white">'
-	    echo '<div lang="ar-SA" dir="rtl">'
-	    # Beginning of the actual verse text
-	    echo "$(cat "$verse_arabic")"
-	    # Ending of the actual verse text
-	    echo '</div>'
-	    echo '</span>' 
-	    echo
-	else
-	    echo -n "<!-- The verse text: '$verse_arabic' "
-	    echo "is unavailable or unreadable -->"
-	fi
-    fi
+	     if [ "$USER_FONT_FLAG" == "TRUE" ]
+	     then
+		 #if [[ ! -d "$outFontsDir" ]]
+		 #then
+		 #    mkdir -p "$outFontsDir"
+		 #fi
 
+		 # set up the base64 values
+		 #set_up_base_64_font_variables
+
+		 case "$chosen_font_number" in
+		     1 )
+			 CHOSEN_BASE64_FONT_NAME="$AmiriQuranColored_name"
+			 #printf "${AmiriQuranColoredBase64}"
+			 ;;
+		     2 )
+			 CHOSEN_BASE64_FONT_NAME="$AmiriQuran_name"
+			 #printf "${AmiriQuranBase64}"
+			 ;;
+		     3 )
+			 CHOSEN_BASE64_FONT_NAME="$Scheherazade_R_name"
+			 #printf "${ScheherazadeRBase64}"
+			 ;;
+		     4 )
+			 CHOSEN_BASE64_FONT_NAME="$Harmattan_Regular_name"
+			 #printf "${HarmattanRegularBase64}"
+			 ;;
+		     5 )
+			 CHOSEN_BASE64_FONT_NAME="$LateefGR_Regular_name"
+			 #printf "${LateefGRRegularBase64}"
+			 ;;
+		     6 )
+			 CHOSEN_BASE64_FONT_NAME="$me_quran_name"
+			 #printf "${mequranBase64}"
+			 ;;
+		     7 )
+			 CHOSEN_BASE64_FONT_NAME="$Arabic_Typesetting_name"
+			 #printf "${ArabicTypesettingBase64}"
+			 ;;
+		     8 )
+			 CHOSEN_BASE64_FONT_NAME="$noorehuda_name"
+			 #printf "${noorehudaBase64}"
+			 ;;
+		     9 )
+			 CHOSEN_BASE64_FONT_NAME="$Alkalami_Regular_name"
+			 #printf "${AlkalamiRegularBase64}"
+			 ;;
+		     10 )
+			 CHOSEN_BASE64_FONT_NAME="$QCF2504_name"
+			 #printf "${QCF2504Base64}"
+			 ;;
+		     * )
+			 CHOSEN_BASE64_FONT_NAME="$AmiriQuranColored_name"
+			 #printf "${AmiriQuranColoredBase64}"
+			 ;;
+		 esac
+
+		 echo "<div lang="ar-SA" dir="rtl">"
+		 echo "<style scoped>"
+		 # Beginning of @font-face #
+		 echo "@font-face {"
+		 echo "    font-family: $CHOSEN_BASE64_FONT_NAME;"
+		 echo "    font-style: normal;"
+		 echo "    font-weight: normal;"
+		 echo -n '    color:'
+		 echo -n "$blanc_colour"
+		 echo -n ';'
+		 echo "    src: local("$CHOSEN_BASE64_FONT_NAME"), local("$CHOSEN_BASE64_FONT_NAME"),"
+		 echo "        url(data:font/truetype;charset=utf-8;base64,<!-- base64 text -->) format('truetype');"
+		 echo "}"
+		 # End of @font-face #
+		 echo "</style>"
+		 
+		 # Beginning of span tag #
+		 echo -n '<span style="font-size: '
+		 echo -n "$ARABIC_TEXT_FONT_SIZE"
+		 echo -n '; color:'
+		 echo -n "$blanc_colour"
+		 echo -n '; '
+		 echo -n 'font-family: '
+		 echo -n "$CHOSEN_BASE64_FONT_NAME"
+		 echo    '">'
+		 # Beginning of the actual verse text
+		 echo "$(cat "$verse_arabic")"
+		 # Ending of the actual verse text
+		 echo '</span>' 
+		 echo "</div>"
+
+	     else
+		 echo -n '<span style="font-size: '
+		 echo -n "$ARABIC_TEXT_FONT_SIZE"
+		 echo -n '; color:'
+		 echo -n "$blanc_colour"
+		 echo -n '; '
+		 echo -n 'font-family: '
+		 echo -n "$DEFAULT_FONT_NAMES"
+		 echo    '">'
+		 echo '<div lang="ar-SA" dir="rtl">'
+		 # Beginning of the actual verse text
+		 echo "$(cat "$verse_arabic")"
+		 # Ending of the actual verse text
+		 echo '</div>'
+		 echo '</span>' 
+		 echo
+	     fi
+
+	 else
+	     echo -n "<!-- The verse text: '$verse_arabic' "
+	     echo "is unavailable or unreadable -->"
+	 fi
+     fi
+
+     
     # Verse Hamidullah Translation
     if [[ "$SHOW_HAMIDULLAH_FRA_TEXT" == "TRUE" ]]
     then
@@ -11908,7 +12268,9 @@ gen_html_rq_3_then_1(){
 	then
 	    echo -n '<span style="font-size:'
 	    echo -n "$LATIN_TEXT_FONT_SIZE"
-	    echo '; color:lightyellow">' 
+	    echo -n '; color:'
+	    echo -n "$jaune_clair_colour"
+	    echo -n '">' 
 	    echo "<p><b><u>Ḥamidullah</u></b><br>"
 	    echo -n "$(cat "$verse_hamid")"
 	    echo "</p>"
@@ -11927,7 +12289,9 @@ gen_html_rq_3_then_1(){
 	then
 	    echo -n '<span style="font-size:'
 	    echo -n "$LATIN_TEXT_FONT_SIZE"
-	    echo '; color:lightgreen">' 
+	    echo -n '; color:'
+	    echo -n "$vert_clair_colour"
+	    echo '">' 
 	    echo "<p><b><u>Ṣaḥîḥ Int.</u></b><br>"
 	    echo -n "$(cat "$verse_sahihint")"
 	    echo "</p>"
@@ -11947,7 +12311,9 @@ gen_html_rq_3_then_1(){
 	then
 	    echo -n '<span style="font-size:'
 	    echo -n "$LATIN_TEXT_FONT_SIZE"
-	    echo '; color:lightblue">' 
+	    echo -n '; color:'
+	    echo -n "$bleue_ciel_colour"
+	    echo -n '">' 
 	    echo "<p><b><u>Taqi-ud-Dîn/Muḥsin</u></b><br>"
 	    echo -n "$(cat "$verse_taq_muh")"
 	    echo "</p>"
@@ -11966,7 +12332,9 @@ gen_html_rq_3_then_1(){
 	then
 	    echo -n '<span style="font-size:'
 	    echo -n "$LATIN_TEXT_FONT_SIZE"
-	    echo '; color:yellow">' 
+	    echo -n '; color:'
+	    echo -n "$jaune_colour"
+	    echo -n '">' 
 	    echo "<p><b><u>Transliteration:</u></b><br>"
 	    echo -n "$(cat "$verse_rom")"
 	    echo "</p>"
@@ -11985,35 +12353,51 @@ gen_html_rq_3_then_1(){
     echo "<br>"
     echo -n '<span style="font-size:'
     echo -n "$METADATA_FONT_SIZE"
-    echo '; color:white">' 
+    echo -n '; color:'
+    echo -n "$blanc_colour"
+    echo '">' 
     echo "<p>=======================<br>"
 
     # Surah infos
     echo -n '⦿ <b>Sūrah: </b>'
-    echo -n '<span style="color:lightblue">'
+    echo -n '<span style="color:'
+    echo -n "$bleue_ciel_colour"
+    echo -n '">'
     echo -n "$surahNameArabic"
     echo -n '</span> | '
-    echo -n '<span style="color:lightblue">'
+    echo -n '<span style="color:'
+    echo -n "$bleue_ciel_colour"
+    echo -n '">'
     echo -n "$surahNameEnglish"
     echo -n '</span> | ' 
 
-    echo -n '<span style="color:lightblue">'
+    echo -n '<span style="color:'
+    echo -n "$bleue_ciel_colour"
+    echo -n '">'
     echo "$surahMeccanOrMedinan"
     echo '</span><br>'
-    echo -n '⦿ This Āyāh Needs Sudjūd ?: <span style="color:red">' 
+    echo -n '⦿ This Āyāh Needs Sudjūd ?: <span style="color:'
+    echo -n "$rouge_colour"
+    echo -n '">' 
     echo -n "$sadjdah"
     echo '</span><br>'
 
     # current folder being played
     echo -n "⦿ <b>Total Folders: </b> "
-    echo -n '<span style="color:lightblue">'
+    echo -n '<span style="color:'
+    echo -n "$bleue_ciel_colour"
+    echo -n '">'
     echo "$total_folders</span> | "
     
     echo -n "<b>Current One: </b> "
-    echo -n '<span style="color:yellow">'
-    echo "$folder_name</span> | "
+    echo -n '<span style="color:'
+    echo -n "$jaune_colour"
+    echo -n '">'
+    echo -n "$folder_name</span> | "
     echo -n "<b>Its Āyāt Size: </b> "
-    echo -n '<span style="color:red">'
+    echo -n '<span style="color:'
+    echo -n "$rouge_colour"
+    echo -n '">'
     echo "$folder_size</span>"
     echo '<br>=======================</p>'
 
@@ -12026,192 +12410,192 @@ gen_html_rq_3_then_1(){
     # HTML tables declarations #
     #--------------------------#
     #
-    table_pln_text=white
-    table_text_1=yellow
-    table_text_2=lightgreen
+    table_pln_text=$blanc_colour
+    table_text_1=$jaune_colour
+    table_text_2=$vert_clair_colour
     table_text_3=b9bd63
-    table_text_4=lightblue
+    table_text_4=$bleue_ciel_colour
     table_text_5=e3b8b8
     table_bgcolor=black
-    table_bordercolor=white
+    table_bordercolor=$blanc_colour
     thead_bgcolor=2b1e01
     thead_2_bgcolor=120015
     
     ayaat_metadata_html_table(){
 	# Beginning of the Table of Ayaat Metadata
 	echo "<!-- Beginning of the Table of Ayaat Metadata -->"
-	echo "<p><table bgcolor="$table_bgcolor" border="5" bordercolor="$table_bordercolor" cellpadding="2" cellspacing="2" style="font-size:$TABLE_FONT_SIZE">"
-	echo "<thead bgcolor="$thead_bgcolor" align="center"><tr><td colspan="6"><b><span style="color:$table_pln_text">"
+	echo "<p><table bgcolor=\"$table_bgcolor\" border=\"5\" bordercolor=\"$table_bordercolor\" cellpadding=\"2\" cellspacing=\"2\" style=\"font-size:$TABLE_FONT_SIZE\">"
+	echo "<thead bgcolor=\"$thead_bgcolor\" align=\"center\"><tr><td colspan=\"6\"><b><span style=\"color: $table_pln_text\">"
 	echo "Metadata of the Current Âyah Being Played"
 	echo "</span></b></td></tr></thead>"
 	echo "    <tr>"
-	echo "      <th><span style="color:$table_pln_text">Unit<br>Name</span></th>"
-	echo "      <th><span style="color:$table_pln_text">Current<br>Unit<br>Number</span></th>"
-	echo "      <th><span style="color:$table_pln_text">Total.N°<br>of Āyāt<br>in Unit</span></th>"
-	echo "      <th><span style="color:$table_pln_text">Playing<br>Verse<br>Number:</span></th>"
-	echo "      <th><span style="color:$table_pln_text">Already<br>Played<br>Verses</span></th>"
-	echo "      <th><span style="color:$table_pln_text">Verses<br>to be<br>Played</span></th>"
+	echo "      <th><span style=\"color: $table_pln_text\">Unit<br>Name</span></th>"
+	echo "      <th><span style=\"color: $table_pln_text\">Current<br>Unit<br>Number</span></th>"
+	echo "      <th><span style=\"color: $table_pln_text\">Total.N°<br>of Āyāt<br>in Unit</span></th>"
+	echo "      <th><span style=\"color: $table_pln_text\">Playing<br>Verse<br>Number:</span></th>"
+	echo "      <th><span style=\"color: $table_pln_text\">Already<br>Played<br>Verses</span></th>"
+	echo "      <th><span style=\"color: $table_pln_text\">Verses<br>to be<br>Played</span></th>"
 	echo "    </tr>"
 	# Sûrah
 	echo "    <!-- Sûrah -->"
 	echo "    <tr>"
-	echo "      <td><span style="color:$table_pln_text">Sūrah</span></td>"
+	echo "      <td><span style=\"color: $table_pln_text\">Sūrah</span></td>"
 	# Surah Number [001-114]
 	echo "      <!-- Surah Number [001-114] -->"
-	echo -n "      <td><span style="color:$table_text_2">$surahNumber</span>"
-	echo -n "<span style="color:$table_pln_text">/</span>"
-	echo "<span style="color:$table_text_1">114</span></td>"
+	echo -n "      <td><span style=\"color: $table_text_2\">$surahNumber</span>"
+	echo -n "<span style=\"color: $table_pln_text\">/</span>"
+	echo "<span style=\"color: $table_text_1\">114</span></td>"
 	# number of verses of surah
 	echo "      <!-- number of verses of surah -->"
-	echo "      <td><span style="color:$table_text_4">$number_of_verses_of_surah</span></td>"
+	echo "      <td><span style=\"color: $table_text_4\">$number_of_verses_of_surah</span></td>"
 	# index_of_current_surah_elmt
 	echo "      <!-- index_of_current_surah_elmt -->"
-	echo -n "      <td><span style="color:$table_text_3">$index_of_current_surah_elmt</span>"
-	echo -n "<span style="color:$table_pln_text">/</span>"
-	echo "<span style="color:$table_text_4">$number_of_verses_of_surah</span></td>"
+	echo -n "      <td><span style=\"color: $table_text_3\">$index_of_current_surah_elmt</span>"
+	echo -n "<span style=\"color: $table_pln_text\">/</span>"
+	echo "<span style=\"color: $table_text_4\">$number_of_verses_of_surah</span></td>"
 	# already_played_ayaat_from_this_surah
 	echo "      <!-- already_played_ayaat_from_this_surah -->"
-	echo "      <td><span style="color:$table_text_2">$already_played_ayaat_from_this_surah</span></td>"
+	echo "      <td><span style=\"color: $table_text_2\">$already_played_ayaat_from_this_surah</span></td>"
 	# remaining_ayaat_in_this_surah
 	echo "      <!-- remaining_ayaat_in_this_surah -->"
-	echo "      <td><span style="color:$table_text_1">$remaining_ayaat_in_this_surah</span></td>"
+	echo "      <td><span style=\"color: $table_text_1\">$remaining_ayaat_in_this_surah</span></td>"
 	echo "    </tr>"
 	# Juz
 	echo "    <!-- Juz -->"
 	echo "    <tr>"
-	echo "      <td><span style="color:$table_pln_text">Juz</span></td>"
+	echo "      <td><span style=\"color: $table_pln_text\">Juz</span></td>"
 	# Juz number
 	echo "      <!-- Juz number -->"
-	echo -n "      <td><span style="color:$table_text_2">$juz_number</span>"
-	echo -n "<span style="color:$table_pln_text">/</span>"
-	echo "<span style="color:$table_text_1">30</span></td>"
+	echo -n "      <td><span style=\"color: $table_text_2\">$juz_number</span>"
+	echo -n "<span style=\"color: $table_pln_text\">/</span>"
+	echo "<span style=\"color: $table_text_1\">30</span></td>"
 	# number_of_verses_of_JUZ
 	echo "      <!-- number_of_verses_of_JUZ -->"
-	echo "      <td><span style="color:$table_text_4">$number_of_verses_of_JUZ</span></td>"
+	echo "      <td><span style=\"color: $table_text_4\">$number_of_verses_of_JUZ</span></td>"
 	# index_of_current_juz_elmt
 	echo "      <!-- index_of_current_juz_elmt -->"
-	echo -n "      <td><span style="color:$table_text_3">$index_of_current_juz_elmt</span>"
-	echo -n "<span style="color:$table_pln_text">/</span>"
-	echo "<span style="color:$table_text_4">$number_of_verses_of_JUZ</span></td>"
+	echo -n "      <td><span style=\"color: $table_text_3\">$index_of_current_juz_elmt</span>"
+	echo -n "<span style=\"color: $table_pln_text\">/</span>"
+	echo "<span style=\"color: $table_text_4\">$number_of_verses_of_JUZ</span></td>"
 	# already_played_ayaat_from_this_juz
 	echo "      <!-- already_played_ayaat_from_this_juz -->"
-	echo "      <td><span style="color:$table_text_2">$already_played_ayaat_from_this_juz</span></td>"
+	echo "      <td><span style=\"color: $table_text_2\">$already_played_ayaat_from_this_juz</span></td>"
 	# remaining_ayaat_in_this_juz
 	echo "      <!-- remaining_ayaat_in_this_juz -->"
-	echo "      <td><span style="color:$table_text_1">$remaining_ayaat_in_this_juz</span><br></td>"
+	echo "      <td><span style=\"color: $table_text_1\">$remaining_ayaat_in_this_juz</span><br></td>"
 	echo "    </tr>"
 	# Ḥizb
 	echo "    <!-- Ḥizb -->"
 	echo "    <tr>"
-	echo "      <td><span style="color:$table_pln_text">Ḥizb</span></td>"
+	echo "      <td><span style=\"color: $table_pln_text\">Ḥizb</span></td>"
 	# Hizb number
 	echo "      <!-- Hizb number -->"
-	echo -n "      <td><span style="color:$table_text_2">$hizb_number</span>"
-	echo -n "<span style="color:$table_pln_text">/</span>"
-	echo "<span style="color:$table_text_1">60</span></td>"
+	echo -n "      <td><span style=\"color: $table_text_2\">$hizb_number</span>"
+	echo -n "<span style=\"color: $table_pln_text\">/</span>"
+	echo "<span style=\"color: $table_text_1\">60</span></td>"
 	# number_of_verses_of_HIZB
 	echo "      <!-- number_of_verses_of_HIZB -->"
-	echo "      <td><span style="color:$table_text_4">$number_of_verses_of_HIZB</span></td>"
+	echo "      <td><span style=\"color: $table_text_4\">$number_of_verses_of_HIZB</span></td>"
 	# index_of_current_hizb_elmt
 	echo "      <!-- index_of_current_hizb_elmt -->"
-	echo -n "      <td><span style="color:$table_text_3">$index_of_current_hizb_elmt</span>"
-	echo -n "<span style="color:$table_pln_text">/</span>"
-	echo "<span style="color:$table_text_4">$number_of_verses_of_HIZB</span></td>"
+	echo -n "      <td><span style=\"color: $table_text_3\">$index_of_current_hizb_elmt</span>"
+	echo -n "<span style=\"color: $table_pln_text\">/</span>"
+	echo "<span style=\"color: $table_text_4\">$number_of_verses_of_HIZB</span></td>"
 	# already_played_ayaat_from_this_hizb
 	echo "      <!-- already_played_ayaat_from_this_hizb -->"
-	echo "      <td><span style="color:$table_text_2">$already_played_ayaat_from_this_hizb</span></td>"
+	echo "      <td><span style=\"color: $table_text_2\">$already_played_ayaat_from_this_hizb</span></td>"
 	# remaining_ayaat_in_this_hizb
 	echo "      <!-- remaining_ayaat_in_this_hizb -->"
-	echo "      <td><span style="color:$table_text_1">$remaining_ayaat_in_this_hizb</span><br></td>"
+	echo "      <td><span style=\"color: $table_text_1\">$remaining_ayaat_in_this_hizb</span><br></td>"
 	echo "    </tr>"
 	# Rub-ul-Ḥizb
 	echo "    <!-- Rub-ul-Ḥizb -->"
 	echo "    <tr>"
-	echo "      <td><span style="color:$table_pln_text">Ḥizb¼</span></td>"
+	echo "      <td><span style=\"color: $table_pln_text\">Ḥizb¼</span></td>"
 	# Rub-ul-Hizb
 	echo "      <!-- Rub-ul-Hizb -->"
-	echo -n "      <td><span style="color:$table_text_2">$roubAlHizbNumber</span>"
-	echo -n "<span style="color:$table_pln_text">/</span>"
-	echo "<span style="color:$table_text_1">240</span></td>"
+	echo -n "      <td><span style=\"color: $table_text_2\">$roubAlHizbNumber</span>"
+	echo -n "<span style=\"color: $table_pln_text\">/</span>"
+	echo "<span style=\"color: $table_text_1\">240</span></td>"
 	# number_of_verses_of_RUB_UL_HIZB
 	echo "      <!-- number_of_verses_of_RUB_UL_HIZB -->"
-	echo "      <td><span style="color:$table_text_4">$number_of_verses_of_RUB_UL_HIZB</span></td>"
+	echo "      <td><span style=\"color: $table_text_4\">$number_of_verses_of_RUB_UL_HIZB</span></td>"
 	# index_of_current_hizb_rub_elmt
 	echo "      <!-- index_of_current_hizb_rub_elmt -->"
-	echo -n "      <td><span style="color:$table_text_3">$index_of_current_hizb_rub_elmt</span>"
-	echo -n "<span style="color:$table_pln_text">/</span>"
-	echo "<span style="color:$table_text_4">$number_of_verses_of_RUB_UL_HIZB</span></td>"
+	echo -n "      <td><span style=\"color: $table_text_3\">$index_of_current_hizb_rub_elmt</span>"
+	echo -n "<span style=\"color: $table_pln_text\">/</span>"
+	echo "<span style=\"color: $table_text_4\">$number_of_verses_of_RUB_UL_HIZB</span></td>"
 	# already_played_ayaat_from_this_hizb_rub
 	echo "      <!-- already_played_ayaat_from_this_hizb_rub -->"
-	echo "      <td><span style="color:$table_text_2">$already_played_ayaat_from_this_hizb_rub</span></td>"
+	echo "      <td><span style=\"color: $table_text_2\">$already_played_ayaat_from_this_hizb_rub</span></td>"
 	# remaining_ayaat_in_this_hizb_rub
 	echo "      <!-- remaining_ayaat_in_this_hizb_rub -->"
-	echo "      <td><span style="color:$table_text_1">$remaining_ayaat_in_this_hizb_rub</span><br></td>"
+	echo "      <td><span style=\"color: $table_text_1\">$remaining_ayaat_in_this_hizb_rub</span><br></td>"
 	echo "    </tr>"
 	# Page
 	echo "    <!-- Page -->"
 	echo "    <tr>"
-	echo "      <td><span style="color:$table_pln_text">Page</span></td>"
+	echo "      <td><span style=\"color: $table_pln_text\">Page</span></td>"
 	# Page number
 	echo "      <!-- Page number -->"
-	echo -n "      <td><span style="color:$table_text_2">$page_number</span>"
-	echo -n "<span style="color:$table_pln_text">/</span>"
-	echo "<span style="color:$table_text_1">604</span></td>"
+	echo -n "      <td><span style=\"color: $table_text_2\">$current_page_number</span>"
+	echo -n "<span style=\"color: $table_pln_text\">/</span>"
+	echo "<span style=\"color: $table_text_1\">604</span></td>"
 	# number_of_verses_of_PAGE_NUMBER
 	echo "      <!-- number_of_verses_of_PAGE_NUMBER -->"
-	echo "      <td><span style="color:$table_text_4">$number_of_verses_of_PAGE_NUMBER</span></td>"
+	echo "      <td><span style=\"color: $table_text_4\">$number_of_verses_of_PAGE_NUMBER</span></td>"
 	# index_of_current_page_elmt
 	echo "      <!-- index_of_current_page_elmt -->"
-	echo -n "      <td><span style="color:$table_text_3">$index_of_current_page_elmt</span>"
-	echo -n "<span style="color:$table_pln_text">/</span>"
-	echo "<span style="color:$table_text_4">$number_of_verses_of_PAGE_NUMBER</span></td>"
+	echo -n "      <td><span style=\"color: $table_text_3\">$index_of_current_page_elmt</span>"
+	echo -n "<span style=\"color: $table_pln_text\">/</span>"
+	echo "<span style=\"color: $table_text_4\">$number_of_verses_of_PAGE_NUMBER</span></td>"
 	# already_played_ayaat_from_this_page
 	echo "      <!-- already_played_ayaat_from_this_page -->"
-	echo "      <td><span style="color:$table_text_2">$already_played_ayaat_from_this_page</span></td>"
+	echo "      <td><span style=\"color: $table_text_2\">$already_played_ayaat_from_this_page</span></td>"
 	# remaining_ayaat_in_this_page
 	echo "      <!-- remaining_ayaat_in_this_page -->"
-	echo "      <td><span style="color:$table_text_1">$remaining_ayaat_in_this_page</span></td>"
+	echo "      <td><span style=\"color: $table_text_1\">$remaining_ayaat_in_this_page</span></td>"
 	echo "    </tr>"
 	echo "</table></p>"
 
 	# Table giving PAGE information
 	echo "<!-- Table giving page information -->"
-	echo "<p><table bgcolor="$table_bgcolor" border="3" bordercolor="$table_bordercolor" cellpadding="10" cellspacing="10" style="font-size:$TABLE_FONT_SIZE">"
-	echo "<thead bgcolor="$thead_2_bgcolor" align="center">"
-	echo "<tr><td colspan="2"><b>"
-	echo "<span style="color:$table_pln_text">"
+	echo "<p><table bgcolor=\"$table_bgcolor\" border=\"3\" bordercolor=\"$table_bordercolor\" cellpadding=\"10\" cellspacing=\"10\" style=\"font-size:$TABLE_FONT_SIZE\">"
+	echo "<thead bgcolor=\"$thead_2_bgcolor\" align=\"center\">"
+	echo "<tr><td colspan=\"2\"><b>"
+	echo "<span style=\"color: $table_pln_text\">"
 	echo "Pages of Sûrah Information"
 	echo "</span></b></td></tr></thead>"
 	# Number of Pages of this Sûrah
 	echo "<!-- total_number_of_pages_of_surah -->"
 	echo "<tr>"
-	echo "  <td><span style="color:$table_pln_text">Number of Pages of this Sûrah</span></td>"
+	echo "  <td><span style=\"color: $table_pln_text\">Number of Pages of this Sûrah</span></td>"
 	echo "  "
-	echo "  <td><span style="color:$table_text_5">$total_number_of_pages_of_surah</span></td>"
+	echo "  <td><span style=\"color: $table_text_5\">$total_number_of_pages_of_surah</span></td>"
 	echo "</tr>"
 	echo ""
 	# Current Page of Sûrah
 	echo "<!-- already played pages from surah -->"
 	echo "<tr>"
-	echo "  <td><span style="color:$table_pln_text">Current Page of Sûrah</span></td>"
+	echo "  <td><span style=\"color: $table_pln_text\">Current Page of Sûrah</span></td>"
 	echo ""
-	echo "  <td><span style="color:$table_text_5">$current_page_number/$quran_total_num_of_pages</span></td>"
+	echo "  <td><span style=\"color: $table_text_5\">$current_page_number/$quran_total_num_of_pages</span></td>"
 	echo "</tr>"
 	echo ""
 	# Already Played Pages from Sûrah
 	echo "<!-- already played pages from surah -->"
 	echo "<tr>"
-	echo "  <td><span style="color:$table_pln_text">Already Played Pages from Sûrah</span></td>"
+	echo "  <td><span style=\"color: $table_pln_text\">Already Played Pages from Sûrah</span></td>"
 	echo ""
-	echo "  <td><span style="color:$table_text_5">$previous_number_of_pages_of_surah</span></td>"
+	echo "  <td><span style=\"color: $table_text_5\">$previous_number_of_pages_of_surah</span></td>"
 	echo "</tr>"
 	echo ""	
 	# Remaining Pages in Sûrah
 	echo "<!-- yet to be played pages from surah -->"
 	echo "<tr>"
-	echo "  <td><span style="color:$table_pln_text">Remaining Pages in Sûrah</span></td>"
+	echo "  <td><span style=\"color: $table_pln_text\">Remaining Pages in Sûrah</span></td>"
 	echo "  "
-	echo "  <td><span style="color:$table_text_5">$remaining_number_of_pages_of_surah</span>></td>"
+	echo "  <td><span style=\"color: $table_text_5\">$remaining_number_of_pages_of_surah</span>></td>"
 	echo "</tr>"
 	echo "</table></p>"
 	echo ""

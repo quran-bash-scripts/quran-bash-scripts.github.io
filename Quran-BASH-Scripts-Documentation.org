@@ -224,8 +224,10 @@ en.al-quran-info-transliteration.trans.zip
 * qap-audio-player.sh
   Please, if you have not already read the *Important Note N°2*, go up and do so. This is vital.
 
+  Please also note that your Quran audio files have to be converted into *.oga. The translation audio files (French: Hamidullah; English: Sahih Int.) have to be in the *.opus extension. Note that the *.oga and the *.opus all use the libopus codec. In a future version the program will give the user to possibility to choose a different format/extension in Sha Allah.
+
 ** SYNOPSIS
-   qap-audio-player.sh -a|--ayaat verse(s) -s|--suwar sûrah(s) -m|--mpv-speed PlaybackSpeed -l|--mpv-loop LoopNumber -f|--file-loop LoopNumber -g|--groupLoop LoopNumber -p|--play-trans TranslationID --r|--reset-eta (takes no option) -J|--juz JuzNumber -H|--hizb HizbNumber -R|--rub-ul-hizb RubUlHizbNumber-P|--page-number PageNumber -o|--output-quran-html-root WhereToCreateQuran.html -q|--hifz-ul-quran ActivateHifzMode -L|--playlist-file-root WhereToSearchForPlaylist -e|--extension-of-audios QuranAudioFilesExtension -G|--generate-playlist QuranFilesRoot --ara-font-size size --lat-font-size size --metadata-font-size size --table-font-size size --system-font-name FontName --user-font-file FullPathToFontFile -h|--help (takes no option). All the following take no option also: -k|--compact-table --eng-audio --fra-audio --no-ara-txt --translit --eng-txt-sahih --eng-txt-hilali-khan --fra-txt-hamid
+   qap-audio-player.sh -a|--ayaat verse(s) -s|--suwar sûrah(s) -m|--mpv-speed PlaybackSpeed -l|--mpv-loop LoopNumber -f|--file-loop LoopNumber -g|--groupLoop LoopNumber -p|--play-trans TranslationID --r|--reset-eta (takes no option) -J|--juz JuzNumber -H|--hizb HizbNumber -R|--rub-ul-hizb RubUlHizbNumber-P|--page-number PageNumber -o|--output-quran-html-root WhereToCreateQuran.html -q|--hifz-ul-quran ActivateHifzMode -L|--playlist-file-root WhereToSearchForPlaylist -e|--extension-of-audios QuranAudioFilesExtension -G|--generate-playlist QuranFilesRoot --ara-font-size size --lat-font-size size --metadata-font-size size --table-font-size size --system-font-name FontName --user-font-file FullPathToFontFile -h|--help (takes no option). All the following take no option also: -k|--compact-table --eng-audio --fra-audio --no-ara-txt --translit --eng-txt-sahih --eng-txt-hilali-khan --fra-txt-hamid --no-helper-audios-fra --no-helper-audios-eng
 
 
 ** DESCRIPTION
@@ -330,6 +332,9 @@ en.al-quran-info-transliteration.trans.zip
    --fra-txt-hamid show Muhammad Hamidullah french verse interpretation on the command line and write it also to output html file
 
    -h|--help will display this help message.
+
+   --no-helper-audios-fra do not play the helper audios (french version)
+   --no-helper-audios-eng do not play the helper audios (english version)
 	
    Most of the above options have default values.
 	 
@@ -359,6 +364,308 @@ en.al-quran-info-transliteration.trans.zip
    Note that the =termux-apis= package is specific to Android and is not available for GNU/Linux. This package is used to display some information on the Android notification bar.
 
 
+** CREATING THE QURAN FOLDER
+   This is the folder containg the following 8 files representing verse number 1 of Sûrah al-Fâtiḥa:
+
+ 1. 001001.oga
+ 2. 001001-En.opus
+ 3. 001001-Fr.opus
+ 4. 001001.quran-uthmani.txt
+ 5. 001001.transliteration.txt
+ 6. 001001.sahih.txt
+ 7. 001001.hamidullah.txt
+ 8. 001001.hilali.txt
+
+    Let's see how to prepare such a folder:
+
+    To get started, create a folder named =qap-hudhaify-fra-eng-60-hizb= for example, if you are preparing Quran folder using Hudhaify as your Qâri.
+
+#+BEGIN_SRC bash
+  # Preliminary steps
+  # Create the qap-hudhaify-fra-eng-60-hizb folder
+  # Note that if you are using sudeis as you qari
+  # you should replace 'hudhaify' with 'sudeis'
+  mkdir ./qap-hudhaify-fra-eng-60-hizb
+
+  # Change into it
+  cd qap-hudhaify-fra-eng-60-hizb
+#+END_SRC
+
+
+*PART-1*
+
+*Step-1* Download hudhaifi-64kbps-offline.recit.zip from the Zekr.org site extract it here:
+
+#+BEGIN_SRC bash
+  7z -aoa x hudhaifi-64kbps-offline.recit.zip
+#+END_SRC
+
+*Step-2* get into the newly extracted folder:
+
+#+BEGIN_SRC bash
+  cd hudhaifi-64kbps-offline
+#+END_SRC
+
+*Step-3* removing the basmala files: they are the files that end in *000.mp3 in each Sûrah folder.
+
+#+BEGIN_SRC bash
+  # If you have GNU-Parallel do this
+  find . -name '*000.mp3' | parallel --line-buffer --jobs=32 'rm -rfv {}'
+
+  # This should work if you are on any decent GNU/Linux distro
+  find . -name '*000.mp3' -exec bash -c 'rm -rfv "$0"' {} \;
+#+END_SRC
+
+*Step-4* remove audhubillah.mp3 and bismillah.mp3:
+
+#+BEGIN_SRC bash
+  find . -name 'audhubillah.mp3' -exec bash -c 'rm -rfv "$0"' {} \;
+  find . -name 'bismillah.mp3' -exec bash -c 'rm -rfv "$0"' {} \;
+#+END_SRC
+
+
+*Step-5* converting the mp3 files into *.oga. For this you need ffmpeg compiled with libopus support.
+
+#+BEGIN_SRC bash
+  find . -name '*.mp3' | parallel --bar \
+  'ffmpeg -i {} -vn -c:a libopus -b:a 24k -f oga {.}.oga && rm -rfv {}'
+
+  # explanation:
+  # -i {} -- a placeholder for the input *.mp3 file
+  # -vn -- remove any video stream, cover image, etc.
+  # -c:a -- use libopus as our audio codec
+  # -b:a -- use a bitrate of 24kbps
+  # -f -- oga use *.oga as the output format
+  # {.}.oga -- replace the *.mp3 extension with *.oga
+  # && rm -rfv {} -- remove *.mp3 file after conversion
+#+END_SRC
+
+*Step-6* Move all the files into the toplevel folder which is hudhaifi-64kbps-offline and delete the suwar folders
+
+#+BEGIN_SRC bash
+  for folder in *; do if [ -d $folder ]; \
+  then mv -vf $folder/* . && rm -rfv $folder; fi; done
+#+END_SRC
+
+*Step-7* get out
+
+#+BEGIN_SRC bash
+  cd ..
+
+  # we should normally be in qap-hudhaify-fra-eng-60-hizb
+#+END_SRC
+
+
+*PART-2*
+
+Download walk-64kbps-offline.recit.zip from zekr.org extract it
+
+#+BEGIN_SRC bash
+  7z -aoa x walk-64kbps-offline.recit.zip
+#+END_SRC
+
+From here please follow steps 1 through 7 to prepare walk-64kbps-offline.zip the way we did for the Arabic Quran =hudhaifi-64kbps-offline.recit.zip=
+
+#+BEGIN_SRC bash
+  # Please change back to 'walk-64kbps-offline' and do this:
+  find . -name '*.oga' | parallel --bar 'mv -vf {} {.}-En.opus'
+
+  # or if you don't have GNU-Parallel
+  find . -name '*.oga' -exec bash -c 'mv -vf "$0" "${0%.}-En.opus"' {} \;
+
+  # finally go back to qap-hudhaify-fra-eng-60-hizb
+  cd ..
+#+END_SRC
+
+
+*PART-3*
+
+Download FrLeclerc-128kbps-offline.recit.zip from my google drive account using the link below and extract it
+
+*Google Drive link for FrLeclerc-128kbps-offline.recit.zip:*
+
+[[_PLACE_HOLDER_FOR_THE_LINK_][_NAME_OF_THE_FILE]-]
+
+Please not that the link will be place above. Up to now the file has not been uploaded yet. Please, patience.
+
+#+BEGIN_SRC bash
+  7z -aoa x FrLeclerc-128kbps-offline.recit.zip
+#+END_SRC
+
+From here please follow steps 1 through 7 to prepare FrLeclerc-128kbps-offline.recit.zip the way we did for the Arabic Quran =hudhaifi-64kbps-offline.recit.zip=
+
+#+BEGIN_SRC bash
+  # Please change back to 'FrLeclerc-128kbps-offline' and do this:
+  find . -name '*.oga' | parallel --bar 'mv -vf {} {.}-Fr.opus'
+
+  # or if you don't have GNU-Parallel
+  find . -name '*.oga' -exec bash -c 'mv -vf "$0" "${0%.}-Fr.opus"' {} \;
+
+  # finally go back to qap-hudhaify-fra-eng-60-hizb
+  cd ..
+#+END_SRC
+
+
+*PART-4*
+
+Preparing the following files:
+
+1) quran-uthmani.txt
+2) transliteration.txt
+3) sahih.txt
+4) hamidullah.txt
+5) hilali.txt
+
+Note that we will turn each of the above translation  file into 6236 text files each corresponding to one âyah of the Quran and we know the Quran has 6236 âyât
+
+Download the following files below and put them all in the same directory, for example in 'qap-hudhaify-fra-eng-60-hizb':
+
+   [[file:downloads/Translations-to-Divide-into-6236-TXT-Files.7z][Translations-to-Divide-into-6236-TXT-Files.7z]]
+
+   [[file:programs/uncompressed/Divide-Trans-Text-Files-to-6236-Ayat-TXT-Files/div-trans-textFile-to-6236-TXT-Files.sh][div-trans-textFile-to-6236-TXT-Files.sh]]
+
+   [[file:programs/uncompressed/Divide-Trans-Text-Files-to-6236-Ayat-TXT-Files/01-Quran-Verses-Line-Numbers.txt][01-Quran-Verses-Line-Numbers.txt]]
+
+   [[file:programs/uncompressed/Divide-Trans-Text-Files-to-6236-Ayat-TXT-Files/02-VerseByVerse-Quran-Ayat-List.txt][02-VerseByVerse-Quran-Ayat-List.txt]]
+
+
+After extracting =Translations-to-Divide-into-6236-TXT-Files.7z= you should get the following files:
+
+ * quran-uthmani.trans.zekr
+ * en.hilali.trans.zekr
+ * fr.hamidullah.trans.zekr
+ * en.sahih.trans.zekr
+ * transliteration.trans.zekr
+
+Note that =div-trans-textFile-to-6236-TXT-Files.sh= if the actual program that we will run in the folder containing all of the above files, and it will create the 6236 txt files for each input file and it puts them into directories of their own.
+
+#+BEGIN_SRC bash
+  bash ./div-trans-textFile-to-6236-TXT-Files.sh
+#+END_SRC
+
+If everything is fine, we should end up with these:
+
+ * en.hilali
+ * en.sahih
+ * fr.hamidullah
+ * quran-uthmani
+ * transliteration
+
+They these are all folders containing from 6236 files to 6266. Why 6266 ? Because at the end of some files appear some lines pertaining to licencing.
+
+Now let us move the contents of all these files into a single directory:
+
+ 1. hudhaifi-64kbps-offline
+ 2. walk-64kbps-offline
+ 3. FrLeclerc-128kbps-offline
+ 4. en.hilali
+ 5. en.sahih
+ 6. fr.hamidullah
+ 7. quran-uthmani
+ 8. transliteration
+
+#+BEGIN_SRC bash
+  # make sure we are in "qap-hudhaify-fra-eng-60-hizb"
+  mv en.hilali/*.txt .
+  mv en.sahih/*.txt .
+  mv fr.hamidullah/*.txt .
+  mv quran-uthmani/*.txt .
+  mv transliteration/*.txt .
+  mv hudhaifi-64kbps-offline/*.oga .
+  mv walk-64kbps-offline/*-En.opus .
+  mv FrLeclerc-128kbps-offline/*-Fr.opus .
+#+END_SRC
+
+
+*PART-5*
+
+Note that if you follow everthing correctly you should end up with more than 49888 files within the =qap-hudhaify-fra-eng-60-hizb= directory. We will divide all of those files in Sha Allah into 60 folders, each corresponding to one Ḥizb. For that purpose, download the following program specifically modified for this purpose:
+
+[[file:programs/uncompressed/divide-qap-fra-eng-to-60-hizb.sh][divide-qap-fra-eng-to-60-hizb.sh]]
+
+and run it within the =qap-hudhaify-fra-eng-60-hizb= folder as follows:
+
+#+BEGIN_SRC bash
+  bash ./divide-qap-fra-eng-to-60-hizb.sh
+#+END_SRC
+
+If you did everything as I said, you should end up with 60 folders within the =qap-hudhaify-fra-eng-60-hizb= folder, plus some additional files. Get rid of these additional files like this:
+
+#+BEGIN_SRC bash
+  # delete the *.zip files
+  rm -rfv hudhaifi-64kbps-offline.recit.zip \
+     recitation.properties \
+     walk-64kbps-offline.recit.zip \
+     FrLeclerc-128kbps-offline.recit.zip
+
+  # backup the *.trans.zekr files as well as the script
+  # used for the txt files generation
+  mkdir ./translation-division-stuff
+
+  mv -v 01-Quran-Verses-Line-Numbers.txt \
+     02-VerseByVerse-Quran-Ayat-List.txt \
+     div-trans-textFile-to-6236-TXT-Files.sh \
+     en.hilali.trans.zekr en.sahih.trans.zekr \
+     fr.hamidullah.trans.zekr \
+     quran-uthmani.trans.zekr \
+     transliteration.trans.zekr \
+     divide-qap-fra-eng-to-60-hizb.sh \
+     translation-division-stuff
+
+  7za a -t7z -mx=3 -ms=on \
+      translation-division-stuff.7z translation-division-stuff
+  rm -rfv translation-division-stuff
+  mv -vf translation-division-stuff.7z ..
+
+  # get rid of the empty folders - folders where the 6236
+  # files for each translation file, were generated.
+  rm -rfv en.hilali \
+     en.sahih \
+     fr.hamidullah \
+     hudhaifi-64kbps-offline \
+     walk-64kbps-offline \
+     FrLeclerc-128kbps-offline \
+     quran-uthmani \
+     transliteration
+
+  # get rid of the additional text files - files that
+  # contain licencing information as pointed out above.
+  rm -rfv 6237.quran-uthmani.txt \
+     6237.transliteration.txt \
+     6238.quran-uthmani.txt \
+     6239.quran-uthmani.txt \
+     6240.quran-uthmani.txt \
+     6241.quran-uthmani.txt \
+     6242.quran-uthmani.txt \
+     6243.quran-uthmani.txt \
+     6244.quran-uthmani.txt \
+     6245.quran-uthmani.txt \
+     6246.quran-uthmani.txt \
+     6247.quran-uthmani.txt \
+     6248.quran-uthmani.txt \
+     6249.quran-uthmani.txt \
+     6250.quran-uthmani.txt \
+     6251.quran-uthmani.txt \
+     6252.quran-uthmani.txt \
+     6253.quran-uthmani.txt \
+     6254.quran-uthmani.txt \
+     6255.quran-uthmani.txt \
+     6256.quran-uthmani.txt \
+     6257.quran-uthmani.txt \
+     6258.quran-uthmani.txt \
+     6259.quran-uthmani.txt \
+     6260.quran-uthmani.txt \
+     6261.quran-uthmani.txt \
+     6262.quran-uthmani.txt \
+     6263.quran-uthmani.txt \
+     6264.quran-uthmani.txt \
+     6265.quran-uthmani.txt \
+     6266.quran-uthmani.txt
+
+#+END_SRC
+
+
+
 ** CREATING THE PLAYLIST FILES
    To generate the playlist files, you need 6236 Quran audio files in a directory. It if recommended that you seperate the 6236 verses into the units that you like. We call unit any of the following: Sûrah, Juz, Ḥizb, Rub-`ul-Ḥizb and Page-Number.
    
@@ -382,29 +689,37 @@ en.al-quran-info-transliteration.trans.zip
 
    #+END_SRC
 
-   If everthing is fine, call the script as follows:
+   If everything is fine, call the script as follows:
 
-   =qap-audio-player.sh -G QuranFilesRoot AudioFilesExtension=
+   =qap-audio-player.sh -e ext -G QuranFilesRoot=
 
    or
 
-   =qap-audio-player.sh --generate-playlist QuranFilesRoot AudioFilesExtension=
+   =qap-audio-player.sh --extension-of-audios ext --generate-playlist QuranFilesRoot=
+
+   *Please note that it is vital that option -e|--extension-of-audios comes BEFORE -G|--generate-playlist otherwise the program won't parse the -e|--extension-of-audios option*
 
    For _example:_
 
-   =qap-audio-player.sh -G /home/abu-dju/Verse-By-Verse-Quran-Audio-File/Hudhaify-20k-Hafs oga=
+   =qap-audio-player.sh -e oga -G /home/abu-dju/Verse-By-Verse-Quran-Audio-File/Hudhaify-20k-Hafs=
+
+   or
+
+   =qap-audio-player.sh ---extension-of-audios oga --generate-playlist /home/abu-dju/Verse-By-Verse-Quran-Audio-File/Hudhaify-20k-Hafs=
 
    The Playlist file will be generated in the following directory:
    
    $SCRIPT-ROOT-DIR/Playlist/ -- This is the root directory from where the script is being called by the user. By default this is where the script looks for Playlist files each time it starts up. If the Playlist sub-directory does not exist it will look for Playlist files in $HOME/.qap/Playlists
 
    The extension of the Playlist files is: =plst.6236.lines.7z= -- It needs to be compressed so that it be well-preserved.
-   
+
 
 * rq-ayat-3x-each-then-1.sh
 
+  Please also note that your Quran audio files have to be converted into *.oga. The translation audio files (French: Hamidullah; English: Sahih Int.) have to be in the *.opus extension. Note that the *.oga and the *.opus all use the libopus codec. In a future version the program will give the user to possibility to choose a different format/extension in Sha Allah.
+
 ** SYNOPSYS
-   `basename $0` -m|--mpv-speed playback-speed -l--mpv-loop mpv-loop-number -f|--file-loop each-file-loop-number -e|--extension-of-audios QuranAudioFilesExtension -G|--generate-playlist QuranFilesRoot -C|--create-fake-audios NumberOfFakeAudiosPerFolder --ara-font-size size --lat-font-size size --metadata-font-size size --table-font-size size --system-font-name FontName --user-font-file FullPathToFontFile. All the following take no option also: -k|--compact-table --eng-audio --fra-audio --no-ara-txt --translit --eng-txt-sahih --eng-txt-hilali-khan --fra-txt-hamid -h|--help
+   `basename $0` -m|--mpv-speed playback-speed -l--mpv-loop mpv-loop-number -f|--file-loop each-file-loop-number -e|--extension-of-audios QuranAudioFilesExtension -G|--generate-playlist QuranFilesRoot -C|--create-fake-audios NumberOfFakeAudiosPerFolder --ara-font-size size --lat-font-size size --metadata-font-size size --table-font-size size --system-font-name FontName --user-font-file FullPathToFontFile. All the following take no option also: -k|--compact-table --eng-audio --fra-audio --no-ara-txt --translit --eng-txt-sahih --eng-txt-hilali-khan --fra-txt-hamid --no-helper-audios-fra --no-helper-audios-eng  -h|--help
 
 
 ** DESCRIPTION
@@ -463,7 +778,7 @@ en.al-quran-info-transliteration.trans.zip
    *RECITE_LAST_LIST
    You need to create these files in case an error happened that prevents the audios to be played in the correct order. i.e., the program skips some verses - or any other reason that makes you want to do this.
    This parameter takes as the sole option, either the number '1', or any other number. '1' makes the program generate the first stage files: RECITE_ONCE_LIST and RECITE_THRICE_LIST files. Any other number, other than '1', will make the program generate RECITE_LAST_LIST file.
-   h
+
    --ara-font-size provide a size for use with the arabic verses/tafsirs
    --lat-font-size font size for the latin text (translations, tafsirs)
    --metadata-font-size a size to be used when displaying metadata information (elapsed time, number of verses of Sûrah...)
@@ -485,7 +800,10 @@ en.al-quran-info-transliteration.trans.zip
    --eng-txt-hilali-khan show Taqi-ud-Deen al-Hilali & Mushin Khan english verse interpretation on the command line and write it also to output html file
 
    --fra-txt-hamid show Muhammad Hamidullah french verse interpretation on the command line and write it also to output html file
- 
+   --no-helper-audios-fra do not play the helper audios (french version)
+   --no-helper-audios-eng do not play the helper audios (english version)
+
+   -h|--help displays this help message 
 
 ** EXAMPLES
    rq-ayat-3x-each-then-1.sh -m|--mpv-speed 1.8 -l|--mpv-loop 6 -f|--file-loop 2
@@ -698,8 +1016,28 @@ en.al-quran-info-transliteration.trans.zip
 ** Playlist Files + Audios
    Coming soon in Sha Allah.
 
-** Translation Files Divided into 6236 TXT Files
-   Coming soon in Sha Allah.
+** Translation Files Prepared for Division into 6236 TXT Files
+   *Download this single archive containing:*
+
+   [[file:downloads/Translations-to-Divide-into-6236-TXT-Files.7z][Translations-to-Divide-into-6236-TXT-Files.7z]]
+
+ + quran-uthmani.trans.zekr
+ + en.hilali.trans.zekr
+ + fr.hamidullah.trans.zekr
+ + en.sahih.trans.zekr
+ + transliteration.trans.zekr
+
+** Translation Files Already Divided into 6236 TXT Files
+   Download and extract this 7z archives [[file:downloads/Already-Divided-Translations-into-6236-TXT-Files.7z][Already-Divided-Translations-into-6236-TXT-Files.7z]]
+
+   And you will get the following folders, each containing 6236 =*.txt= files; one file for each verse of the Quran.
+
+   1) quran-uthmani
+   2) en.hilali
+   3) fr.hamidullah
+   4) en.sahih
+   5) transliteration
+
 
 ** Scripts that Divide the Quran 6236 Audio Files into Various Units
    Please download the following archive and extract it with =7zip= and you will get the whole set of scripts that divide your Quran 6236 audio files into folders representing various units of the Quran, i.e., Sûrah, Juz, Hizb etc.
