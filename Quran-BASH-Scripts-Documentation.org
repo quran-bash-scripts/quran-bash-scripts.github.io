@@ -719,7 +719,7 @@ If you did everything as I said, you should end up with 60 folders within the =q
   Please also note that your Quran audio files have to be converted into *.oga. The translation audio files (French: Hamidullah; English: Sahih Int.) have to be in the *.opus extension. Note that the *.oga and the *.opus all use the libopus codec. In a future version the program will give the user to possibility to choose a different format/extension in Sha Allah.
 
 ** SYNOPSYS
-   `basename $0` -m|--mpv-speed playback-speed -l--mpv-loop mpv-loop-number -f|--file-loop each-file-loop-number -e|--extension-of-audios QuranAudioFilesExtension -G|--generate-playlist QuranFilesRoot -C|--create-fake-audios NumberOfFakeAudiosPerFolder --ara-font-size size --lat-font-size size --metadata-font-size size --table-font-size size --system-font-name FontName --user-font-file FullPathToFontFile. All the following take no option also: -k|--compact-table --eng-audio --fra-audio --no-ara-txt --translit --eng-txt-sahih --eng-txt-hilali-khan --fra-txt-hamid --no-helper-audios-fra --no-helper-audios-eng  -h|--help
+   rq-ayat-3x-each-then-1.sh -m|--mpv-speed playback-speed -l--mpv-loop mpv-loop-number -f|--file-loop each-file-loop-number -e|--extension-of-audios QuranAudioFilesExtension -G|--generate-playlist QuranFilesRoot -C|--create-fake-audios NumberOfFakeAudiosPerFolder --ara-font-size size --lat-font-size size --metadata-font-size size --table-font-size size --system-font-name FontName --user-font-file FullPathToFontFile. All the following take no option also: -k|--compact-table --eng-audio --fra-audio --no-ara-txt --translit --eng-txt-sahih --eng-txt-hilali-khan --fra-txt-hamid --no-helper-audios-fra --no-helper-audios-eng  -h|--help
 
 
 ** DESCRIPTION
