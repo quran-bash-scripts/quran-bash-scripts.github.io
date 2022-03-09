@@ -13785,13 +13785,13 @@ necessitates_sadjdah_or_not(){
     case $file in
 	007206 | 013015 | 016050 | 017109 | 019058 | 022018 | 022077 | 025060 | 027026 | 032015 | 038024 | 041038 | 053062 | 084021 | 096019 )
             sadjdah="Yes ۩"
-	    #mpv --vid=no --msg-level=all=no --speed 1.0 \
-		#"$thisScriptRootDir/helper_audios/sujud-at-tilawa-1.oga"
-	    # printf "${sujud_at_tilawa_1}" | base64 -d | mpv --vid=no --msg-level=all=no --speed 1.0 - 
+	    #mpv --vid=no --msg-level=all=no --speed=1.0 \
+		#"$thisScriptRootDir/helper_audios/sujud-at-tilawa-1.oga" 2> /dev/null
+	    # printf "${sujud_at_tilawa_1}" | base64 -d | mpv --vid=no --msg-level=all=no --speed=1.0 - 2> /dev/null
 	    
-	    # mpv --vid=no --msg-level=all=no --speed 1.0 \
-		#"$thisScriptRootDir/helper_audios/sujud-at-tilawa-2.oga"
-	    # printf "${sujud_at_tilawa_2}" | base64 -d | mpv --vid=no --msg-level=all=no --speed 1.0 - 
+	    # mpv --vid=no --msg-level=all=no --speed=1.0 \
+		#"$thisScriptRootDir/helper_audios/sujud-at-tilawa-2.oga" 2> /dev/null
+	    # printf "${sujud_at_tilawa_2}" | base64 -d | mpv --vid=no --msg-level=all=no --speed=1.0 - 2> /dev/null
 
 	    # Check it is installed
 	    type termux-vibrate >/dev/null 2>&1 && {
@@ -35898,8 +35898,8 @@ esac
              106001 | 107001 | 108001 | 109001 | 110001 | \
              111001 | 112001 | 113001 | 114001 )
 	     
-	     #mpv --vid=no --msg-level=all=no --speed 1.75 #"$thisScriptRootDir/helper_audios/bismillah.oga"
-	     printf "${bismillah}" | base64 -d | mpv --vid=no --msg-level=all=no --speed 1.75 - 
+	     #mpv --vid=no --msg-level=all=no --speed=1.75 #"$thisScriptRootDir/helper_audios/bismillah.oga" 2> /dev/null
+	     printf "${bismillah}" | base64 -d | mpv --vid=no --msg-level=all=no --speed=1.75 - 2> /dev/null
              ;;
      esac
  }
@@ -36840,18 +36840,18 @@ get_AyahMetadata_displayThemOnCLI_rq_3_then_1(){
      
      echo; echo -e "${BG_WHITE_FG_BLACK}Resuming a previously saved playback session...${NC}"
      
-     #mpv --vid=no --msg-level=all=no --speed 1.6 \
+     #mpv --vid=no --msg-level=all=no --speed=1.6 \
 	 #"$thisScriptRootDir/helper_audios/Resuming a previously saved playback session.ogg" \
-	 #"$thisScriptRootDir/helper_audios/Resuming a previously saved playback session_Fra.ogg"; echo
+	 #"$thisScriptRootDir/helper_audios/Resuming a previously saved playback session_Fra.ogg" 2> /dev/null; echo
 
      if [[ $NO_HELPER_AUDIOS_FRA == "FALSE" ]]
      then
-	 printf "${launch_saved_session_Fra}" | base64 -d | mpv --vid=no --msg-level=all=no --speed 1.6 - 
+	 printf "${launch_saved_session_Fra}" | base64 -d | mpv --vid=no --msg-level=all=no --speed=1.6 - 2> /dev/null
      fi
 
      if [[ $NO_HELPER_AUDIOS_ENG == "FALSE" ]]
      then
-	 printf "${launch_saved_session}" | base64 -d | mpv --vid=no --msg-level=all=no --speed 1.6 - 
+	 printf "${launch_saved_session}" | base64 -d | mpv --vid=no --msg-level=all=no --speed=1.6 - 2> /dev/null
      fi
  }
 
@@ -36875,7 +36875,7 @@ get_AyahMetadata_displayThemOnCLI_rq_3_then_1(){
 	     if [[ "$SHOW_HAMIDULLAH_FRA_TEXT" == "TRUE" ]]
 	     then
 		 echo -e "${UNDERLINE}Interprétation du Verset:${NC} Ḥamidullah"
-		 echo
+
 		 if [[ -f "$verse_trans" ]]
 		 then
 		     echo -e "${BOLD_BLUE}$(cat "$verse_trans")${NC}"
@@ -36891,7 +36891,7 @@ get_AyahMetadata_displayThemOnCLI_rq_3_then_1(){
 	     if [[ "$SHOW_SAHIH_INT_ENG_TEXT" == "TRUE" ]]
 	     then
 		 echo -e "${UNDERLINE}Verse Interpretation:${NC} Ṣaḥîḥ Int."
-		 echo
+
 		 if [[ -f "$verse_trans" ]]
 		 then
 		     echo -e "${BOLD_GREEN}$(cat "$verse_trans")${NC}"
@@ -36906,7 +36906,7 @@ get_AyahMetadata_displayThemOnCLI_rq_3_then_1(){
 	     if [[ "$SHOW_TRANSLITERATION" == "TRUE" ]]
 	     then
 		 echo -e "${UNDERLINE}Transliteration/Translitération:${NC}"
-		 echo
+
 		 if [[ -f "$verse_trans" ]]
 		 then
 		     echo -e "${BOLD_YELLOW}$(cat "$verse_trans")${NC}"
@@ -36921,7 +36921,7 @@ get_AyahMetadata_displayThemOnCLI_rq_3_then_1(){
 	     if [[ -f "$verse_trans" ]]
 	     then
 		 echo -e "${UNDERLINE}Verse Interpretation:${NC} Other"
-		 echo
+
 		 echo -e "${BOLD_BLUE}$(cat "$verse_trans")${NC}"
 	     else
 		 echo "The interpretation file:"
@@ -37008,7 +37008,7 @@ get_AyahMetadata_displayThemOnCLI_rq_3_then_1(){
 
 
 
-
+ export REFRESH_RATE=2
  gen_html_rq_3_then_1(){
      local file="$1"
      local verse_arabic=`echo "${1%.$fileExt}.quran-uthmani.txt"`
@@ -37032,7 +37032,7 @@ get_AyahMetadata_displayThemOnCLI_rq_3_then_1(){
      echo "<head>"
      echo '<meta http-equiv="content-type" content="text/html; charset=utf-8"/>'
      echo '<meta name="author" content="Abu-Djuwairiyyah Karim"/>' 
-     echo '<meta http-equiv="refresh" content="5" />'
+     echo "<meta http-equiv=\"refresh\" content=\"$REFRESH_RATE\" />"
 
      # HTML page title
      echo
@@ -37617,8 +37617,6 @@ get_AyahMetadata_displayThemOnCLI_rq_3_then_1(){
      
      if [ -e RECITE_ONCE_LIST ] && [ -e RECITE_THRICE_LIST ] && [ ! -e RECITE_LAST_LIST ]
      then
-	 # Tell the user that we'll continue
-	 # with the previously saved session
 	 display_continuation_msg
 	 
 	 # initialize RECITE_1_ARRAY with
@@ -37626,23 +37624,26 @@ get_AyahMetadata_displayThemOnCLI_rq_3_then_1(){
 	 RECITE_1_ARRAY=($(cat RECITE_ONCE_LIST | while read line; do echo "$line"; done))
 
 	 # initialize RECITE_3_ARRAY with
-	 # the elements fom the global array
+	 # the elements fom the global
+	 # array
 	 RECITE_3_ARRAY=("${sorted_ayat_full_path_to_pass_to_mpv[@]}")
 
 	 # What we will do now is to
-	 # delete the number of elements from
-	 # RECITE_3_ARRAY that have already
-	 # been played 3 times each we know
-	 # that they have been played 3 times
-	 # each because of the fact that they
-	 # are in the list of elements that
-	 # must be played once. For them to
-	 # be part of that list,
-	 # means they have already been
-	 # played 3 times each
+	 # delete the number of elements
+	 # from RECITE_3_ARRAY that have
+	 # already been played 3 times
+	 # each we know that they have
+	 # been played 3 times each
+	 # because of the fact that they
+	 # are in the list of elements
+	 # that must be played once.
+	 # For them to be part of that
+	 # list, means they have already
+	 # been played 3 times each
 	 k=0
-	 # Note that we initialize the number
-	 # of elements in RECITE_1_ARRAY
+	 # Note that we initialize the
+	 # number of elements in
+	 # RECITE_1_ARRAY
 	 for j in "${RECITE_1_ARRAY[@]}"
 	 do
              # and we delete the element,
@@ -37657,15 +37658,24 @@ get_AyahMetadata_displayThemOnCLI_rq_3_then_1(){
 
      elif [ ! -e RECITE_ONCE_LIST ] && [ ! -e RECITE_THRICE_LIST ] && [ -e RECITE_LAST_LIST ]
      then
-	 # Tell the user that we'll continue
-	 # with the previously saved session
 	 display_continuation_msg
 	 readOnceDelete1stElmtEachTime
+	 # Removing array elmts
+	 unset RECITE_3_ARRAY
+	 unset RECITE_1_ARRAY
+	 unset r_ONE_DelTopEL_AR
+	 unset NUMB_OF_FILES
+	 unset NUMB_OF_FILES_ARRAY
+	 unset ayat_full_path_to_pass_to_mpv
+	 unset sorted_ayat_full_path_to_pass_to_mpv
+	 unset list_of_fake_audio_ayaat_files_to_convert_to_line_numbers
+	 unset array_of_lines_to_be_looked_up_by_sed
+	 
 	 cd .. && \
              mkdir -v -p ./tahfeez-P-per-P-bak
 	 mv -v "$folder" ./tahfeez-P-per-P-bak
-	 exit $?; # If we don't exit, this
-	 # function will be called again
+	 #exit $?; # we have to exit
+	 
 
      elif [ ! -e RECITE_ONCE_LIST ] && [ ! -e RECITE_THRICE_LIST ] && [ ! -e RECITE_LAST_LIST ]
      then         
@@ -37687,49 +37697,42 @@ get_AyahMetadata_displayThemOnCLI_rq_3_then_1(){
      do
 	 for j in "${RECITE_1_ARRAY[@]}"
 	 do
-	     # Getting the index number
-	     # of the file being played
-             for z in "${!RECITE_1_ARRAY[@]}"
-	     do
-		 if [[ "${RECITE_1_ARRAY[$z]}" = "${j}" ]]
-		 then
-		     elmt_numb=`echo "${z}"`
-		 fi
-	     done
 
-	     display_script_name
-             echo  -e "${BG_WHITE_FG_BLACK}Restarting Playback from the beginning...${NC}"; echo
-	     set_up_eta_with_bash_color
-             ((++elmt_numb))
+	     {
+		 # Getting the index number of the file being played
+		 for z in "${!RECITE_1_ARRAY[@]}"; do if [[ "${RECITE_1_ARRAY[$z]}" = "${j}" ]]; then elmt_numb=`echo "${z}"`; fi; done; ((++elmt_numb))
+		 
+		 # Generate Updated HTML file with the ayah and its interpretation
+		 gen_html_rq_3_then_1 "$j" "$elmt_numb" "${#RECITE_1_ARRAY[@]}" >> "$tmpOutHTMLfile" && mv -f "$tmpOutHTMLfile" "$outHTMLfile"
+		 
+		 display_script_name
+		 
+		 echo -e "${BG_WHITE_FG_BLACK}Restarting Playback from the beginning...${NC}"
+		 echo
+		 set_up_eta_with_bash_color
+		 
+		 echo -e -n "File [${BOLD_CYAN}$elmt_numb${NC}/${BOLD_YELLOW}${#RECITE_1_ARRAY[@]}${NC}]"
+		 echo -e -n "$ELAPSED_BASH_COLORS | "
+		 echo -e "${BOLD_RED}`basename $j`${NC}"
+		 
+		 show_ayah_infos_on_cli_and_notif_bar "$j" "${#RECITE_1_ARRAY[@]}" $elmt_numb 1
+	     } &
 
-	     echo -e -n "File [${BOLD_CYAN}$elmt_numb${NC}/${BOLD_YELLOW}${#RECITE_1_ARRAY[@]}${NC}]"
-	     echo -e -n "$ELAPSED_BASH_COLORS | "
-             echo    -e "${BOLD_RED}`basename $j`${NC}"
-
-	     # Play the Basmalah in case we
-	     # are  at the beginning of the
-	     # verse
-             play_bismillah `basename "${j%%.$fileExt}"`
+	     play_bismillah `basename "${j%%.$fileExt}"`
 	     
-             show_ayah_infos_on_cli_and_notif_bar "$j" "${#RECITE_1_ARRAY[@]}" $elmt_numb 1 &
-
-	     # Generate Updated HTML file with the ayah and its interpretation
-	     gen_html_rq_3_then_1 "$j" "$elmt_numb" "${#RECITE_1_ARRAY[@]}" >> "$tmpOutHTMLfile"
-	     # Now, replace the previous verse file with the new verse one
-	     mv -f "$tmpOutHTMLfile" "$outHTMLfile"
+	     check_audio_file_exists_or_exit "$j"
+	     mpv --vid=no --msg-level=all=no --speed=$playback_speed --volume=120 "$j" 2> /dev/null
 	     
-             check_audio_file_exists_or_exit "$j"
-	     mpv --vid=no --speed $playback_speed --volume=120 "$j"
-	     #sleep $sleep_time
-	     
-             # create an empty text file if
-             # it doesn't exist, otherwise
-             # backup the old one before
-             # generating a new one
+             # create an empty text file
+	     # if it doesn't exist,
+	     # otherwise backup the old
+	     # one before generating a
+	     # new one
              if [ ! -f RECITE_ONCE_LIST ]; then touch RECITE_ONCE_LIST;
              else mv -vf RECITE_ONCE_LIST RECITE_ONCE_LIST.bak; fi
 
-             # save list contents in that file
+             # save list contents
+	     # in that file
              for elmt in "${RECITE_1_ARRAY[@]}"
              do
 		 echo "$elmt" >> RECITE_ONCE_LIST
@@ -37741,50 +37744,43 @@ get_AyahMetadata_displayThemOnCLI_rq_3_then_1(){
 	 # the first time it is played
 	 echo -e "${BG_YELLOW_FG_BLACK}Playing a new element N times${NC}"
 	 
-	 #mpv --vid=no --msg-level=all=no --speed 1.6 \
+	 #mpv --vid=no --msg-level=all=no --speed=1.6 \
 	     #"$thisScriptRootDir/helper_audios/Playing a new element N times.ogg" \
-	     #"$thisScriptRootDir/helper_audios/Playing a new element N times_Fra.ogg"; echo
+	     #"$thisScriptRootDir/helper_audios/Playing a new element N times_Fra.ogg" 2> /dev/null; echo
 
 	 if [[ $NO_HELPER_AUDIOS_FRA == "FALSE" ]]
 	 then
-	     printf "${Playing_a_new_element_N_times}" | base64 -d | mpv --vid=no --msg-level=all=no --speed 1.6 - 
+	     printf "${Playing_a_new_element_N_times}" | base64 -d | mpv --vid=no --msg-level=all=no --speed=1.6 - 2> /dev/null
 	 fi
 
 	 if [[ $NO_HELPER_AUDIOS_ENG == "FALSE" ]]
 	 then
-	     printf "${Playing_a_new_element_N_times_Fra}" | base64 -d | mpv --vid=no --msg-level=all=no --speed 1.6 - 
+	     printf "${Playing_a_new_element_N_times_Fra}" | base64 -d | mpv --vid=no --msg-level=all=no --speed=1.6 - 2> /dev/null
 	 fi
 
 	 for m in $(seq $file_loop_repeat_count)
 	 do
- 	     # Getting the index number
-	     # of the file being played
-             for z in "${!RECITE_3_ARRAY[@]}"
-	     do
-		 if [[ "${RECITE_3_ARRAY[$z]}" = "${i}" ]]
-		 then
-		     elmt_numb=`echo "${z}"`
-		 fi
-	     done
-
-             ((++elmt_numb))
-	     show_termux_notif_bar_only "$i" "$NUMB_OF_FILES" $elmt_numb $m &
-
-	     # Play basmalah in case we are
-	     # at the beginning of a verse
-             play_bismillah `basename "${i%%.$fileExt}"`
-
-	     # Generate HTML file of ayah and translations
-	     gen_html_rq_3_then_1 "$i" "$elmt_numb" "$NUMB_OF_FILES" >> "$tmpOutHTMLfile"
-	     # Now, replace the previous verse file with the new verse one
-	     mv -f "$tmpOutHTMLfile" "$outHTMLfile"
 	     
+	     {
+		 # Getting the index number of the file being played
+		 for z in "${!RECITE_3_ARRAY[@]}"; do if [[ "${RECITE_3_ARRAY[$z]}" = "${i}" ]]; then elmt_numb=`echo "${z}"`; fi; done; ((++elmt_numb))
+		 # Generate HTML file of ayah and translations
+		 gen_html_rq_3_then_1 "$i" "$elmt_numb" "$NUMB_OF_FILES" >> "$tmpOutHTMLfile" && mv -f "$tmpOutHTMLfile" "$outHTMLfile"
+		 
+		 show_termux_notif_bar_only "$i" "$NUMB_OF_FILES" $elmt_numb $m
+	     } &
+
 	     #Transliteration
              display_verse_translation "${i%.$fileExt}.transliteration.txt" transliteration
-	     
+
+	     play_bismillah `basename "${i%%.$fileExt}"`
+
 	     check_audio_file_exists_or_exit "$i"
-	     mpv --vid=no --msg-level=all=no --speed $playback_speed --volume=120 --loop-playlist=$mpv_repeat "$i"
-	     #sleep $sleep_time
+	     mpv --vid=no \
+		 --speed=$playback_speed \
+		 --msg-level=all=no --volume=120 \
+		 --loop-file=$mpv_repeat "$i" 2> /dev/null
+
 
 	     # Display French & English
              # translation text on the
@@ -37799,7 +37795,7 @@ get_AyahMetadata_displayThemOnCLI_rq_3_then_1(){
 	     then
 		 if [[ -f "${i%.$fileExt}-Fr.opus" ]]
 		 then
-		     mpv --msg-level=all=no --vid=no --speed 1.40 --volume=145 "${i%.$fileExt}-Fr.opus"
+		     mpv --msg-level=all=no --vid=no --speed=1.40 --volume=145 "${i%.$fileExt}-Fr.opus" 2> /dev/null
 		 else
 		     echo "Le fichier audio d'interprétation du verset"
 		     echo "Coranique: ${i%.$fileExt}-Fr.opus"
@@ -37815,7 +37811,7 @@ get_AyahMetadata_displayThemOnCLI_rq_3_then_1(){
 	     then
 		 if [[ -f "${i%.$fileExt}-En.opus" ]]
 		 then
-		     mpv --msg-level=all=no --vid=no --speed 1.40 --volume=135 "${i%.$fileExt}-En.opus"
+		     mpv --msg-level=all=fatal --vid=no --speed=1.40 --volume=135 "${i%.$fileExt}-En.opus" 2> /dev/null
 		 else
 		     echo "The english verse interpreation"
 		     echo "audio file '${i%.$fileExt}-En.opus'"
@@ -37823,14 +37819,9 @@ get_AyahMetadata_displayThemOnCLI_rq_3_then_1(){
 		 fi
 	     fi
 	     
-             # create an empty text file if
-             # it doesn't exist, otherwise
-             # backup the old one before
-             # generating a new one
              if [ ! -f RECITE_THRICE_LIST ]; then touch RECITE_THRICE_LIST;
              else mv -vf RECITE_THRICE_LIST RECITE_THRICE_LIST.bak; fi
 
-             # save list contents in that file
              for elt in "${RECITE_3_ARRAY[@]}"
              do
 		 echo "$elt" >> RECITE_THRICE_LIST
@@ -37840,18 +37831,18 @@ get_AyahMetadata_displayThemOnCLI_rq_3_then_1(){
 
 	 echo -e "${BG_YELLOW_FG_BLACK}Restarting playback from the beginning${NC}"
 
-	 #mpv --vid=no --msg-level=all=no --speed 1.6 \
+	 #mpv --vid=no --msg-level=all=no --speed=1.6 \
 	     #"$thisScriptRootDir/helper_audios/Restarting playback from the beginning.ogg" \
-	     #"$thisScriptRootDir/helper_audios/Restarting playback from the beginning_Fra.ogg"; echo
+	     #"$thisScriptRootDir/helper_audios/Restarting playback from the beginning_Fra.ogg" 2> /dev/null; echo
 
 	 if [[ $NO_HELPER_AUDIOS_FRA == "FALSE" ]]
 	 then
-	     printf "${Restarting_PB_frm_scratch_Fra}" | base64 -d | mpv --vid=no --msg-level=all=no --speed 1.6 - 
+	     printf "${Restarting_PB_frm_scratch_Fra}" | base64 -d | mpv --vid=no --msg-level=all=no --speed=1.6 - 2> /dev/null
 	 fi
 
 	 if [[ $NO_HELPER_AUDIOS_ENG == "FALSE" ]]
 	 then
-	     printf "${Restarting_PB_frm_scratch}" | base64 -d | mpv --vid=no --msg-level=all=no --speed 1.6 - 
+	     printf "${Restarting_PB_frm_scratch}" | base64 -d | mpv --vid=no --msg-level=all=no --speed=1.6 - 2> /dev/null
 	 fi
 	 
 	 # adding element to
@@ -37923,54 +37914,41 @@ get_AyahMetadata_displayThemOnCLI_rq_3_then_1(){
      do
 	 for verse in "${r_ONE_DelTopEL_AR[@]}"
 	 do
-	     # Getting the index number
-	     # of the file being played
-             for z in "${!r_ONE_DelTopEL_AR[@]}"
-	     do
-		 if [[ "${r_ONE_DelTopEL_AR[$z]}" = "${verse}" ]]
-		 then
-		     elmt_numb=`echo "${z}"`
-		 fi
-	     done
-
-	     display_script_name
-             echo -e "${BG_YELLOW_FG_BLACK}Restarting playback from the beginning after removing the topmost element...${NC}"; echo
-	     set_up_eta_with_bash_color
-
-             # Here we have a problem after the first iteration
-	     # we should get something like 'playing [1/20]', but
-	     # we get [2/21]. The middle iteration displays [10/21]
-	     # instead of [1/11]. What we do here is to make some
-	     # substraction after each iteration to fix that issue
-	     ((++elmt_numb))
-	     let "remaining_elmts = NUMB_OF_FILES - elmt_numb"
 	     
-             # echo -e "File [${BLUE}$elmt_numb${NC}/${BOLD_RED}$NUMB_OF_FILES${NC}]"
-	     echo -e -n "Remains ${BOLD_RED}$remaining_elmts${NC} Āyāt "
-             echo -e -n "$ELAPSED_BASH_COLORS | "
-	     echo    -e "${DARKGRAY}`basename ${verse}`${NC}"
+	     {
+		 # Getting the index
+		 # number of the file
+		 # being played
+		 for z in "${!r_ONE_DelTopEL_AR[@]}"; do if [[ "${r_ONE_DelTopEL_AR[$z]}" = "${verse}" ]]; then elmt_numb=`echo "${z}"`; fi; done; ((++elmt_numb))
+		
+		 # Here we have a problem after the first iteration we should get something like 'playing [1/20]', but we get [2/21]. The middle iteration displays [10/21] instead of [1/11]. What we do here is to make some substraction after each iteration to fix that issue
+		 let "remaining_elmts = NUMB_OF_FILES - elmt_numb"
 
-	     # Play the Basmalah in case we
-	     # are at the beginning of a Sūrah
-             play_bismillah `basename "${verse%%.$fileExt}"`
+		 # Generate Updated HTML file with the ayah and its interpretation
+		 gen_html_rq_3_then_1 "$verse" "$elmt_numb" "$remaining_elmts" >> "$tmpOutHTMLfile" && mv -f "$tmpOutHTMLfile" "$outHTMLfile"
 
-	     # Generate Updated HTML file with the ayah and its interpretation
-	     gen_html_rq_3_then_1 "$verse" "$elmt_numb" "$remaining_elmts" >> "$tmpOutHTMLfile"
-	     # "$elmt_numb" "$NUMB_OF_FILES"
-	     #
-	     # Now, replace the previous verse file with the new verse one
-	     mv -f "$tmpOutHTMLfile" "$outHTMLfile"
-	     
-             show_ayah_infos_on_cli_and_notif_bar "$verse" "$remaining_elmts" "$elmt_numb" 1 &
-	     # "$NUMB_OF_FILES" "$elmt_numb"
-	     
-             check_audio_file_exists_or_exit "$verse"
-	     mpv --vid=no --speed $playback_speed --volume=120 "$verse"
-	     #sleep $sleep_time
-             # create an empty text file if
-             # it doesn't exist, otherwise
-             # backup the old one before
-             # generating a new one
+		 display_script_name
+		 
+		 echo -e "${BG_YELLOW_FG_BLACK}Restarting playback from the beginning after removing the topmost element...${NC}"
+		 set_up_eta_with_bash_color
+
+		 echo -e -n "Remains ${BOLD_RED}$remaining_elmts${NC} Āyāt "
+		 echo -e -n "$ELAPSED_BASH_COLORS | "
+		 echo -e "${DARKGRAY}`basename ${verse}`${NC}"
+		 
+		 show_ayah_infos_on_cli_and_notif_bar "$verse" "$remaining_elmts" "$elmt_numb" 1
+	     } &
+
+	     play_bismillah `basename "${verse%%.$fileExt}"`
+
+	     check_audio_file_exists_or_exit "$verse"
+	     mpv --vid=no --speed=$playback_speed --msg-level=all=no --volume=120 "$verse" 2> /dev/null
+
+             # create an empty text file
+	     # if it doesn't exist,
+	     # otherwise backup the old
+	     # one before generating a
+	     # new one
              if [ ! -f RECITE_LAST_LIST ]; then touch RECITE_LAST_LIST;
              else mv -vf RECITE_LAST_LIST RECITE_LAST_LIST.bak; fi
 
@@ -37989,16 +37967,16 @@ get_AyahMetadata_displayThemOnCLI_rq_3_then_1(){
 	 
 	 echo -e "${BG_YELLOW_FG_BLACK}Restarting playback from the beginning after removing the topmost element${NC}"
 
-	 #mpv --vid=no --msg-level=all=no --speed 2.0 "$thisScriptRootDir/helper_audios/Restarting playback from the beginning after removing the topmost element.ogg" "$thisScriptRootDir/helper_audios/Restarting playback from the beginning after removing the topmost element_Fra.ogg"; echo
+	 #mpv --vid=no --msg-level=all=no --speed=2.0 "$thisScriptRootDir/helper_audios/Restarting playback from the beginning after removing the topmost element.ogg" "$thisScriptRootDir/helper_audios/Restarting playback from the beginning after removing the topmost element_Fra.ogg" 2> /dev/null; echo
 
 	 if [[ $NO_HELPER_AUDIOS_FRA == "FALSE" ]]
 	 then
-	     printf "${Restart_PB_del_top_elnt_Fra}" | base64 -d | mpv --vid=no --msg-level=all=no --speed 2.0 - 
+	     printf "${Restart_PB_del_top_elnt_Fra}" | base64 -d | mpv --vid=no --msg-level=all=no --speed=2.0 - 2> /dev/null
 	 fi
 
 	 if [[ $NO_HELPER_AUDIOS_ENG == "FALSE" ]]
 	 then
-	     printf "${Restart_PB_del_top_elnt}" | base64 -d | mpv --vid=no --msg-level=all=no --speed 2.0 - 
+	     printf "${Restart_PB_del_top_elnt}" | base64 -d | mpv --vid=no --msg-level=all=no --speed=2.0 - 2> /dev/null
 	 fi
 
      done
@@ -38446,6 +38424,10 @@ and create the fake audios directory in it."
 	 echo >&2 "Please install 'find' from the findutils package. Operation aborted!"; echo; exit 1;
      }
 
+     echo; type parallel >/dev/null 2>&1 || {
+	 echo >&2 "Please install the GNU parallel package on your system. Operation aborted!"; echo; exit 1;
+     }
+
 
      create_fake_ayahs_in_root_folder(){
 	 for ayah_id in "${array_list_of_all_quran_verses_by_id[@]}"
@@ -38470,7 +38452,7 @@ and create the fake audios directory in it."
 	 for i in `seq --equal-width $starting_num $numOfFolders`
 	 do
 	     mkdir -p "dir_$i" && echo; echo "Creating folder: $dir_$i"
-	     find . -maxdepth 1 -type f | sort | head -n $number_of_fake_audios_per_folder | xargs -i mv "{}" "dir_$i"
+	     find . -maxdepth 1 -type f | sort | head -n $number_of_fake_audios_per_folder | parallel --line-buffer --jobs=32 "mv -f {} dir_$i"
 	 done
      }
 
@@ -38567,13 +38549,7 @@ and create the fake audios directory in it."
 	 exit 1
      fi
 
-     # This code was copied from 'main_function',
-     # refer to it since it is well-commented there.
-     #
-     # Get into the first fake audios folder since
-     # it is from there the playback starts always.
-     # So, if the user requested the generation of
-     # stage-1 or 2 files, it is there that we do it
+     # This code was copied from 'main_function', refer to it since it is well-commented there. Get into the first fake audios folder since it is from there the playback starts always. So, if the user requested the generation of stage-1 or 2 files, it is there that we do it
      cd "$verse_folder_full_path"
      list_of_fake_audio_ayaat_files_to_convert_to_line_numbers=($(for file in *.$fakeAudioFileExt; do echo "${file%%.$fakeAudioFileExt}" | sort; done))
 
@@ -38662,8 +38638,8 @@ and create the fake audios directory in it."
  main_function(){
 
      # Isti`âdha
-     #mpv --vid=no --speed 1.0 "$thisScriptRootDir/helper_audios/audhubillah.oga"; echo
-     printf "${audhubillah}" | base64 -d | mpv --vid=no --speed 1.0 - 
+     #mpv --vid=no --speed=1.0 "$thisScriptRootDir/helper_audios/audhubillah.oga" 2> /dev/null; echo
+     printf "${audhubillah}" | base64 -d | mpv --vid=no --speed=1.0 - 2> /dev/null
      
      if [[ -d "$default_fake_audios_directory_script_root" ]]
      then
@@ -38681,8 +38657,7 @@ and create the fake audios directory in it."
 	 exit 1
      fi
 
-     # the following will get for us the number
-     # of sub-folders in the current directory
+     # the following will get for us the number of sub-folders in the current directory
      total_folders_array=($(for ayat_folder in *;  do if [ -d  "$ayat_folder" ]; then echo "$ayat_folder" | sort; fi; done))
      total_folders=${#total_folders_array[@]}
 
@@ -38695,20 +38670,10 @@ and create the fake audios directory in it."
 	 then
 	     folder_name="$folder"
 	     #folder_size=`du -sh "$folder" | cut -f1`
-	     # here, it only gets the size of the folder
-	     # of fake audios. We need to operate on the
-	     # array containing the path of the real files
+	     # here, it only gets the size of the folder of fake audios. We need to operate on the array containing the path of the real files
 	     
              cd "$folder"
-             # get into the folder holding the
-	     # fake audios of ayaat.
-
-	     # populate the array that will
-	     # hold the fake audio files. This
-	     # array is a global variable. If
-	     # we populate it here it will be
-	     # accessible to all the remaining
-	     # components of this program.
+             # get into the folder holding thebfake audios of ayaat. populate the array that will hold the fake audio files. This array is a global variable. If we populate it here it will be accessible to all the remaining components of this program.
 	     list_of_fake_audio_ayaat_files_to_convert_to_line_numbers=($(for file in *.$fakeAudioFileExt; do echo "${file%%.$fakeAudioFileExt}" | sort; done)) # add the file to the array and remove its extension
 
 	     # debug #
@@ -38717,14 +38682,7 @@ and create the fake audios directory in it."
 	     #echo "${list_of_fake_audio_ayaat_files_to_convert_to_line_numbers[@]}"
 	     #echo; exit 1
 
-	     # Now we call the following function
-	     # and it will access the global array
-	     # above and convert these fake audio
-	     # files into line numbers in the Playlist
-	     # file. These lines correspond to the
-	     # real location of the files that we
-	     # would like to play. This function
-	     # will also invoque for us, the
+	     # Now we call the following function and it will access the global array above and convert these fake audio files into line numbers in the Playlist file. These lines correspond to the real location of the files that we would like to play. This function will also invoque for us, the
 	     # 'conv_fake_audios_to_line_numbers_parse_playlists_get_ayaat_path'
 	     # function
 	     if [[ -d "$default_playlists_dir_script_root" ]]
@@ -38772,15 +38730,26 @@ and create the fake audios directory in it."
 	     ## launch the session
 	     readThriceThenOnce
              readOnceDelete1stElmtEachTime
-             
-             # get out of the folder in
-             # order to get into anoter one
+	     # Removing array elmts
+	     unset RECITE_3_ARRAY
+	     unset RECITE_1_ARRAYY
+	     unset r_ONE_DelTopEL_AR
+	     unset NUMB_OF_FILES
+	     unset NUMB_OF_FILES_ARRAY
+	     unset ayat_full_path_to_pass_to_mpv
+	     unset sorted_ayat_full_path_to_pass_to_mpv
+	     unset list_of_fake_audio_ayaat_files_to_convert_to_line_numbers
+	     unset array_of_lines_to_be_looked_up_by_sed
+	     
+	     
              cd .. && \
 		 mkdir -v -p ./tahfeez-P-per-P-bak
-             mv -v "$folder" ./tahfeez-P-per-P-bak/ 
-             # Since we are moving into a
-             # new folder, we reset the ETA
+             mv -v "$folder" ./tahfeez-P-per-P-bak
+             # we reset the ETA
              SECONDS=0
+	     
+	     # exit $? # End session
+	     
 	 fi
      done
  }
