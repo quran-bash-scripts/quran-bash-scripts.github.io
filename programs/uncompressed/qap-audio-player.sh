@@ -24,12 +24,10 @@
 # Tracking the execution time
 SECONDS=0;
 
-version=05-Shaaban-1443
-version_g=09-March-2022
+app_version='V43.06-22.10'
+version_h=06-Shaaban-1443
+version_g=10-March-2022
 
-#################
-## To Document ##
-#################
 
 
 
@@ -55033,20 +55031,55 @@ show_progress_in_html_file(){
 
 
 export REFRESH_RATE=2
-gen_html_qap(){
+generate_html_file_qap(){
     local file="$1"
-    local verse_arabic=`echo "${1%.$fileExt}.quran-uthmani.txt"`
-    local verse_rom=`echo "${1%.$fileExt}.transliteration.txt"`
-    local verse_hamid=`echo "${1%.$fileExt}.hamidullah.txt"`
-    local verse_sahihint=`echo "${1%.$fileExt}.sahih.txt"`
-    local verse_taq_muh=`echo "${1%.$fileExt}.hilali.txt"`
-    local verse_jallalayn=`echo "${1%.$fileExt}.en.jallalayn.txt"`
-    local verse_tafheem=`echo "${1%.$fileExt}.en.tafheem.txt"`
-    local verse_ibn_kathir=`echo "${1%.$fileExt}.en.tafsir-ibn-kathir.txt"`
+    local current_verse_arabic=`echo "${file%.$fileExt}.quran-uthmani.txt"`
+    local verse_rom=`echo "${file%.$fileExt}.transliteration.txt"`
+    local verse_hamid=`echo "${file%.$fileExt}.hamidullah.txt"`
+    local verse_sahihint=`echo "${file%.$fileExt}.sahih.txt"`
+    local verse_taq_muh=`echo "${file%.$fileExt}.hilali.txt"`
+    local verse_jallalayn=`echo "${file%.$fileExt}.en.jallalayn.txt"`
+    local verse_tafheem=`echo "${file%.$fileExt}.en.tafheem.txt"`
+    local verse_ibn_kathir=`echo "${file%.$fileExt}.en.tafsir-ibn-kathir.txt"`
     local being_played="$2"
     local total_elmts="$3"
 
     actualise_ayah_metadata_vars "$file"
+    
+    
+		# Internal Function that displays one full Quran page
+		create_and_display_full_quran_page(){
+		# Strip page number from leading zeros
+		fileName=$(basename "${file%%.$fileExt}")
+		show_page_number $fileName
+		striped_numb=$page_number
+    		while [ "$striped_numb" != "${striped_numb#0}" ]
+    		do striped_numb=${striped_numb#0}; done	
+		show_list_of_verses_that_belong_to_this_page_number "$striped_numb"
+		#echo "${list_of_verses_that_belong_to_this_PAGE_NUMBER[@]}"
+	
+		current_ayah_dir=$(dirname "${file}")
+		# Displaying all the ayaat that appear on that page
+		for ayah in "${list_of_verses_that_belong_to_this_PAGE_NUMBER[@]}"
+		do
+		current_item_basename=$ayah
+		current_item=$current_ayah_dir/$ayah.quran-uthmani.txt
+		if [[ "$current_item" == $current_verse_arabic ]]
+		then
+			echo '<div style="border-radius: 20px 35px 35px 20px;  padding: 15px; font-style: italic; color: #e5ff33; background-color: #222222">'
+			echo -n "$(cat "$current_item")"
+			#echo -n " ⦇$current_item_basename⦈ "
+			echo -n "⟶【$current_item_basename】"
+			echo '</div>'
+		else			
+			echo -n "$(cat "$current_item")"
+			#echo -n " ⦇$current_item_basename⦈ "
+			echo -n "⟶【$current_item_basename】"
+		fi
+		done
+		}
+    
+    
 
     # Create file or clean up its contents
     touch "$tmpOutHTMLfile"
@@ -55097,7 +55130,7 @@ gen_html_qap(){
 	    DEFAULT_FONT_NAMES="$SYSTEM_FONTS_NAMES"
 	fi
 	
-	if [[ -f "$verse_arabic" ]]
+	if [[ -f "$current_verse_arabic" ]]
 	then
 
 	    if [ "$USER_FONT_FLAG" == "TRUE" ]
@@ -55157,7 +55190,7 @@ gen_html_qap(){
 			;;
 		esac
 
-		echo "<div lang="ar-SA" dir="rtl">"
+		echo '<div lang="ar-SA" dir="rtl" style="border-radius: 15% 10% 10% 5%; padding: 30px; font-style: normal; color: #ffffff; background-color: #000e18">'
 		echo "<style scoped>"
 		# Beginning of @font-face #
 		echo "@font-face {"
@@ -55182,9 +55215,10 @@ gen_html_qap(){
 		echo -n 'font-family: '
 		echo -n "$CHOSEN_BASE64_FONT_NAME"
 		echo    '">'
-		# Beginning of the actual verse text
-		echo "$(cat "$verse_arabic")"
-		# Ending of the actual verse text
+		
+		# Display full Quran page
+		create_and_display_full_quran_page
+		
 		echo '</span>' 
 		echo "</div>"
 
@@ -55197,17 +55231,18 @@ gen_html_qap(){
 		echo -n 'font-family: '
 		echo -n "$DEFAULT_FONT_NAMES"
 		echo    '">'
-		echo '<div lang="ar-SA" dir="rtl">'
-		# Beginning of the actual verse text
-		echo "$(cat "$verse_arabic")"
-		# Ending of the actual verse text
+		echo '<div lang="ar-SA" dir="rtl" style="border-radius: 15% 10% 10% 5%; padding: 30px; font-style: normal; color: #ffffff; background-color: #000e18">'
+		
+		# Display full Quran page
+		create_and_display_full_quran_page		
+		
 		echo '</div>'
 		echo '</span>' 
 		echo
 	    fi
 
 	else
-	    echo -n "<!-- The verse text: '$verse_arabic' "
+	    echo -n "<!-- The verse text: '$current_verse_arabic' "
 	    echo "is unavailable or unreadable -->"
 	fi
     fi
@@ -55765,7 +55800,7 @@ read_ayah_show_metadata_gen_html_qap(){
 		{
 		    for z in "${!ayat_full_path_to_pass_to_mpv[@]}"; do if [[ "${ayat_full_path_to_pass_to_mpv[$z]}" = "${j}" ]]; then elmt_numb=`echo "${z}"`; fi; done; ((++elmt_numb))
 		    
-		    gen_html_qap "$j" "$elmt_numb" "${#ayat_full_path_to_pass_to_mpv[@]}" >> "$tmpOutHTMLfile" && mv -f "$tmpOutHTMLfile" "$outHTMLfile"
+		    generate_html_file_qap "$j" "$elmt_numb" "${#ayat_full_path_to_pass_to_mpv[@]}" >> "$tmpOutHTMLfile" && mv -f "$tmpOutHTMLfile" "$outHTMLfile"
 
 		    display_script_name
 		    set_up_eta_with_bash_color
@@ -55937,7 +55972,7 @@ readThriceThenOnce(){
 		# being played
 		for z in "${!RECITE_1_ARRAY[@]}"; do if [[ "${RECITE_1_ARRAY[$z]}" = "${j}" ]]; then elmt_numb=`echo "${z}"`; fi; done; ((++elmt_numb))
 		
-		gen_html_qap "$j" "$elmt_numb" "${#RECITE_1_ARRAY[@]}" >> "$tmpOutHTMLfile" && mv -f "$tmpOutHTMLfile" "$outHTMLfile"
+		generate_html_file_qap "$j" "$elmt_numb" "${#RECITE_1_ARRAY[@]}" >> "$tmpOutHTMLfile" && mv -f "$tmpOutHTMLfile" "$outHTMLfile"
 		display_script_name
 		set_up_eta_with_bash_color
 		echo -e "${BG_WHITE_FG_BLACK}Restarting Playback from the beginning...${NC}"
@@ -55990,7 +56025,7 @@ readThriceThenOnce(){
 		# being played
 		for z in "${!RECITE_3_ARRAY[@]}"; do if [[ "${RECITE_3_ARRAY[$z]}" = "${i}" ]]; then elmt_numb=`echo "${z}"`; fi; done; ((++elmt_numb))
 
-		gen_html_qap "$i" "$elmt_numb" "$NUMB_OF_FILES" >> "$tmpOutHTMLfile" && mv -f "$tmpOutHTMLfile" "$outHTMLfile"
+		generate_html_file_qap "$i" "$elmt_numb" "$NUMB_OF_FILES" >> "$tmpOutHTMLfile" && mv -f "$tmpOutHTMLfile" "$outHTMLfile"
 		
 		show_termux_notif_bar_only "$i" "$NUMB_OF_FILES" $elmt_numb $m
 
@@ -56139,7 +56174,7 @@ readOnceDelete1stElmtEachTime(){
 
 		let "remaining_elmts = NUMB_OF_FILES - elmt_numb"
 		
-		gen_html_qap "$verse" "$elmt_numb" "$remaining_elmts" >> "$tmpOutHTMLfile" && mv -f "$tmpOutHTMLfile" "$outHTMLfile"
+		generate_html_file_qap "$verse" "$elmt_numb" "$remaining_elmts" >> "$tmpOutHTMLfile" && mv -f "$tmpOutHTMLfile" "$outHTMLfile"
 
 		display_script_name
 		set_up_eta_with_bash_color
@@ -56865,7 +56900,7 @@ play_istiaadha(){
 # passed to -s and -a. We make sure the
 # user actually provided an argument
 main_function(){
-
+	echo; echo "App Version: $app_version"; echo
     play_istiaadha
     
     if [[ "$query_type_suwar_or_ayat" == "-s" ]]
@@ -57603,7 +57638,7 @@ while true; do
 	    shift
 	    ;;
 	-h|--help )
-	    echo; echo "$usage"
+	    echo "App Version: $app_version"; echo "$usage"
 	    shift
 	    exit $?
 	    ;;
@@ -57689,7 +57724,5 @@ printf "%s\n" "${ayaat_list_of_given_surah[@]}"
 echo ${ayaat_list_of_given_surah[@]} | tr " " "\n"
 
 for ayah in "${ayaat_list_of_given_surah[@]}"; do echo "$ayah"; done
-
-
 
 

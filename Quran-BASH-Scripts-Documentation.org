@@ -1,5 +1,27 @@
 #+TITLE: Quran BASH Scripts
-#+AUTHOR: Copyright (C) Hijri 1440 (Gregorian 2018) The Quran BASH Scripts authors
+#+AUTHOR: Copyright (C) Hijri 1440, 1441, 1442, 1443 (Gregorian 2018, 2019, 2020, 2021, 2022) The Quran BASH Scripts author: Karim Mahamane Karimou "Abu-Djuwairiyyah"
+
+
+#+CAPTION: Screenshot of the HTML file that qap-audio-player.sh generated; shows a Quran full page (Arabic)
+#+NAME:   fig:quran-page-2022-03-10_17-16-41.png
+[[./images/quran-page-2022-03-10_17-16-41.png]]
+
+#+CAPTION: Screenshot of the HTML file that qap-audio-player.sh generated; shows the transliterations, translations and tafsirs for the current verse being played.
+#+NAME:   fig:transcriptions-and-translations-2022-03-10_17-17-34.png
+[[./images/transcriptions-and-translations-2022-03-10_17-17-34.png]]
+
+#+CAPTION: Screenshot of the HTML file that qap-audio-player.sh generated; shows various metadata related to the current verse being played.
+#+NAME:   fig:metadata-table-2022-03-10_17-19-32.png
+[[./images/metadata-table-2022-03-10_17-19-32.png]]
+
+#+CAPTION: Screenshot of qap-audio-player.sh command line interface; it shows metadata related to the current verse being played.
+#+NAME:   fig:metadata-table-2022-03-10_17-19-32.png
+[[./images/metadata-cli-2022-03-10_18-04-05.png]]
+
+#+CAPTION: Screenshot of qap-audio-player.sh command line interface; it shows translations and transliteration for the current verse being played.
+#+NAME:   fig:metadata-table-2022-03-10_17-19-32.png
+[[./images/translations-and-transliteration-2022-03-10_18-05-06.png]]
+
 #+OPTIONS: ^:nil
 #+OPTIONS: -:nil
 # Solarized Light theme:
@@ -94,27 +116,27 @@
 ** DEPENDENCIES
 
 *** App dependencies
-    sed coreutils p7zip-full.
+    sed coreutils p7zip-full zstd.
 
     Under Debian-based GNU/Linux systems run the following to install them:
 
-    =sudo apt install sed coreutils p7zip-full=
+    =sudo apt install sed coreutils p7zip-full zstd=
 
     or
 
-    =sudo apt-get install sed coreutils p7zip-full=
+    =sudo apt-get install sed coreutils p7zip-full zstd=
     
     On Termux on Android, run:
 
-    =pkg install sed coreutils p7zip-full=
+    =pkg install sed coreutils p7zip-full zstd=
 
     or
 
-    =apt install sed coreutils p7zip-full=
+    =apt install sed coreutils p7zip-full zstd=
 
     or
 
-    =apt-get install sed coreutils p7zip-full=
+    =apt-get install sed coreutils p7zip-full zstd=
 
 *** Supported Format of Tafsir Files
     The tafsir files that the program uses are in the format of Tanzil/Zekr translation/tafsir files. You can grab some files from the above-mentioned projects web-sites or (if the tafsir/translation file you would like to work on has not already been setup for zekr/tanzil) create your own. The Tanzil/Zekr file format is a simple text file which has 6236 lines. Each line corresponds to a verse of the Quran. The lines are arranged in the order of the appearance of the verses in the Qur'an from Sûratul-Fatiha to Sûratun-Nâss. Note that after the 6236 lines, you can add some other lines of information or licence, provided that all the 6236 lines of verses appear properly.
@@ -222,49 +244,73 @@ en.al-quran-info-transliteration.trans.zip
 
 
 * qap-audio-player.sh
+  *LATEST VERSION: V43.06-22.10* (corresponds to the 6th Shaaban Hijri 1443, and 10th March Gregorian 2022)
+
   Please, if you have not already read the *Important Note N°2*, go up and do so. This is vital.
 
   Please also note that your Quran audio files have to be converted into *.oga. The translation audio files (French: Hamidullah; English: Sahih Int.) have to be in the *.opus extension. Note that the *.oga and the *.opus all use the libopus codec. In a future version the program will give the user to possibility to choose a different format/extension in Sha Allah.
 
 ** SYNOPSIS
-   qap-audio-player.sh -a|--ayaat verse(s) -s|--suwar sûrah(s) -m|--mpv-speed PlaybackSpeed -l|--mpv-loop LoopNumber -f|--file-loop LoopNumber -g|--groupLoop LoopNumber -p|--play-trans TranslationID --r|--reset-eta (takes no option) -J|--juz JuzNumber -H|--hizb HizbNumber -R|--rub-ul-hizb RubUlHizbNumber-P|--page-number PageNumber -o|--output-quran-html-root WhereToCreateQuran.html -q|--hifz-ul-quran ActivateHifzMode -L|--playlist-file-root WhereToSearchForPlaylist -e|--extension-of-audios QuranAudioFilesExtension -G|--generate-playlist QuranFilesRoot --ara-font-size size --lat-font-size size --metadata-font-size size --table-font-size size --system-font-name FontName --user-font-file FullPathToFontFile -h|--help (takes no option). All the following take no option also: -k|--compact-table --eng-audio --fra-audio --no-ara-txt --translit --eng-txt-sahih --eng-txt-hilali-khan --fra-txt-hamid --no-helper-audios-fra --no-helper-audios-eng
+   qap-audio-player.sh -a|--ayaat verse(s) -s|--suwar sûrah(s) -b|-m|--mpv-speed PlaybackSpeed -l|--mpv-loop LoopNumber -f|--file-loop LoopNumber -g|--groupLoop LoopNumber --r|--reset-eta (takes no option) -J|--juz JuzNumber -H|--hizb HizbNumber -R|--rub-ul-hizb RubUlHizbNumber-P|--page-number PageNumber -o|--output-quran-html-root WhereToCreateQuran.html -q|--hifz-ul-quran ActivateHifzMode -L|--playlist-file-root WhereToSearchForPlaylist --pl|--playlist-file PlayListFileName -e|--extension-of-audios QuranAudioFilesExtension -G|--generate-playlist QuranFilesRoot --ara-font-size size --lat-font-size size --metadata-font-size size --table-font-size size --system-font-name FontName --user-font-number FontNumber --eng-audio-speed PlaybackSpeed --fra-audio-speed PlaybackSpeed -w|--eng-audio-vol AudioVolumeInPercentage -x|--fra-audio-vol AudioVolumeInPercentage -v|--ara-audio-vol ArabicAudioVolumeInPercentage. All the following take no option also: -k|--compact-table --eng-audio --fra-audio -B|--vb|--verse-before -A|--va|--verse-after --no-ara-txt --translit --eng-txt-sahih --eng-txt-hilali-khan --fra-txt-hamid --eng-txt-jallalayn --eng-txt-tafheem --eng-txt-ibnu-kathir --no-helper-audios-fra --no-helper-audios-eng -h|--help --debug
 
 
 ** DESCRIPTION
    This script, if given playlist files in zekr/tanzil format with the "*plst.6236.lines.7z" extension, or "*plst.6236.lines" extension will read the audio files of ayât, set of ayât, range of ayât; suwar, set of suwar, range of suwar; juz, set of juz, range of juz; ḥizb, set of ḥizb, range of ḥizb; rub-`ul-ḥizb, set of rub-`ul-ḥizb, range of rub-`ul-ḥizb; page, set of pages or range of pages passed to it through the command line in the the following format:
  
-   FOR AYÂT: 3-digits designating the Sûrah number followed by 3 other digits for the given verse. For example: 005012.
-   Henceforth this is what we will name ayah_id. The example above means: Sûrah 5, verse 12.
+   FOR AYÂT: 3-digits designating the Sūrah number followed by
+ 3 other digits for the given verse. For example: 005012.
+ Henceforth this is what we will name ayah_id. The example
+ above means: Sūrah 5, verse 12.
 
-   FOR SUWAR: a simple number ranging from 1 to 114 without
-   any leading zeros. For example '1' for Sûrah al-Fâtiḥa.
+ FOR SUWAR: a simple number ranging from 1 to 114 without
+ any leading zeros. For example '1' for Sūrah al-Fâtiḥa.
 
-   FOR JUZ: a simple number also. Ranging from 1 to 30.
+ FOR JUZ: a simple number also. Ranging from 1 to 30.
 
-   FOR ḤIZB: a number ranging from 1 to 60.
+ FOR ḤIZB: a number ranging from 1 to 60.
 
-   FOR RUB-`UL-ḤIZB: a number ranging from 1 to 240.
+ FOR RUB-UL-ḤIZB: a number ranging from 1 to 240.
 
-   FOR PAGES: a number ranging from 1 to 604.
+ FOR PAGES: a number ranging from 1 to 604.
 
-   -s|--suwar is followed by SûrahNumber (without leading 0s). Here you can input many Sûrah numbers at the same time.
-   For instance: '1 9 107 50' - Here we have entered four Sûrah numbers. The list of Sûrah has to be quoted either in single quotes (which is preferred) or double quotes.
-  
-   You can also provide Sûrah numbers in range. For instance:
-   '100_105' in such case, the separating char between the two Sûrah numbers has to be the underscore character: '_' 
-  
-   -a|--ayaat has to be followed by Sûrah+Ayah e.g.: 007018 - one or more, quoted. I.e., '002102 005075 009105'
-  
-   Here also you can provide ayah numbers in range. For instance: '001001_001007' in such case, the separating character between the two ayaat numbers has to be the underscore character also: '_'
+ -s|--suwar is followed by SūrahNumber (without leading 0s).
+ Here you can input many Sūrah numbers at the same time.
+ For instance: '1 9 107 50' - Here we have entered four
+ Sūrah numbers. The list of Sūrah has to be quoted either
+ in single quotes (which is preferred) or double quotes.
 
-   -J|--juz read Quran audio of a given Juz, set of or range of Juz.
-   -H|--hizb read a Hizb, set of Hizb or range of Hizb.
-   -R|--rub-ul-hizb read a Rub-ul-Hizb, set of or range of Rub-ul-Hizb
-   -P|--page-number read a page, set of or range of pages
+ You can also provide Sūrah numbers in range. For instance:
+ '100_105' in such case, the separating char between the
+ two Sūrah numbers has to be the underscore character:
 
-   Note also that -J, -H, -R, and -P will also take single, many or range of units to be played. A unit may refer to a Juz, a Ḥizb, a Rub-`ul-Ḥizb or a page. It might also refer to a Sûrah. If you would like to provide any unit in range just separate the two numbers with an underscore character just like above.
+ '_'
 
-   Also, do not input any leading zeros. And take into account the maximum  number any unit would accept. For instance there are a total of 30  Juz in the Quran, so you cannot request a playback for Juz number 31 which does not exist.
+ -a|--ayaat has to be followed by Sūrah+Ayah e.g.: 007018
+ - one or more, quoted. I.e., '002102 005075 009105'
+
+ Here also you can provide ayah numbers in range. For
+ instance: '001001_001007' in such case, the separating
+ character between the two ayaat numbers has to be the
+ underscore character also:
+
+ '_'
+
+ -J|--juz read Quran audio of a given Juz, set of or range of Juz.
+ -H|--hizb read a Hizb, set of Hizb or range of Hizb.
+ -R|--rub-ul-hizb read a Rub-ul-Hizb, set of or range of Rub-ul-Hizb
+ -P|--page-number read a page, set of or range of pages
+
+ Note also that -J, -H, -R, and -P will also take single, many
+ or range of units to be played. A unit may refer to a Juz, a Ḥizb,
+ a Rub-ul-Ḥizb or a page. It might also refer to a Sūrah.
+ If you would like to provide any unit in range just separate the
+ two numbers with an underscore character just like above.
+
+ Also, do not input any leading zeros. And take into account the
+ maximum  number any unit would accept. For instance there are a
+ total of 30  Juz in the Quran, so you cannot request a playback
+ for Juz number 31 which does not exist.
+
 
 
 ** EXAMPLES
@@ -287,79 +333,106 @@ en.al-quran-info-transliteration.trans.zip
 
 ** AS FOR THE REST OF THE OPTIONS:
 
-   -m|--mpv-speed is the playback speed for the MPV-Player. The default value it 1.00.
+ -b|-m|--mpv-speed is the playback speed for the MPV-Player. The
+ default value it 1.00.
 
-   -l|--mpv-loop is the number of times MPV plays the audio file internally.
+ -l|--mpv-loop is the number of times MPV plays the audio file
+ internally.
 
-   -f|--file-loop is the file loop number. This is the number of times this programs feeds the file to MPV for it to play it.
+ -f|--file-loop is the file loop number. This is the number of
+ times this programs feeds the file to MPV for it to play it.
 
-   If for instance we hand the file twice to MPV and its own loop number is set to 6, then we will end up with 6x2=12. This is the total number of times the file gets played. This is so, if the group-loop option is set to 1. It if is set to 2 for instance then the total number of times the file gets played is:
-   ((6x2) x 2)=24.
- 
-   -g|--group-loop is the group loop number. This loop number refeeds the whole group of files to MPV, and lets it play them all and then rehands them to it.
+ If for instance we hand the file twice to MPV and its own loop
+ number is set to 6, then we will end up with 6x2=12. This is
+ the total number of times the file gets played. This is so, if
+ the group-loop option is set to 1. It if is set to 2 for instance
+ then the total number of times the file gets played is:
+ ((6x2) x 2)=24.
 
-   -p|--play-trans will activate translation audio files playback. It takes an argument also which is the translation id.
+ -g|--group-loop is the group loop number. This loop number
+ refeeds the whole group of files to MPV, and lets it play them
+ all and then rehands them to it.
 
-   --r|--reset-eta will reset the saved playback duration of the previous session.
+ --r|--reset-eta will reset the saved playback duration of the
+ previous session.
 
-   -o|--output-quran-html-root where to generate the quran.html file
-   -q|--hifz-ul-quran activate the 'quran rq_ayat_3x_each_then_1' memorisation mode
-   -L|--playlist-file-root where to look for playlist files. This will override the default values.
+ -o|--output-quran-html-root where to generate the quran.html file
+ -q|--hifz-ul-quran activate the 'quran rq_ayat_3x_each_then_1' memorisation mode
+ -L|--playlist-file-root where to look for playlist files. This will override the default values.
 
-   -e|--extension-of-audios extension of the audio files that are in the directory for which you would like to have the playlist file generated. For this to work -e has to come before -G
-   -G|--generate-playlist quran files folder for which to generate the playlist file
+ -e|--extension-of-audios extension of the audio files that are in the directory for which you would like to have the playlist file generated. For this to work -e has to come before -G
+ -G|--generate-playlist quran files folder for which to generate the playlist file
 
-   --ara-font-size provide a size for use with the arabic verses/tafsirs
-   --lat-font-size font size for the latin text (translations, tafsirs)
-   --metadata-font-size a size to be used when displaying metadata information (elapsed time, number of verses of Sûrah...)
-   --table-font-size a size to be used with the table that displays some additional Sûwar, âyât metadata
-   --system-font-name here the user has the possibility to provide the name of a font that is already installed on the system. This is not the full path, it is only the official name of the font as registered on the system.
-   --user-font-file here, one ca provide the full path to a font file whether it is installed on the system or not.
+ --ara-font-size provide a size for use with the arabic verses/tafsirs
+ --lat-font-size font size for the latin text (translations, tafsirs)
+ --metadata-font-size a size to be used when displaying metadata information (elapsed time, number of verses of Sûrah...)
+ --table-font-size a size to be used with the table that displays some additional Sûwar, âyât metadata
+ --system-font-name here the user has the possibility to provide the name of a font that is already installed on the system. This is not the full path, it is only the official name of the font as registered on the system.
+ --user-font-number here, one can choose a font number between 1 and 10, each represented a default font file provided with the program.
 
-   -k|--compact-table this toggles the display of the compact set of tables (Sûrah and Âyah metadata tables) specifically designed for Android devices and any other small screen device which is able to run GNU/Linux whether natively, through chroot and whatnot!
+ -k|--compact-table this toggles the display of the compact set of tables (Sûrah and Âyah metadata tables) specifically designed for Android devices and any other small screen device which is able to run GNU/Linux whether natively, through chroot and whatnot!
 
-   --eng-audio play english verse interpretation audio
-   --fra-audio play french verse interpretation audio
+ --eng-audio play english verse interpretation audio
+ --fra-audio play french verse interpretation audio
 
-   --no-ara-txt do not Quran arabic text of current ayah to output html file
+ -c|--eng-audio-speed playback speed of the english audio; this option automatically activates --eng-audio
+ -d|--fra-audio-speed playback speed of the french audio; this option automatically activates --fra-audio
 
-   --translit show transliteration text of current ayah to the command line and also write it to output html file
+ -w|--eng-audio-vol volume with which to play the english audio file; this option automatically activates --eng-audio
+ -x|--fra-audio-vol volume with which to play the french audio file; this option automatically activates --fra-audio
 
-   --eng-txt-sahih show Sahih Int. verse interpretation text of current ayah on the command line and also write it to output html file
+ -v|--ara-audio-vol volume with which to play the Arabic Quran audio file
 
-   --eng-txt-hilali-khan show Taqi-ud-Deen al-Hilali & Mushin Khan english verse interpretation on the command line and write it also to output html file
+ -B|--vb|--verse-before also play the verse that comes before the current unit
+ -A|--va|--verse-after also play the verse that comes after the current unit
 
-   --fra-txt-hamid show Muhammad Hamidullah french verse interpretation on the command line and write it also to output html file
+  --pl|--playlist-file name of the playlist file to be selected
 
-   -h|--help will display this help message.
 
-   --no-helper-audios-fra do not play the helper audios (french version)
-   --no-helper-audios-eng do not play the helper audios (english version)
-	
-   Most of the above options have default values.
+ --no-ara-txt do not write Quran arabic text of current ayah to output html file
+
+ --translit show transliteration text of current ayah to the command line and also write it to output html file
+
+ --eng-txt-sahih show Sahih Int. verse interpretation text of current ayah on the command line and also write it to output html file
+
+ --eng-txt-hilali-khan show Taqi-ud-Deen al-Hilali & Mushin Khan english verse interpretation on the command line and write it also to output html file
+
+ --fra-txt-hamid show Muhammad Hamidullah french verse interpretation on the command line and write it also to output html file
+
+ --eng-txt-jallalayn provide the Jallalay tafseer for the verse being played
+ --eng-txt-tafheem provide the Tafheem al-Quran tafseer of Maulana Mawdudi for the verse being played
+ --eng-txt-ibnu-kathir provide the Ibn Kathir tafseer for the verse being played
+
+ --no-helper-audios-fra do not play the helper audios (french version)
+ --no-helper-audios-eng do not play the helper audios (english version)
+
+ -h|--help will display this help message.
+ --debug do not play istiaadha so as to launch the app rapidly for debugging purposes
+
+ Most of the above options have default values.
 	 
 
 ** DEPENDENCIES
 
    Under Debian-based GNU/Linux systems run the following to install them:
 
-   =sudo apt install sed gawk coreutils perl parallel mpv p7zip-full=
+   =sudo apt install sed gawk coreutils perl parallel mpv p7zip-full zstd=
 
    or
 
-   =sudo apt-get install sed gawk coreutils perl parallel mpv p7zip-full=
+   =sudo apt-get install sed gawk coreutils perl parallel mpv p7zip-full zstd=
     
    On Termux on Android, run:
 
-   =pkg install sed gawk coreutils termux-apis perl parallel mpv p7zip-full=
+   =pkg install sed gawk coreutils termux-apis perl parallel mpv p7zip-full zstd=
 
    or
 
-   =apt install sed gawk coreutils termux-apis perl parallel mpv p7zip-full=
+   =apt install sed gawk coreutils termux-apis perl parallel mpv p7zip-full zstd=
 
    or
 
-   =apt-get install sed gawk coreutils termux-apis perl parallel mpv p7zip-full=
+   =apt-get install sed gawk coreutils termux-apis perl parallel mpv p7zip-full zstd=
 
    Note that the =termux-apis= package is specific to Android and is not available for GNU/Linux. This package is used to display some information on the Android notification bar.
 
@@ -390,7 +463,8 @@ en.al-quran-info-transliteration.trans.zip
   # Change into it
   cd qap-hudhaify-fra-eng-60-hizb
 #+END_SRC
-
+version=06-Shaaban-1443
+version_g=10-March-2022
 
 *PART-1*
 
@@ -1234,3 +1308,7 @@ If you did everything as I said, you should end up with 60 folders within the =q
 ** Other Scripts
    Coming soon in Sha Allah.
 
+** Contact Information
+#+CAPTION: email address
+#+NAME:   fig:email.png
+[[./images/email.png]]
